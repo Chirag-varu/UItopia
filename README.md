@@ -14,7 +14,7 @@ Beautiful UI components built on top of **ShadCN** with **Tailwind CSS**
 - **Accessible**: All components are designed with accessibility in mind, following best practices.
 
 ## Technology's
-React + TypeScript + Vite
+**React + TypeScript + Vite**
 
 ## Installation for use or integration projects or app
 
