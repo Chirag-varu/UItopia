@@ -1,5 +1,3 @@
-# React + TypeScript + Vite
-
 # Ultopia
 Beautiful UI components built on top of **ShadCN** with **Tailwind CSS**
 
@@ -14,6 +12,9 @@ Beautiful UI components built on top of **ShadCN** with **Tailwind CSS**
 - **Built with ShadCN**: UItopia is built on top of ShadCN, leveraging its simplicity and power.
 - **Responsive Design**: Components are designed to be fully responsive, ensuring a great experience across all devices.
 - **Accessible**: All components are designed with accessibility in mind, following best practices.
+
+## Technology's
+React + TypeScript + Vite
 
 ## Installation for use or integration projects or app
 
