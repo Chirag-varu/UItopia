@@ -1,12 +1,13 @@
 import './App.css'
-
+import { ThemeProvider } from "@/components/theme-provider"
+import  { Navbar } from "./components/navbar";
+ 
 function App() {
   return (
-    <>
-      <h1>Welcome To Ultopia!</h1>
-      <h2>currently under developmenmt ...</h2>
-    </>
+    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+      <Navbar />
+    </ThemeProvider>
   )
 }
-
+ 
 export default App
