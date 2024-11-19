@@ -29,13 +29,6 @@ Next : https://ui.shadcn.com/docs/installation/next
 copy-and-paste components in your projects and app ✅
 
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Installation
 
 To get started with Ultopia, follow these steps:
@@ -43,7 +36,7 @@ To get started with Ultopia, follow these steps:
 1. **Clone the repository**:
    First, clone the repository to your local machine:
    ```bash
-   git clone https://github.com/yourusername/Ultopia.git
+   git clone https://github.com/Chirag-varu/Ultopia.git
    ```
 
 2. **Navigate to the project folder**:
@@ -66,25 +59,8 @@ To get started with Ultopia, follow these steps:
    # OR
    yarn dev
    ```
-   This will start a local server, and you can view the project at `http://localhost:3000` in your browser.
+   This will start a local server, and you can view the project at `http://localhost:5173` in your browser.
 
-## Usage
-
-Ultopia provides a set of reusable UI components that you can import and use in your React projects. For example:
-
-```tsx
-import { Button } from 'ultopia';
-
-const App = () => {
-  return (
-    <div className="p-4">
-      <Button>Click me</Button>
-    </div>
-  );
-};
-
-export default App;
-```
 
 ## Contributing
 
