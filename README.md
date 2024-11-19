@@ -15,7 +15,7 @@ Beautiful UI components built on top of **ShadCN** with **Tailwind CSS**
 - **Responsive Design**: Components are designed to be fully responsive, ensuring a great experience across all devices.
 - **Accessible**: All components are designed with accessibility in mind, following best practices.
 
-## Installation
+## Installation for use or integration projects or app
 
 To get started with **UItopia**, you can follow shad CN installation:
 
