@@ -19,14 +19,14 @@ export function Navbar() {
           <img
             src="src/assets/logo-light.png"
             alt="Logo"
-            className="h-24 rounded-xl dark:hidden"
+            className="h-24 rounded-xl dark:hidden cursor-pointer"
           />
           <img
             src="src/assets/logo-dark.png"
             alt="Logo"
-            className="h-24 rounded-xl hidden dark:block"
+            className="h-24 rounded-xl hidden dark:block cursor-pointer"
           />
-          <span className="text-2xl font-bold text-gray-800 dark:text-white">
+          <span className="text-2xl font-bold text-gray-800 dark:text-white cursor-pointer">
             UI-TOPIA
           </span>
         </div>
