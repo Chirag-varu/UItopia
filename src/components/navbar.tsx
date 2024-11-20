@@ -12,12 +12,22 @@ export function Navbar() {
   };
 
   return (
-    <nav className="flex w-full backdrop-blur-md bg-white/70 dark:bg-gray-900/70 fixed z-50 p-4">
+    <nav className="flex w-full backdrop-blur-md bg-gray-200/50 dark:bg-gray-900/70 fixed z-50 p-4">
       <div className="flex items-center justify-around w-full max-w-7xl mx-auto">
         {/* Logo */}
         <div className="flex items-center">
+          <img
+            src="src/assets/logo-light.png"
+            alt="Logo"
+            className="h-24 rounded-xl dark:hidden"
+          />
+          <img
+            src="src/assets/logo-dark.png"
+            alt="Logo"
+            className="h-24 rounded-xl hidden dark:block"
+          />
           <span className="text-2xl font-bold text-gray-800 dark:text-white">
-            Ultopia
+            UI-TOPIA
           </span>
         </div>
 
