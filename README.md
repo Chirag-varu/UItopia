@@ -1,4 +1,4 @@
-# Ultopia
+# UItopia
 Beautiful UI components built on top of **ShadCN** with **Tailwind CSS**
 
 **Ultopia** is an extensive collection of copy-and-paste components for quickly building app UIs. It's free, open-source, and ready to drop into your projects.
