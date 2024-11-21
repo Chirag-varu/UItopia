@@ -1,6 +1,7 @@
 import ModeToggle from "../components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { RiGithubFill } from "@remixicon/react";
+import { Link } from "react-router-dom";
 
 export function Navbar() {
   const handleGitHubRedirect = () => {
@@ -12,7 +13,7 @@ export function Navbar() {
   };
 
   return (
-    <nav className="flex w-full backdrop-blur-md bg-gray-200/50 dark:bg-gray-900/70 fixed z-50 p-4">
+    <nav className="flex w-full backdrop-blur-md bg-gray-200/50 dark:bg-gray-900/70 fixed z-50 p-4 justify-center items-center h-[6rem] mb-2">
       <div className="flex items-center justify-around w-full max-w-7xl mx-auto">
         {/* Logo */}
         <div className="flex items-center">
@@ -34,29 +35,29 @@ export function Navbar() {
         {/* Navigation Links */}
         <ul className="hidden md:flex gap-8 text-gray-700 dark:text-gray-300">
           <li>
-            <a href="#home" className="hover:text-blue-500">
+            <Link to="/" className="hover:text-blue-500">
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#Docs" className="hover:text-blue-500">
+            <Link to="/docs" className="hover:text-blue-500">
               Docs
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#Components" className="hover:text-blue-500">
+            <Link to="/components" className="hover:text-blue-500">
               Components
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#about" className="hover:text-blue-500">
+            <Link to="/about" className="hover:text-blue-500">
               About
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#contact" className="hover:text-blue-500">
+            <Link to="/contact" className="hover:text-blue-500">
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
 
