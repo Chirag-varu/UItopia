@@ -3,7 +3,7 @@ import { FlipWords } from "./ui/flip-words";
 import { Button } from "@/components/ui/button";
 
 export function Hero() {
-    const words = ["modern", "better", "beautiful", "awawesome"];
+    const words = ["modern", "better", "beautiful", "awesome"];
 
   return (
     <div className="flex flex-col gap-3">
