@@ -16,8 +16,8 @@ export default function Contact() {
             </h2>
             <p className="text-lg mb-6 text-center">
               We'd love to hear from you! Whether you have a question,
-              <br /> need support, or just want to share your thoughts, feel
-              free to reach out.
+              <p>need support, or just want to share your thoughts, feel
+              free to reach out.</p>
             </p>
             <ContactForm />
           </div>
@@ -28,9 +28,9 @@ export default function Contact() {
               Frequently Asked Questions
             </h2>
             <p className="text-lg mb-10 text-center">
-              Here are some common questions users ask about UI-Topia. <br />
-              If you can't find what you're looking for, don't hesitate to
-              contact us.
+              Here are some common questions users ask about UI-Topia. 
+              <p>If you can't find what you're looking for, don't hesitate to
+              contact us.</p>
             </p>
             <FaqAccordion />
           </div>

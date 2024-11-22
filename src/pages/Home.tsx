@@ -59,12 +59,12 @@ export default function Home() {
         </Highlight>
       </div>
 
-      <div className="w-[45rem] mt-20 mb-16 ml-64">
+      <div className="w-[45rem] mt-20 mb-16 ml-80">
         <Subscribe />
       </div>
 
       <div className="flex flex-row items-center justify-center w-full mb-12 p-2">
-        <p className="text-[#696464] text-lg mb-2 mr-3">Brought to you by </p>
+        <p className="text-[#696464] text-lg mb-2 mr-3 dark:text-white">Brought to you by </p>
         <AnimatedTooltip items={people} />
       </div>
     </div>

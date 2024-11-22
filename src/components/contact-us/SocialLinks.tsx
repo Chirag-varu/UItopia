@@ -3,9 +3,9 @@ import { RiLinkedinFill, RiGithubFill, RiMailFill } from "@remixicon/react";
 const members = [
   {
     name: "Chirag Varu",
-    linkedin: "https://www.linkedin.com/in/chirag-varu",
-    github: "https://github.com/in/Chirag-varu",
-    email: "mailto:chirag@gmail.com",
+    linkedin: "https://www.linkedin.com/in/chiragvaru03/",
+    github: "https://github.com/Chirag-varu",
+    email: "mailto:chiragvaru03@gmail.com",
   },
   {
     name: "Aditya Pai",

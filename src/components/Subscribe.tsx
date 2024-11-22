@@ -12,7 +12,7 @@ export function Subscribe() {
   };
 
   return (
-    <div className="flex items-center justify-center gap-3 bg-black border-white border-2 rounded-xl p-12">
+    <div className="flex items-center justify-center gap-3 bg-black border-white dark:bg-gray-800/50 border-2 rounded-xl p-12">
       <form onSubmit={handleSubscribe}>
         {!isSubscribed ? (
           <>
@@ -25,7 +25,7 @@ export function Subscribe() {
             >
               <Input
                 type="email"
-                className="rounded-full w-[19rem] bg-[#666565] text-white p-3 mr-2 mt-2"
+                className="rounded-full w-[19rem] bg-[#666565] text-white placeholder:text-white p-4 mr-2 mt-2"
                 placeholder="Enter your email"
                 required
               />
