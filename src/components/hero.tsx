@@ -10,7 +10,7 @@ export function Hero() {
       <div className="flex items-center justify-center rounded-full bg-[#FBEBEB] gap-2 p-3 w-[15rem] h-8">
         <span className="text-[#B77171]"><FaStar /></span>
         <span className="text-[#C19C9C]">|</span>
-        <span>New releases every week</span>
+        <span className="text-black">New releases every week</span>
       </div>
 
       <div className="mb-2">
