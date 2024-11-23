@@ -36,11 +36,11 @@ const SocialLinks = () => {
       </div>
 
       {/* Right Section: Social Cards */}
-      <div className="lg:w-1/2 w-full flex flex-col md:flex-row md:flex-wrap items-center lg:items-start justify-center lg:justify-end gap-8">
+      <div className="lg:w-1/2 w-full flex flex-col md:flex-row md:flex-wrap items-center lg:items-start justify-center lg:justify-end gap-8 ">
         {members.map((member, index) => (
           <div
             key={index}
-            className="flex flex-col items-center p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transform transition-all duration-300 hover:scale-105"
+            className="flex flex-col items-center p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transform transition-all duration-300 hover:scale-105 cursor-pointer"
           >
             {/* Member Name */}
             <p className="text-lg font-semibold mb-4 text-gray-800 dark:text-white">
