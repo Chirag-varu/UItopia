@@ -73,6 +73,7 @@ We welcome contributions! To contribute to the project, follow these steps:
    Clone your forked repository to your local machine:
    ```bash
    git clone https://github.com/Chirag-varu/Ultopia.git
+   npm i
    ```
 
 3. **Create a new branch**:
