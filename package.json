@@ -17,6 +17,7 @@
     "@remixicon/react": "^4.5.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "emailjs-com": "^3.2.0",
     "framer-motion": "^11.11.17",
     "lucide-react": "^0.460.0",
     "mini-svg-data-uri": "^1.4.4",

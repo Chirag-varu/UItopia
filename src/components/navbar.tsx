@@ -18,18 +18,18 @@ export function Navbar() {
         {/* Logo */}
         <div className="flex items-center">
           <img
-            src="src/assets/logo-light.png"
+            src="src/assets/new-logo-light.png"
             alt="Logo"
-            className="h-24 rounded-xl dark:hidden cursor-pointer"
+            className="h-16 rounded-xl dark:hidden cursor-pointer"
           />
           <img
-            src="src/assets/logo-dark.png"
+            src="src/assets/new-logo-dark.png"
             alt="Logo"
-            className="h-24 rounded-xl hidden dark:block cursor-pointer"
+            className="h-16 rounded-xl hidden dark:block cursor-pointer"
           />
-          <span className="text-2xl font-bold text-gray-800 dark:text-white cursor-pointer">
+          {/* <span className="text-2xl font-bold text-gray-800 dark:text-white cursor-pointer">
             UI-TOPIA
-          </span>
+          </span> */}
         </div>
 
         {/* Navigation Links */}
