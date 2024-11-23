@@ -7,7 +7,7 @@ import {
 
 export function Aside_Comp() {
   return (
-    <div className="flex items-center justify-center bg-[#0E0E10] dark:bg-gray-800/50 h-[17rem] rounded-2xl w-[97%]">
+    <div className="hidden md:flex items-center justify-center bg-[#0E0E10] dark:bg-gray-800/50 h-[17rem] rounded-2xl w-[97%]">
       <TextRevealCard
         text="Hover over me to reveal"
         revealText="Welcome to UI-Topia "
