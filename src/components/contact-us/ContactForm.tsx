@@ -16,23 +16,21 @@ const ContactForm = () => {
       user_email: email,
       user_message: message,
     };
-try{
-
-  await emailjs
-  .send(
-    import.meta.env.VITE_EMAILJS_SERVICE_ID,
-    import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-    templateParams,
-    import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-  );
-  setSuccess(true);
-  setTimeout(() => {
-    setSuccess(false);
-  }, 3000);
-  setName("");
-  setEmail("");
-  setMessage("");
-} catch (error) {
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch (error) {
       console.error("Error sending email: ", error);
       setSuccess(false);
     } finally {
@@ -42,25 +40,24 @@ try{
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
-<div>
-  <label htmlFor="name" className="block text-lg font-medium">
-    Name
-  </label>
-  <input
-    type="text"
-    id="name"
-    value={name}
-    onChange={(e) => setName(e.target.value)}
-    placeholder="Enter your name"
-    required
-    minLength={5} // Minimum length of 5 characters
-    maxLength={50} // Maximum length of 50 characters
-    pattern="^[A-Za-z\s]+$" // Regex to allow only letters and spaces
-    title="Please enter a valid name with only letters and spaces"
-    className="w-full p-2 mt-2 border border-gray-300 rounded-md bg-transparent shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-slate-300"
-  />
-</div>
-
+      <div>
+        <label htmlFor="name" className="block text-lg font-medium">
+          Name
+        </label>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Enter your name"
+          required
+          minLength={5} // Minimum length of 5 characters
+          maxLength={50} // Maximum length of 50 characters
+          pattern="^[A-Za-z\s]+$" // Regex to allow only letters and spaces
+          title="Please enter a valid name with only letters and spaces"
+          className="w-full p-2 mt-2 border border-gray-300 rounded-md bg-transparent shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-slate-300"
+        />
+      </div>
 
       <div>
         <label htmlFor="email" className="block text-lg font-medium">
@@ -73,7 +70,7 @@ try{
           onChange={(e) => setEmail(e.target.value.toLowerCase())}
           placeholder="Enter your email"
           required
-          maxLength={100} 
+          maxLength={100}
           pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" // Regex for a valid email format
           title="Please enter a valid email address (e.g., example@domain.com)"
           className="w-full p-2 mt-2 border border-gray-300 rounded-md bg-transparent shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-slate-300"
@@ -81,25 +78,24 @@ try{
       </div>
 
       <div>
-  <label htmlFor="message" className="block text-lg font-medium">
-    Message
-  </label>
-  <textarea
-    id="message"
-    rows={4}
-    value={message}
-    onChange={(e) => setMessage(e.target.value)}
-    placeholder="Leave us a message!"
-    required
-    minLength={10}
-    maxLength={500}
-    title="Message should be between 10 and 500 characters."
-    className="w-full p-2 mt-2 border border-gray-300 rounded-md bg-transparent shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-slate-300"
-  ></textarea>
-</div>
+        <label htmlFor="message" className="block text-lg font-medium">
+          Message
+        </label>
+        <textarea
+          id="message"
+          rows={4}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Leave us a message!"
+          required
+          minLength={10}
+          maxLength={500}
+          title="Message should be between 10 and 500 characters."
+          className="w-full p-2 mt-2 border border-gray-300 rounded-md bg-transparent shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-slate-300"
+        ></textarea>
+      </div>
 
-
-<button
+      <button
         type="submit"
         className={`relative w-full p-3 ${
           isSending

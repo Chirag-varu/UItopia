@@ -2,13 +2,42 @@ import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import emailjs from "emailjs-com";
 
 export function Subscribe() {
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: any) => {
     e.preventDefault();
-    setIsSubscribed(true);
+    setIsSending(true);
+    const templateParams = {
+      user_email: email,
+      user_message: message,
+    };
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
+      setEmail("");
+      setMessage("");
+      setIsSubscribed(true);
+    } catch (error) {
+      console.error("Error sending email: ", error);
+      setSuccess(false);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -22,9 +51,13 @@ export function Subscribe() {
             <div className="flex flex-col sm:flex-row items-center gap-3">
               <Input
                 type="email"
+                id="email"
+                required
+                onChange={(e) => setEmail(e.target.value.toLowerCase())}
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                title="Please enter a valid email address (e.g., example@domain.com)"
                 className="rounded-full w-full bg-[#666565] text-white placeholder:text-white p-3 md:p-4"
                 placeholder="Enter your email"
-                required
               />
               <Button
                 type="submit"
