@@ -16,13 +16,13 @@ const people = [
   {
     id: 2,
     name: "Aditya pai",
-    designation: "Frontend Developer",
+    designation: "Full-Stack Developer",
     image: "/src/assets/profile2.jpeg",
   },
   {
     id: 3,
     name: "Chirag varu",
-    designation: "Full-stack Developer",
+    designation: "Full-Stack Developer",
     image: "/src/assets/profile1.jpeg",
   },
 ];
