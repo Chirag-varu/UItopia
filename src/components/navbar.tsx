@@ -23,12 +23,12 @@ export function Navbar() {
         <Link to="/" className="block hover:text-blue-500 text-center">
 
           <img
-            src="src/assets/new-logo-light.png"
+            src="src/assets/new-logo-light-removebg.png"
             alt="Logo"
             className="h-16 rounded-xl dark:hidden cursor-pointer"
           />
           <img
-            src="src/assets/new-logo-dark.png"
+            src="src/assets/new-logo-dark-removebg.png"
             alt="Logo"
             className="h-16 rounded-xl hidden dark:block cursor-pointer"
           />
