@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -8,12 +8,9 @@ export function Subscribe() {
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [success, setSuccess] = useState(false);
-  const [isSending, setIsSending] = useState(false);
 
   const handleSubscribe = async (e: any) => {
     e.preventDefault();
-    setIsSending(true);
     const templateParams = {
       user_email: email,
       user_message: message,
@@ -25,18 +22,14 @@ export function Subscribe() {
         templateParams,
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
-      setSuccess(true);
       setTimeout(() => {
-        setSuccess(false);
+        console.log("massage sent! for subscribe");
       }, 3000);
       setEmail("");
       setMessage("");
       setIsSubscribed(true);
     } catch (error) {
       console.error("Error sending email: ", error);
-      setSuccess(false);
-    } finally {
-      setIsSending(false);
     }
   };
 

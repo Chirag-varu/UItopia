@@ -16,7 +16,7 @@ export function Hero() {
       <div className="mb-2">
         <p className="text-7xl">Make your</p>
         <p className="text-7xl">websites look</p>
-        <p className="text-7xl">10x<FlipWords words={words} className="text-[#465FDC]"/></p>
+        <p className="text-7xl">10x<FlipWords words={words} className="text-[#465FDC] dark:text-[#465FDC]"/></p>
       </div>
 
       <div className="mb-4">
@@ -29,11 +29,11 @@ export function Hero() {
       </div>
       
       <div className="flex h-14 w-[4rem] gap-5">
-        <img src="src/assets/next-js.png" alt="Next js" />
+        <img src="src/assets/next-js.png" alt="Next js" className="dark:invert dark:brightness-200" />
         <img src="src/assets/React.png" alt="React js" />
         <img src="src/assets/Tailwind_CSS.png" alt="Tailwind css" />
         <img src="src/assets/motion.png" alt="motion" />
-        <img src="src/assets/shadcn-ui.png" alt="Shadcn" />
+        <img src="src/assets/shadcn-ui-bg.png" alt="Shadcn" className="dark:invert dark:brightness-200" />
       </div>
     </div>
   )

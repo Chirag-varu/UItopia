@@ -13,7 +13,7 @@ const FaqAccordion = () => {
     { question: "FAQ1", answer: "Answer to FAQ1" },
     { question: "FAQ2", answer: "Answer to FAQ2" },
     { question: "FAQ3", answer: "Answer to FAQ3" },
-    { question: "FAQ54", answer: "Answer to FAQ4" },
+    { question: "FAQ4", answer: "Answer to FAQ4" },
     { question: "FAQ5", answer: "Answer to FAQ5" },
   ];
 
