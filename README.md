@@ -1,7 +1,7 @@
 # UItopia
 Beautiful UI components built on top of **ShadCN** with **Tailwind CSS**
 
-**Ultopia** is an extensive collection of copy-and-paste components for quickly building app UIs. It's free, open-source, and ready to drop into your projects.
+**UI-Topia** is an extensive collection of copy-and-paste components for quickly building app UIs. It's free, open-source, and ready to drop into your projects.
 
 **UItopia** is designed to provide modern, accessible, and customizable UI components that help developers build beautiful, responsive web applications with ease.
 
@@ -31,17 +31,17 @@ copy-and-paste components in your projects and app ✅
 
 ## Installation
 
-To get started with Ultopia, follow these steps:
+To get started with UI-Topia, follow these steps:
 
 1. **Clone the repository**:
    First, clone the repository to your local machine:
    ```bash
-   git clone https://github.com/Chirag-varu/Ultopia.git
+   git clone https://github.com/Chirag-varu/UITopia.git
    ```
 
 2. **Navigate to the project folder**:
    ```bash
-   cd Ultopia
+   cd UITopia
    ```
 
 3. **Install dependencies**:
@@ -72,7 +72,7 @@ We welcome contributions! To contribute to the project, follow these steps:
 2. **Clone your fork**:
    Clone your forked repository to your local machine:
    ```bash
-   git clone https://github.com/Chirag-varu/Ultopia.git
+   git clone https://github.com/Chirag-varu/UITopia.git
    npm i
    ```
 
