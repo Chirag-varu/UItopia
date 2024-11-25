@@ -91,7 +91,7 @@ const ContactForm = () => {
           minLength={10}
           maxLength={500}
           title="Message should be between 10 and 500 characters."
-          className="w-full p-2 mt-2 border border-gray-300 rounded-md bg-transparent shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-slate-300"
+          className="w-full p-2 mt-2 border border-gray-300 rounded-md bg-transparent shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-slate-300 resize-none"
         ></textarea>
       </div>
 

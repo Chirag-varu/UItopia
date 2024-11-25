@@ -1,4 +1,3 @@
-import { Navbar } from "../components/navbar";
 import { Hero } from "../components/hero";
 import { Aside_Comp } from "../components/aside";
 import { Moving_card } from "../components/Moving_card";
@@ -30,11 +29,7 @@ const people = [
 export default function Home() {
   return (
     <div className="flex flex-col h-screen w-full gap-1">
-      <div className="mb-40">
-        <Navbar />
-      </div>
-
-      <div className="flex md:flex-row flex-col p-1 mb-8">
+      <div className="flex md:flex-row flex-col p-1 mb-8 mt-40">
         <div className="flex flex-1 justify-around gap-3 w-full mb-2 mr-32">
           <Hero />
         </div>
@@ -47,7 +42,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mt-10 md:ml-48 mb-14 max-w-lg lg:max-w-xl mx-4 ">
+      <div className="mt-10 md:ml-20 mb-14 max-w-lg lg:max-w-xl mx-4 ">
         <h1 className="font-bold md:text-2xl text-xl mb-3 ">
           Only UI Component Library you will ever need{" "}
         </h1>

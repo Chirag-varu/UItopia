@@ -1,20 +1,18 @@
 import ContactForm from "@/components/contact-us/ContactForm";
 import FaqAccordion from "@/components/contact-us/FaqAccordion";
 import SocialLinks from "@/components/contact-us/SocialLinks";
-import { Navbar } from "@/components/navbar";
 import { motion } from "framer-motion";
 
 export default function Contact() {
   return (
     <>
-      <Navbar />
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
         <div className="flex flex-col items-center justify-between p-8 gap-4 ">
-          <div className="flex md:flex-row flex-col gap-4 w-full mt-1">
+          <div className="flex md:flex-row flex-col gap-4 w-full mt-12">
             {/* Contact Form */}
             <div className="flex-1 bg-white dark:bg-gray-800/50  p-10 rounded-lg shadow-md ">
               <h2 className="md:text-5xl text-4xl font-bold mb-2 text-center">
