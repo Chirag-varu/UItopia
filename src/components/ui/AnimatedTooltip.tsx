@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 import {
   motion,
   useTransform,
@@ -21,6 +23,8 @@ export const AnimatedTooltip = ({
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const springConfig = { stiffness: 100, damping: 5 };
   const x = useMotionValue(0); // going to set this value on mouse move
+  const navigate = useNavigate();
+
   // rotate the tooltip
   const rotate = useSpring(
     useTransform(x, [-100, 100], [-45, 45]),
@@ -35,6 +39,10 @@ export const AnimatedTooltip = ({
     const halfWidth = event.target.offsetWidth / 2;
     x.set(event.nativeEvent.offsetX - halfWidth); // set the x value, which is then used in transform and rotate
   };
+  
+  const goToAbout = () => {
+    navigate('/about');
+  }
 
   return (
     <>
@@ -78,6 +86,7 @@ export const AnimatedTooltip = ({
           </AnimatePresence>
           <img
             onMouseMove={handleMouseMove}
+            onClick={goToAbout}
             height={100}
             width={100}
             src={item.image}

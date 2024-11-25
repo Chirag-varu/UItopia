@@ -8,19 +8,19 @@ import { AnimatedTooltip } from "../components/ui/AnimatedTooltip";
 const people = [
   {
     id: 1,
-    name: "Monil parikh",
+    name: "Monil Parikh",
     designation: "Explorer",
     image: "/src/assets/profile3.jpg",
   },
   {
     id: 2,
-    name: "Aditya pai",
+    name: "Aditya Pai",
     designation: "Full-Stack Developer",
     image: "/src/assets/profile2.jpeg",
   },
   {
     id: 3,
-    name: "Chirag varu",
+    name: "Chirag Varu",
     designation: "Full-Stack Developer",
     image: "/src/assets/profile1.jpeg",
   },
