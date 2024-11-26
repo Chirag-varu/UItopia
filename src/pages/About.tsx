@@ -20,7 +20,7 @@ export default function About() {
           <img
             src={profile2} // Adjust this path if needed
             alt="Creator 1"
-            className="rounded-lg w-full h-auto object-contain mb-30 shadow-xl"
+            className="rounded-lg w-full h-auto object-contain shadow-xl transform transition-transform duration-300 hover:scale-105"
           />
           <div className="flex justify-center gap-4">
           <a href="https://www.linkedin.com/in/adityapai05/" target="_blank">
@@ -40,7 +40,7 @@ export default function About() {
           <img
             src={profile3}
             alt="Creator 2"
-            className="rounded-lg w-full h-auto object-contain mb-30 shadow-xl"
+            className="rounded-lg w-full h-auto object-contain shadow-xl transform transition-transform duration-300 hover:scale-105"
           />
           <div className="flex justify-center gap-4">
           <a href="https://www.linkedin.com/in/monil-parikh-8228b033a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app " target="_blank">
@@ -60,7 +60,7 @@ export default function About() {
           <img
             src={profile1}
             alt="Creator 3"
-            className="rounded-lg w-full h-72 object-cover shadow-xl"
+            className="rounded-lg w-full h-72 object-cover shadow-xl transform transition-transform duration-300 hover:scale-105"
           />
           <div className="flex justify-center gap-4">
           <a href="https://www.linkedin.com/in/chiragvaru03/" target="_blank">
