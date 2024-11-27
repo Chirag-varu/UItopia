@@ -90,7 +90,7 @@ export default function About() {
             Our Vision: Empowering Developers to Build Exceptional Interfaces
             Effortlessly
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-white">
             Success for us means empowering your success by providing tools that
             make UI development intuitive, efficient, and a joy to work with,
             enabling you to craft user experiences that truly stand out.
@@ -102,7 +102,7 @@ export default function About() {
       <section className="max-w-6xl shadow-md mx-auto px-4 py-16 flex md:flex-row flex-col flex-wrap gap-8 items-center">
         <div className="flex-1">
           <h2 className="text-xl font-bold mb-4">Our Story</h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-white">
             In 2024, three friends—Monil Parikh, Aditya Pai, and Chirag Varu—
             realized the immense potential of technology to solve real-life
             problems. As passionate B.Sc. IT students, they shared a vision to
