@@ -27,7 +27,7 @@ export default function About() {
               <img src={linkedIn} alt="GitHub" className="w-6 h-6 m-5" />
             </a>
             <a href="https://github.com/adityapai05" target="_blank">
-              <img src={gitHub} alt="GitHub" className="w-6 h-6 m-5" />
+              <img src={gitHub} alt="GitHub" className="w-6 h-6 m-5 dark:invert" />
             </a>
             <a href="mailto:adityapai.main@gmail.com" >
               <img src={gmail} alt="Mail" className="w-6 h-6 m-5"  />
@@ -47,7 +47,7 @@ export default function About() {
               <img src={linkedIn} alt="GitHub" className="w-6 h-6 m-5" />
             </a>
             <a href="https://github.com/skymonil"  target="_blank">
-              <img src={gitHub} alt="GitHub" className="w-6 h-6 m-5" />
+              <img src={gitHub} alt="GitHub" className="w-6 h-6 m-5 dark:invert" />
             </a>
             <a href="mailto:monilparikh11@gmail.com" >
               <img src={gmail} alt="Mail" className="w-6 h-6 m-5"  />
@@ -67,7 +67,7 @@ export default function About() {
               <img src={linkedIn} alt="GitHub" className="w-6 h-6 m-5" />
             </a>
             <a href="https://github.com/Chirag-varu" target="_blank">
-              <img src={gitHub} alt="GitHub" className="w-6 h-6 m-5" />
+              <img src={gitHub} alt="GitHub" className="w-6 h-6 m-5 dark:invert"  />
             </a>
             <a href="mailto:chiragvaru03@gmail.com" >
               <img src={gmail} alt="Mail" className="w-6 h-6 m-5"  />
