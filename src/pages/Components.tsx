@@ -6,7 +6,7 @@ export default function Components() {
     <div className="flex flex-col items-center justify-center">
       <div className="mt-40">
         <h1 className="text-lg mb-4">Components</h1>
-        <div className="flex flex-col gap-4 w-80">
+        <div className="flex flex-col gap-4 ">
         {[
             { path: "/buttons", name: "Button" },
             { path: "/inputs", name: "Input and Textarea" },
