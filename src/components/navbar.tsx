@@ -19,7 +19,7 @@ export function Navbar() {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <nav className="flex w-full backdrop-blur-md bg-gray-200/50 dark:bg-gray-900/70 fixed z-50 p-4 justify-center items-center h-[4rem] mb-2">
+    <nav className="flex w-full backdrop-blur-md bg-gray-200/50 dark:bg-[#18181b]/50 fixed z-50 p-4 justify-center items-center h-[4rem] mb-2">
       <div className="flex items-center justify-between w-full max-w-7xl mx-auto">
         {/* Logo */}
         <div className="flex items-center">
