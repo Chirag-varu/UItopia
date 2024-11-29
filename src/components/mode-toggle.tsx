@@ -3,18 +3,32 @@
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Moon, Sun } from "lucide-react";
-import { useState } from "react";
-import { useTheme } from "@/components/theme-provider"
+import { useState, useEffect } from "react";
+import { useTheme } from "@/components/theme-provider";
+
+type Theme = "light" | "dark";
 
 export default function ModeToggle() {
-  const [checked, setChecked] = useState<boolean>(true);
-  const { setTheme } = useTheme();
+  const [theme, settingTheme] = useState<Theme>(() => {
+    return (localStorage.getItem("theme") as Theme) || "light";
+  });
+
+  const { setTheme } = useTheme(); // Assuming this is your custom theme context.
+
+  const [checked, setChecked] = useState<boolean>(theme === "dark");
+
+  // Sync the `theme` state with localStorage and apply it to the body.
+  useEffect(() => {
+    document.body.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+    setTheme(theme); // Inform the theme context.
+  }, [theme, setTheme]);
 
   const handleThemeToggle = (isChecked: boolean) => {
     setChecked(isChecked);
-    setTheme(isChecked ? "light" : "dark");
+    const newTheme: Theme = theme === "light" ? "dark" : "light";
+    settingTheme(newTheme);
   };
-
 
   return (
     <div>
