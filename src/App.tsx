@@ -12,7 +12,7 @@ import Contact from './pages/Contact';
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Router>
         <ScrollToTop />
         <Navbar />
