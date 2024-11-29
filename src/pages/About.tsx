@@ -118,6 +118,69 @@ export default function About() {
           </div>
         </div>
       </section>
+      <footer className="bg-gray-900 text-gray-200 mt-auto">
+        <div className="container mx-auto p-6">
+          <div className="flex flex-col md:flex-row justify-between">
+            {/* Logo and Description */}
+            <div className="mb-4 md:mb-0">
+              <h2 className="text-xl font-bold mb-2">UI-Topia</h2>
+              <p className="text-sm">
+                Simplify your UI development with our copy-paste-ready component library.
+              </p>
+            </div>
+
+            
+            <div className="flex flex-col md:flex-row md:gap-8">
+              <div className="mb-4 md:mb-0">
+                <h3 className="font-semibold mb-2">Links</h3>
+                <ul>
+                  <li className="text-sm hover:text-gray-400">
+                    <a href="#">Home</a>
+                  </li>
+                  <li className="text-sm hover:text-gray-400">
+                    <a href="http://localhost:5173/components">Components</a>
+                  </li>
+                  
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold mb-2">Support</h3>
+                <ul>
+                  <li className="text-sm hover:text-gray-400">
+                    <a href="http://localhost:5173/contact">FAQ</a>
+                  </li>
+                  <li className="text-sm hover:text-gray-400">
+                    <a href="http://localhost:5173/contact">Contact</a>
+                  </li>
+                 
+                </ul>
+              </div>
+            </div>
+
+            
+            <div>
+              <h3 className="font-semibold mb-2">Follow Us</h3>
+              <div className="flex space-x-4">
+                <a href="#" className="text-gray-200 hover:text-gray-400">
+                  <i className="fab fa-facebook"></i> Facebook
+                </a>
+                <a href="#" className="text-gray-200 hover:text-gray-400">
+                  <i className="fab fa-twitter"></i> Twitter
+                </a>
+                <a href="#" className="text-gray-200 hover:text-gray-400">
+                  <i className="fab fa-instagram"></i> Instagram
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 text-center text-sm">
+            © {new Date().getFullYear()} UI-Topia. All rights reserved.
+          </div>
+        </div>
+        
+      </footer>
     </div>
   );
 }

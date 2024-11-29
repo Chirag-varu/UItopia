@@ -4,6 +4,8 @@ import { Moving_card } from "../components/Moving_card";
 import { Highlight } from "../components/ui/hero-highlight";
 import { Subscribe } from "../components/Subscribe";
 import { AnimatedTooltip } from "../components/ui/AnimatedTooltip";
+import SocialLinks from "@/components/contact-us/SocialLinks";
+
 
 const people = [
   {
@@ -54,7 +56,7 @@ export default function Home() {
         </Highlight>
       </div>
 
-      {/* Subscribe Section */}
+      
       <div className="mt-12 mb-16 flex justify-center">
         <div className="w-full max-w-lg lg:max-w-xl mx-4 lg:mx-0">
           <Subscribe />
@@ -65,6 +67,72 @@ export default function Home() {
         <p className="text-[#696464] text-lg mb-1 mr-3 dark:text-white">Brought to you by </p>
         <AnimatedTooltip items={people} />
       </div>
+
+      <footer className="bg-gray-900 text-gray-200 mt-auto">
+        <div className="container mx-auto p-6">
+          <div className="flex flex-col md:flex-row justify-between">
+            {/* Logo and Description */}
+            <div className="mb-4 md:mb-0">
+              <h2 className="text-xl font-bold mb-2">UI-Topia</h2>
+              <p className="text-sm">
+                Simplify your UI development with our copy-paste-ready component library.
+              </p>
+            </div>
+
+            
+            <div className="flex flex-col md:flex-row md:gap-8">
+              <div className="mb-4 md:mb-0">
+                <h3 className="font-semibold mb-2">Links</h3>
+                <ul>
+                  <li className="text-sm hover:text-gray-400">
+                    <a href="#">Home</a>
+                  </li>
+                  <li className="text-sm hover:text-gray-400">
+                    <a href="http://localhost:5173/components">Components</a>
+                  </li>
+                  
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold mb-2">Support</h3>
+                <ul>
+                  <li className="text-sm hover:text-gray-400">
+                    <a href="http://localhost:5173/contact">FAQ</a>
+                  </li>
+                  <li className="text-sm hover:text-gray-400">
+                    <a href="http://localhost:5173/contact">Contact</a>
+                  </li>
+                 
+                </ul>
+              </div>
+            </div>
+
+            
+            <div>
+              <h3 className="font-semibold mb-2">Follow Us</h3>
+              <div className="flex space-x-4">
+                <a href="#" className="text-gray-200 hover:text-gray-400">
+                  <i className="fab fa-facebook"></i> Facebook
+                </a>
+                <a href="#" className="text-gray-200 hover:text-gray-400">
+                  <i className="fab fa-twitter"></i> Twitter
+                </a>
+                <a href="#" className="text-gray-200 hover:text-gray-400">
+                  <i className="fab fa-instagram"></i> Instagram
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 text-center text-sm">
+            © {new Date().getFullYear()} UI-Topia. All rights reserved.
+          </div>
+        </div>
+        
+      </footer>
+  
     </div>
+    
   );
 }
