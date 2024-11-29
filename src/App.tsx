@@ -9,6 +9,7 @@ import Components from './pages/Components';
 import About from './pages/About';
 import Contact from './pages/Contact';
 
+
 function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
@@ -17,8 +18,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Docs" element={<Docs />} />
-          <Route path="/Components" element={<Components />} />
+          <Route path="/docs/*" element={<Docs />} />
+          <Route path="/components" element={<Components />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
