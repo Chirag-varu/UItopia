@@ -9,7 +9,6 @@ import Components from './pages/Components';
 import About from './pages/About';
 import Contact from './pages/Contact';
 
-
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">

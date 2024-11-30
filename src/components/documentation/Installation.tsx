@@ -1,5 +1,8 @@
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
-import { atomOneLight, atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import {
+  atomOneLight,
+  atomOneDark,
+} from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 
@@ -220,13 +223,17 @@ const Installation = () => {
 
       <section className="mb-6">
         <h2 className="text-3xl font-bold mb-3">Example: Adding a Button</h2>
-        <SyntaxHighlighter
-          language="javascript"
-          style={atomOneLight}
-
-          className="rounded-lg border border-gray-300"
-        >
-          {`// Example of using a Button component
+        <div className="flex">
+          <SyntaxHighlighter
+            language="javascript"
+            style={
+              document.documentElement.classList.contains("dark")
+                ? atomOneDark
+                : atomOneLight
+            }
+            className="rounded-lg border border-gray-300 w-[45rem]"
+          >
+            {`// Example of using a Button component
 import { Button } from "@/components/ui/button";
 export default function App() { 
   return ( 
@@ -235,7 +242,11 @@ export default function App() {
     </div>
     ); 
 }`}{" "}
-        </SyntaxHighlighter>
+          </SyntaxHighlighter>
+          <div className="p-6 flex items-center justify-center bg-[rgba(31,41,55,0.5)]">
+            <Button className="rounded-full text-lg">Click Me</Button>
+          </div>
+        </div>
         <p className="text-lg mt-4">
           After pasting the code, make sure your Tailwind CSS configuration is
           properly set up to support all styles.
