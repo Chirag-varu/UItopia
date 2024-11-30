@@ -2,11 +2,11 @@ import { FaStar } from "react-icons/fa";
 import { FlipWords } from "./ui/flip-words";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import ShadCN from "../assets/shadcn-ui-bg.png";
-import Next from '../assets/next-js.png';
-import ReactLogo from '../assets/React.png';
-import Tailwind from '../assets/Tailwind_CSS.png';
-import Motion from '../assets/motion.png';
+import NextLogo from "../assets/next-js.png"
+import ReactLogo from "../assets/React.png"
+import MotionLogo from "../assets/motion.png"
+import TailwindLogo from "../assets/Tailwind_CSS.png"
+import ShadCnLogo from "../assets/shadcn-ui-bg.png"
 
 export function Hero() {
     const words = ["modern", "better", "beautiful", "awesome"];
@@ -43,11 +43,11 @@ export function Hero() {
       
       {/* Technologies */}
       <div className="flex  h-14 w-[4rem] gap-5">
-        <img src={Next} alt="Next js" className="dark:invert dark:brightness-200" />
+        <img src={NextLogo} alt="Next js" className="dark:invert dark:brightness-200" />
         <img src={ReactLogo} alt="React js" />
-        <img src={Tailwind} alt="Tailwind css" />
-        <img src={ShadCN} alt="Shadcn" className="dark:invert dark:brightness-200" />
-        <img src={Motion} alt="motion" />
+        <img src={TailwindLogo} alt="Tailwind css" />
+        <img src={MotionLogo} alt="motion" />
+        <img src={ShadCnLogo} alt="Shadcn" className="dark:invert dark:brightness-200" />
       </div>
     </div>
   )

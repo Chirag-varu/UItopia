@@ -4,9 +4,8 @@ import { RiGithubFill, RiMenu3Line, RiCloseFill } from "@remixicon/react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import clsx from "clsx";
-import imageL from "../assets/new-logo-light-removebg.png";
-import imageD from "../assets/new-logo-dark-removebg.png";
-
+import logoDark from '../assets/new-logo-dark-removebg.png'
+import logoLight from '../assets/new-logo-light-removebg.png'
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -27,12 +26,12 @@ export function Navbar() {
         <div className="flex items-center">
           <Link to="/" className="block hover:text-blue-500 text-center">
             <img
-              src={imageL}
+              src={logoLight}
               alt="Logo"
               className="h-16 rounded-xl dark:hidden cursor-pointer"
             />
             <img
-              src={imageD}
+              src={logoDark}
               alt="Logo"
               className="h-16 rounded-xl hidden dark:block cursor-pointer"
             />

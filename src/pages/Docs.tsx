@@ -2,6 +2,7 @@ import { AppSidebar } from "@/components/AppSidebar";
 import Contribution from "@/components/documentation/Contribution";
 import Installation from "@/components/documentation/Installation";
 import Introduction from "@/components/documentation/Introduction";
+import { Navbar } from "@/components/navbar";
 import { Separator } from "@/components/ui/Separator";
 import {
   SidebarInset,
