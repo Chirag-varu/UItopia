@@ -8,7 +8,7 @@ export default function Components() {
       <div className="mt-40">
         <h1 className="text-3xl mb-4 text-[hsl(var(--muted-foreground))]">Components</h1>
         
-        <div className="flex flex-col gap-4 w-80">
+        <div className="flex flex-col gap-4 w-full max-w-xl">
           {[ 
             { path: "/button", name: "Button" },
             { path: "/inputs", name: "Input and Textarea" },
@@ -19,7 +19,7 @@ export default function Components() {
             { path: "/dialogs", name: "Dialog" },
           ].map((link) => (
             <NavLink key={link.path} to={`/components${link.path}`}>
-              <Button variant="outline" className="flex justify-between text-md w-[25rem] h-12 p-4">
+              <Button variant="outline" className="flex justify-between text-md w-full sm:w-[25rem] h-12 p-4">
                 {link.name}
                 <span className="-me-1 ms-3 inline-flex h-5 max-h-full items-center rounded border border-border px-1 font-[inherit] text-[0.625rem] font-medium text-muted-foreground">
                   <ChevronRight

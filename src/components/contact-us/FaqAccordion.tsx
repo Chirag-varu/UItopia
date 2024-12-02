@@ -12,7 +12,7 @@ const FaqAccordion = () => {
   const faqs = [
     { question: "How do I install and use UI-Topia?", answer: "Currently, UI-Topia provides components via a copy-paste method, which simplifies integration without dependency management. Simply copy the component code from the documentation, customize it as needed, and paste it into your project. Detailed setup instructions are available in our documentation." },
     { question: "Does it support dark mode?", answer: "Yes, UI-Topia components are designed with both light and dark modes in mind. By leveraging Tailwind CSS’s dark mode utilities, you can seamlessly switch themes based on your project’s requirements." },
-    { question: "Is UI-Topia mobile-friendly?", answer: "Yes, all UI-Topia components are fully responsive and optimized for mobile devices. The designs ensure compatibility across a range of screen sizes, offering a consistent user experience." },
+    { question: "Is UI-Topia's Components mobile-friendly?", answer: "Yes, all UI-Topia components are fully responsive and optimized for mobile devices. The designs ensure compatibility across a range of screen sizes, offering a consistent user experience." },
     { question: "What makes UI-Topia unique compared to other UI libraries?", answer: "UI-Topia focuses on providing lightweight, customizable, and developer-friendly components. Unlike other libraries, it combines simplicity with the flexibility to adapt components entirely to your project’s style." },
     { question: "Can I contribute to UI-Topia?", answer: "Yes! We welcome contributions from the community. Visit our GitHub repository for guidelines on how to submit issues, feature requests, or pull requests." },
   ];

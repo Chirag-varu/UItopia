@@ -114,7 +114,7 @@ export default function About() {
         </div>
         <div className="flex-1 flex justify-center items-center w-full">
           <div className="w-full max-w-md h-64 bg-gray-200 border-2 border-dashed border-gray-400 flex justify-center items-center text-gray-500 text-sm font-semibold rounded-lg transform transition-transform duration-300 hover:scale-105">
-            OUR PICTURE
+            OUR TEAM
           </div>
         </div>
       </section>

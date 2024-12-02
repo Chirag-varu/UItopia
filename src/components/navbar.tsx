@@ -6,6 +6,8 @@ import { useState } from "react";
 import clsx from "clsx";
 import logoDark from '../assets/new-logo-dark-removebg.png'
 import logoLight from '../assets/new-logo-light-removebg.png'
+
+
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
