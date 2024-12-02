@@ -43,7 +43,7 @@ export function Navbar() {
           className={clsx(
             "flex-col md:flex-row md:flex gap-6 text-gray-700 dark:text-gray-300 absolute md:static top-[4rem] left-0 right-0 z-40",
             {
-              "flex bg-slate-50 dark:bg-gray-900 p-3": isMenuOpen,
+              "flex bg-slate-50 dark:bg-[#18181b] p-3": isMenuOpen,
               hidden: !isMenuOpen,
             },
             "md:bg-transparent md:dark:bg-transparent"

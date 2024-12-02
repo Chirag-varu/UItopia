@@ -35,36 +35,36 @@ const data = {
       items: [
         {
           title: "Button",
-          url: "#",
+          url: "/docs/components/button",
         },
         {
           title: "Input, Textarea",
-          url: "#",
+          url: "/docs/components/input-textarea",
           isActive: true,
         },
         {
           title: "Checkbox, Radio,  Switch",
-          url: "#",
+          url: "/docs/components/checkbox-radio-switch",
         },
         {
           title: "Select",
-          url: "#",
+          url: "/docs/components/select",
         },
         {
           title: "Slider",
-          url: "#",
+          url: "/docs/components/slider",
         },
         {
           title: "Alert, Notification, Banner",
-          url: "#",
+          url: "/docs/components/alert-notification-banner",
         },
         {
           title: "Dialog",
-          url: "#",
+          url: "/docs/components/dialog",
         },
         {
           title: "Authentication",
-          url: "#",
+          url: "/docs/components/authentication",
         },
       ],
     },
@@ -73,15 +73,15 @@ const data = {
       items: [
         {
           title: "Discord",
-          url: "#",
+          url: "/docs/discord",
         },
         {
           title: "GitHub",
-          url: "#",
+          url: "/docs/github",
         },
         {
-          title: "Twitter",
-          url: "#",
+          title: "X (Twitter)",
+          url: "/docs/twitter",
         },
         {
           title: "Contribution Guide",
