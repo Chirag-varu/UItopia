@@ -3,7 +3,7 @@ import { useState } from "react";
 import { MdContentCopy } from "react-icons/md";
 
 const ButtonWithCopy: React.FC<{ code: string }> = ({ code }) => {
-  const [copied, setCopied] = useState(false);
+  const [_, setCopied] = useState(false);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(code).then(() => {

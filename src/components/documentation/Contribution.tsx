@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MdContentCopy } from "react-icons/md";
 
 const Contribution = () => {
-  const [copiedText, setCopiedText] = useState("");
+  const [_, setCopiedText] = useState("");
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
