@@ -9,6 +9,7 @@ import Components from './pages/Components';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Buttons from "./components/Components/buttons_collection/Buttons";
+import Inputs from "./components/Components/inputs_collection/Inputs";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/components/button" element={<Buttons />} />
+          <Route path="/components/inputs" element={<Inputs />} />
         </Routes>
       </Router>
     </ThemeProvider>

@@ -1,3 +1,5 @@
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useState, ReactNode } from "react";
 import { X } from "lucide-react";
@@ -33,13 +35,17 @@ const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
   );
 };
 
-export default function Buttons() {
-  const buttonCode1 = `import { Button } from "@/components/ui/button";
-
-export default function ButtonDemo() {
-  return <Button>Button</Button>;
-}`;
-  const code1 = <Button>Button</Button>;
+export default function Inputs() {
+  const buttonCode1 = `<div className="space-y-2">
+      <Label htmlFor="input-01">Simple input</Label>
+      <Input id="input-01" placeholder="Email" type="email" />
+    </div>`;
+  const code1 = (
+    <div className="space-y-2">
+      <Label htmlFor="input-01">Simple input</Label>
+      <Input id="input-01" placeholder="Email" type="email" />
+    </div>
+  );
 
   const buttonCode2 = `import { Button } from "@/components/ui/button";
 
@@ -179,9 +185,10 @@ export default function ButtonDemo() {
     <div className="min-h-screen w-full flex flex-col items-center justify-center gap-8 px-4 sm:px-8">
       {/* Header Section */}
       <div className="flex flex-col items-center gap-2 text-center mt-[8rem] sm:mt-0">
-        <div className="text-3xl sm:text-4xl font-bold">Button</div>
+        <div className="text-3xl sm:text-4xl font-bold">Input and Textarea</div>
         <p className="text-[hsl(var(--muted-foreground))] font-semibold whitespace-normal break-words max-w-md sm:max-w-lg">
-          A growing collection of button components built with React TS and TailwindCSS.
+          A growing collection of input and textarea components built with React
+          TS and TailwindCSS.
         </p>
       </div>
 
