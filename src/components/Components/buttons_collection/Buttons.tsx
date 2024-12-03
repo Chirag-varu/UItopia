@@ -3,13 +3,19 @@ import { useState, ReactNode } from "react";
 import { X } from "lucide-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { QrCode } from "lucide-react";
-import { MdContentCopy } from "react-icons/md";
+import { MdContentCopy, MdInfo } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
   code,
   coding,
 }) => {
   const [_, setCopied] = useState(false);
+  const navigate = useNavigate();
+
+  const handleDetails = () => {
+    navigate("/docs/components/button");
+  };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(code).then(() => {
@@ -23,6 +29,14 @@ const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
   return (
     <div className="group flex flex-col items-center justify-center p-4 relative w-full h-32 text-center shadow-md hover:shadow-lg transition-shadow duration-300">
       <div>{coding}</div>
+      <button
+        onClick={handleDetails}
+        className="absolute top-0 left-0 md:opacity-0 opacity-100 group-hover:opacity-100 py-3 px-5 mr-3 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        aria-label="More Info"
+      >
+        <MdInfo className="text-xl text-gray-700 group-hover:text-blue-500" />
+      </button>
+
       <button
         onClick={handleCopy}
         className="absolute top-0 right-0 md:opacity-0 opacity-100 group-hover:opacity-100 py-2 px-4 md:bg-green-500 bg-black text-white hover:bg-green-600 rounded-md text-sm transition-opacity duration-300 mr-2"
@@ -181,7 +195,8 @@ export default function ButtonDemo() {
       <div className="flex flex-col items-center gap-2 text-center mt-[8rem] sm:mt-0">
         <div className="text-3xl sm:text-4xl font-bold">Button</div>
         <p className="text-[hsl(var(--muted-foreground))] font-semibold whitespace-normal break-words max-w-md sm:max-w-lg">
-          A growing collection of button components built with React TS and TailwindCSS.
+          A growing collection of button components built with React TS and
+          TailwindCSS.
         </p>
       </div>
 
