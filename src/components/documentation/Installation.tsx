@@ -193,7 +193,7 @@ export default function App() {
       </pre>
     </div>
     <div className="p-6 flex items-center justify-center bg-gray-800/50 w-full md:w-auto border border-gray-300 rounded-b-lg md:rounded-l-none md:rounded-r-lg">
-      <Button className="rounded-full text-lg">Click Me</Button>
+      <Button className="text-lg">Click Me</Button>
     </div>
   </div>
   <p className="text-lg mt-4">
