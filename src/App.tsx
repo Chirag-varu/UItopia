@@ -15,7 +15,7 @@ import ChecksRadiosSwitches from "./components/Components/checks-radios-switches
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <Router>
+      <Router> 
         <ScrollToTop />
         <Navbar />
         <Routes>
