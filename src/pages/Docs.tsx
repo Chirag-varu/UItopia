@@ -1,18 +1,10 @@
 import { useState } from "react";
 import { AppSidebar } from "@/components/AppSidebar";
-import Alert from "@/components/documentation/Alert";
-import Authentication from "@/components/documentation/Authentication";
-import Button from "@/components/documentation/Button";
-import CheckboxRadioSwitch from "@/components/documentation/CheckboxRadioSwitch";
 import Contribution from "@/components/documentation/Contribution";
-import Dialog from "@/components/documentation/Dialog";
 import Discord from "@/components/documentation/Discord";
 import GitHub from "@/components/documentation/GitHub";
-import Input from "@/components/documentation/Input";
 import Installation from "@/components/documentation/Installation";
 import Introduction from "@/components/documentation/Introduction";
-import Select from "@/components/documentation/Select";
-import Slider from "@/components/documentation/Slider";
 import Twitter from "@/components/documentation/Twitter";
 import { Separator } from "@/components/ui/Separator";
 import {
@@ -50,23 +42,6 @@ export default function Docs() {
               <Route path="/" element={<Introduction />} />
               <Route path="/installation" element={<Installation />} />
               <Route path="/contribution" element={<Contribution />} />
-              <Route path="/components/button" element={<Button />} />
-              <Route path="/components/input-textarea" element={<Input />} />
-              <Route
-                path="/components/checkbox-radio-switch"
-                element={<CheckboxRadioSwitch />}
-              />
-              <Route path="/components/select" element={<Select />} />
-              <Route path="/components/slider" element={<Slider />} />
-              <Route
-                path="/components/alert-notification-banner"
-                element={<Alert />}
-              />
-              <Route path="/components/dialog" element={<Dialog />} />
-              <Route
-                path="/components/authentication"
-                element={<Authentication />}
-              />
               <Route path="/discord" element={<Discord />} />
               <Route path="/github" element={<GitHub />} />
               <Route path="/twitter" element={<Twitter />} />

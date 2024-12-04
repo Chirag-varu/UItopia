@@ -10,6 +10,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Buttons from "./components/Components/buttons_collection/Buttons";
 import Inputs from "./components/Components/inputs_collection/Inputs";
+import ChecksRadiosSwitches from "./components/Components/checks-radios-switches/checks_radios_switches";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/components/button" element={<Buttons />} />
           <Route path="/components/inputs" element={<Inputs />} />
+          <Route path="/components/checks-radios-switches" element={<ChecksRadiosSwitches />} />
         </Routes>
       </Router>
     </ThemeProvider>
