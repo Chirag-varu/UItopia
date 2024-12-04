@@ -31,6 +31,8 @@ export default function Components() {
                 name: "Alert, Notification, and Banner",
               },
               { path: "/dialogs", name: "Dialog" },
+              { path: "/Accordion", name: "Accordion" },
+              { path: "/Tooltip", name: "Tooltip" },
             ].map((link) => (
               <NavLink key={link.path} to={`/components${link.path}`}>
                 <Button
