@@ -1,4 +1,4 @@
-import profile2 from "../assets/profile2.jpg";
+import profile2 from "../assets/Profile2.jpg";
 import profile3 from "../assets/profile3.jpg";
 import profile1 from "../assets/profile1.jpeg";
 import codeImage from "../assets/code-image.jpeg"; // Replace with the actual path to your code image
