@@ -31,44 +31,6 @@ const data = {
       ],
     },
     {
-      title: "Components",
-      items: [
-        {
-          title: "Button",
-          url: "/docs/components/button",
-        },
-        {
-          title: "Input, Textarea",
-          url: "/docs/components/input-textarea",
-          isActive: true,
-        },
-        {
-          title: "Checkbox, Radio,  Switch",
-          url: "/docs/components/checkbox-radio-switch",
-        },
-        {
-          title: "Select",
-          url: "/docs/components/select",
-        },
-        {
-          title: "Slider",
-          url: "/docs/components/slider",
-        },
-        {
-          title: "Alert, Notification, Banner",
-          url: "/docs/components/alert-notification-banner",
-        },
-        {
-          title: "Dialog",
-          url: "/docs/components/dialog",
-        },
-        {
-          title: "Authentication",
-          url: "/docs/components/authentication",
-        },
-      ],
-    },
-    {
       title: "Community",
       items: [
         {
