@@ -17,7 +17,7 @@ export default function About() {
       >
         <div className="flex flex-col">
           {/* Header */}
-          <h1 className="text-center text-xl font-bold mb-4 mt-40 cursor-default">
+          <h1 className="text-center text-xl font-bold mb-4 md:mt-40 mt-28 cursor-default">
             Meet The Creators Of UI-Topia
           </h1>
 

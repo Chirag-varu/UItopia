@@ -11,7 +11,7 @@ export default function Components() {
       transition={{ duration: 0.6 }}
     >
       <div className="flex flex-col items-center justify-center">
-        <div className="mt-40">
+        <div className="md:mt-40 mt-24 mb-20">
           <h1 className="text-3xl mb-4 text-[hsl(var(--muted-foreground))]">
             Components
           </h1>

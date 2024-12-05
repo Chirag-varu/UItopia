@@ -174,12 +174,12 @@ const Installation = () => {
       </section>
 
       <section className="mb-6">
-  <h2 className="text-3xl font-bold mb-3">Example: Adding a Button</h2>
-  <div className="flex flex-col md:flex-row w-full">
-    <div className="w-full overflow-x-auto bg-gray-100  dark:bg-gray-800/50 dark:text-white p-4 rounded-t-lg border md:rounded-r-none md:rounded-l-lg border-gray-300">
-      <pre className="text-lg whitespace-pre-wrap break-words">
-        <code className="block w-full">
-          {`// Example of using a Button component
+        <h2 className="text-3xl font-bold mb-3">Example: Adding a Button</h2>
+        <div className="flex flex-col md:flex-row w-full">
+          <div className="w-full overflow-x-auto bg-gray-100  dark:bg-gray-800/50 dark:text-white p-4 rounded-t-lg border md:rounded-r-none md:rounded-l-lg border-gray-300">
+            <pre className="text-lg whitespace-pre-wrap break-words">
+              <code className="block w-full">
+                {`// Example of using a Button component
 import { Button } from "@/components/ui/button";
 
 export default function App() { 
@@ -189,18 +189,18 @@ export default function App() {
     </div>
   ); 
 }`}
-        </code>
-      </pre>
-    </div>
-    <div className="p-6 flex items-center justify-center bg-gray-800/50 w-full md:w-auto border border-gray-300 rounded-b-lg md:rounded-l-none md:rounded-r-lg">
-      <Button className="text-lg">Click Me</Button>
-    </div>
-  </div>
-  <p className="text-lg mt-4">
-    After pasting the code, make sure your Tailwind CSS configuration is properly set up to support all styles.
-  </p>
-</section>
-
+              </code>
+            </pre>
+          </div>
+          <div className="p-6 flex items-center justify-center bg-gray-800/50 w-full md:w-auto border border-gray-300 rounded-b-lg md:rounded-l-none md:rounded-r-lg">
+            <Button className="text-lg">Click Me</Button>
+          </div>
+        </div>
+        <p className="text-lg mt-4">
+          After pasting the code, make sure your Tailwind CSS configuration is
+          properly set up to support all styles.
+        </p>
+      </section>
     </div>
   );
 };
