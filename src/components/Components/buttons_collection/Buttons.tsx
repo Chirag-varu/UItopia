@@ -23,6 +23,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Search } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 // Component for rendering button code with copy and detail options
 const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
@@ -30,12 +32,13 @@ const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
   coding,
 }) => {
   const [copied, setCopied] = useState(false);
+  const [_, _setIsExpanded7] = useState<boolean>(false);
 
   // Handles copying code to clipboard
   const handleCopy = () => {
     navigator.clipboard.writeText(code).then(() => {
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000); // Reset copy state after 2 seconds
+      setTimeout(() => setCopied(false), 2000); 
     });
   };
 
@@ -138,6 +141,160 @@ const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
 export default function Buttons() {
   const [bgColor, setBgColor] = useState("#d4d4d4");
   const [textColor, setTextColor] = useState("#000000");
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isActive, setIsActive] = useState(false);
+  const [isExpanded7, setIsExpanded7] = useState<boolean>(false);
+
+  const toggleExpand = () => {
+    setIsExpanded7((prevState) => !prevState);
+  };
+
+  // Toggle button
+  const buttonCodeToggle = `import { Button } from "@/components/ui/button";
+
+export default function ButtonDemo() {
+  return (
+    <Button
+      onClick={() => setIsActive(!isActive)}
+      className={isActive ? "bg-[${bgColor}] text-[${textColor}]" : "bg-gray-300 text-gray-700"}
+    >
+      {isActive ? "Active" : "Inactive"}
+    </Button>
+  );
+}`;
+  const codeToggle = (
+    <Button
+      onClick={() => setIsActive(!isActive)}
+      style={{
+        backgroundColor: isActive ? bgColor : "gray",
+        color: isActive ? textColor : "#000000",
+      }}
+    >
+      {isActive ? "Active" : "Inactive"}
+    </Button>
+  );
+
+  // Gradient button
+  const buttonCodeGradient = `import { Button } from "@/components/ui/button";
+
+export default function ButtonDemo() {
+  return <Button className="bg-gradient-to-r from-[${bgColor}] to-[#FFD700] text-[${textColor}] shadow-lg hover:shadow-xl transition-shadow">Button</Button>;
+}`;
+  const codeGradient = (
+    <Button
+      className="shadow-lg hover:shadow-xl"
+      style={{
+        background: `linear-gradient(to right, ${bgColor}, #FFD700)`,
+        color: textColor,
+      }}
+    >
+      Button
+    </Button>
+  );
+
+  // Split button
+  const buttonCodeSplit = `import { Button } from "@/components/ui/button";
+import { ChevronDown } from "lucide-react";
+
+export default function ButtonDemo() {
+  return (
+    <div className="inline-flex">
+      <Button className="bg-[${bgColor}] text-[${textColor}]">
+        Action
+      </Button>
+      <Button
+        size="icon"
+        className="bg-[${bgColor}] text-[${textColor}]"
+      >
+        <ChevronDown size={16} />
+      </Button>
+    </div>
+  );
+}`;
+  const codeSplit = (
+    <div className="inline-flex">
+      <Button style={{ backgroundColor: bgColor, color: textColor }}>
+        Action
+      </Button>
+      <Button
+        size="icon"
+        style={{ backgroundColor: bgColor, color: textColor }}
+      >
+        <ChevronDown size={16} />
+      </Button>
+    </div>
+  );
+
+  // ExpandableSearchBar
+  const ExpandableSearchBar = `import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Search, X } from "lucide-react";
+
+export default function ExpandableSearchBar() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  return (
+    <div className="flex items-center space-x-2">
+      <Button
+        size="icon"
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="bg-gray-200 text-gray-800 hover:bg-gray-300 transition-all"
+      >
+        {isExpanded ? <X size={20} strokeWidth={2} /> : <Search size={20} strokeWidth={2} />}
+      </Button>
+      {isExpanded && (
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search..."
+          className="px-4 py-2 bg-gray-100 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 transition-all"
+        />
+      )}
+    </div>
+  );
+}
+`;
+  const codeExpandableSearchBar = (
+    <div className="flex items-center space-x-2">
+      <Button
+        size="icon"
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="bg-gray-200 text-gray-800 hover:bg-gray-300 transition-all"
+      >
+        {isExpanded ? (
+          <X size={20} strokeWidth={2} />
+        ) : (
+          <Search size={20} strokeWidth={2} />
+        )}
+      </Button>
+      {isExpanded && (
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search..."
+          className="px-4 py-2 bg-gray-100 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 transition-all"
+        />
+      )}
+    </div>
+  );
+
+  // Outline Button
+  const buttonCodeOutline = `import { Button } from "@/components/ui/button";
+
+export default function ButtonDemo() {
+  return <Button className="border border-[${bgColor}] text-[${textColor}] hover:bg-[${bgColor}] hover:text-white transition-all">Button</Button>;
+}`;
+  const codeOutline = (
+    <Button
+      className={`border border-[${bgColor}] bg-transparent text-[${bgColor}] hover:bg-[${bgColor}] transition-all`}
+    >
+      Button
+    </Button>
+  );
 
   // Button code and its rendered JSX for the first button
   const buttonCode1 = `import { Button } from "@/components/ui/button";
@@ -270,10 +427,68 @@ export default function Buttons() {
     </Button>
   );
 
+  const buttonCode7 = `// Dependencies: pnpm install lucide-react
+
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { useState } from "react";
+
+export default function ButtonDemo() {
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
+  const toggleExpand = () => {
+    setIsExpanded((prevState) => !prevState);
+  };
+
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center gap-4 px-4 sm:px-8">
+    <Button
+      variant="ghost"
+      onClick={toggleExpand}
+      aria-expanded={isExpanded}
+      aria-controls="expandable-content" // Use this ID on the element that this button controls
+    >
+      {isExpanded ? "Show less" : "Show more"}
+      {isExpanded ? (
+        <ChevronUp className="-me-1 ms-1" size={16} strokeWidth={2} aria-hidden="true" />
+      ) : (
+        <ChevronDown className="-me-1 ms-1" size={16} strokeWidth={2} aria-hidden="true" />
+      )}
+    </Button>
+  );
+}
+`;
+  const code7 = (
+    <Button
+      variant="ghost"
+      onClick={toggleExpand}
+      aria-expanded={isExpanded7}
+      aria-controls="expandable-content" // Use this ID on the element that this button controls
+    >
+      {isExpanded7 ? "Show less" : "Show more"}
+      {isExpanded7 ? (
+        <ChevronUp
+          className="-me-1 ms-1"
+          size={16}
+          strokeWidth={2}
+          aria-hidden="true"
+        />
+      ) : (
+        <ChevronDown
+          className="-me-1 ms-1"
+          size={16}
+          strokeWidth={2}
+          aria-hidden="true"
+        />
+      )}
+    </Button>
+  );
+
+  return (
+    <div className="min-h-screen w-full flex flex-col items-center justify-center gap-4 px-4 sm:px-8 ">
       {/* Header Section */}
-      <div className="flex flex-col items-center gap-2 text-center mt-[8rem] sm:mt-0">
+      <div className="flex flex-col items-center gap-2 text-center mt-[8rem] sm:mt-0 md:mt-40">
         <h1 className="text-3xl sm:text-4xl font-bold">Button</h1>
         <p className="text-[hsl(var(--muted-foreground))] font-semibold max-w-md sm:max-w-lg">
           A growing collection of button components built with ReactTS and
@@ -327,6 +542,15 @@ export default function Buttons() {
         <ButtonWithCopy code={buttonCode4} coding={code4} />
         <ButtonWithCopy code={buttonCode5} coding={code5} />
         <ButtonWithCopy code={buttonCode6} coding={code6} />
+        <ButtonWithCopy code={buttonCodeOutline} coding={codeOutline} />
+        <ButtonWithCopy
+          code={ExpandableSearchBar}
+          coding={codeExpandableSearchBar}
+        />
+        <ButtonWithCopy code={buttonCodeToggle} coding={codeToggle} />
+        <ButtonWithCopy code={buttonCodeGradient} coding={codeGradient} />
+        <ButtonWithCopy code={buttonCodeSplit} coding={codeSplit} />
+        <ButtonWithCopy code={buttonCode7} coding={code7} />
       </div>
     </div>
   );
