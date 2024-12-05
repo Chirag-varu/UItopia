@@ -29,7 +29,6 @@ const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
   code,
   coding,
 }) => {
-
   const [copied, setCopied] = useState(false);
 
   // Handles copying code to clipboard
@@ -283,27 +282,36 @@ export default function Buttons() {
       </div>
 
       {/* Color Picker for customizing button colors */}
-      <div className="flex flex-row items-center justify-center gap-4">
-        <div className="flex items-center justify-center gap-1">
-          <label htmlFor="bgColor" className="font-medium text-sm">
-            Background Color:
+      <div className="flex flex-row items-center justify-center gap-6 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+        {/* Background Color Picker */}
+        <div className="flex items-center gap-2">
+          <label
+            htmlFor="bgColor"
+            className="font-semibold text-sm text-gray-800 dark:text-gray-200"
+          >
+            Background Color
           </label>
           <input
             id="bgColor"
             type="color"
-            className="h-8 w-8 border-none outline-none cursor-pointer appearance-none"
+            className="h-8 w-8 rounded-lg border-none outline-none cursor-pointer transition-transform transform hover:scale-110"
             onChange={(e) => setBgColor(e.target.value)}
             value={bgColor}
           />
         </div>
-        <div className="flex items-center justify-center gap-1">
-          <label htmlFor="textColor" className="font-medium text-sm">
-            Text Color:
+
+        {/* Text Color Picker */}
+        <div className="flex items-center gap-2">
+          <label
+            htmlFor="textColor"
+            className="font-semibold text-sm text-gray-800 dark:text-gray-200"
+          >
+            Text Color
           </label>
           <input
             id="textColor"
             type="color"
-            className="h-8 w-8 border-none outline-none cursor-pointer appearance-none"
+            className="h-8 w-8 rounded-lg border-none outline-none cursor-pointer transition-transform transform hover:scale-110"
             onChange={(e) => setTextColor(e.target.value)}
             value={textColor}
           />
