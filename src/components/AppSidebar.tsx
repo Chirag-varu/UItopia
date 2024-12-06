@@ -42,10 +42,6 @@ const data = {
           url: "/docs/github",
         },
         {
-          title: "X (Twitter)",
-          url: "/docs/twitter",
-        },
-        {
           title: "Contribution Guide",
           url: "/docs/contribution ",
         },

@@ -12,6 +12,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { ChevronLeft } from "lucide-react";
 import { Check, Copy } from "lucide-react";
 import {
   Dialog,
@@ -25,6 +26,10 @@ import {
 } from "@/components/ui/dialog";
 import { Search } from "lucide-react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
+import { useImageUpload } from "@/hooks/use-image-upload";
+import { CircleUserRound } from "lucide-react";
+import { Mail } from "lucide-react";
 
 // Component for rendering button code with copy and detail options
 const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
@@ -38,7 +43,7 @@ const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
   const handleCopy = () => {
     navigator.clipboard.writeText(code).then(() => {
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000); 
+      setTimeout(() => setCopied(false), 2000);
     });
   };
 
@@ -145,10 +150,76 @@ export default function Buttons() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [isExpanded7, setIsExpanded7] = useState<boolean>(false);
+  const [selectedOption, setSelectedOption] = useState<string>("Action");
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+
+  const options = ["Active", "Inactive", "Pending"];
 
   const toggleExpand = () => {
     setIsExpanded7((prevState) => !prevState);
   };
+
+  const {
+    previewUrl,
+    fileInputRef,
+    handleThumbnailClick,
+    handleFileChange,
+    handleRemove,
+    fileName,
+  } = useImageUpload();
+  
+
+  const buttonloading = `// Dependencies: pnpm install lucide-react
+
+import { Button } from "@/components/ui/button";
+import { LoaderCircle } from "lucide-react";
+
+export default function ButtonDemo() {
+  return (
+    <Button disabled>
+      <LoaderCircle
+        className="-ms-1 me-2 animate-spin"
+        size={16}
+        strokeWidth={2}
+        aria-hidden="true"
+      />
+      Button
+    </Button>
+  );
+}
+`;
+  const codeloading = (
+    <Button disabled>
+      <LoaderCircle
+        className="-ms-1 me-2 animate-spin"
+        size={16}
+        strokeWidth={2}
+        aria-hidden="true"
+      />
+      Button
+    </Button>
+  );
+
+  // save and cancel
+  const buttonsaveandcancel = `import { Button } from "@/components/ui/button";
+
+export default function ButtonDemo() {
+  return (
+    <div className="inline-flex items-center gap-2">
+      <Button variant="ghost">Cancel</Button>
+      <Button>Save</Button>
+    </div>
+  );
+}
+`;
+  const codesaveandcancel = (
+    <div className="inline-flex items-center gap-2">
+      <Button variant="ghost">Cancel</Button>
+      <Button style={{ backgroundColor: bgColor, color: textColor }}>
+        Save
+      </Button>
+    </div>
+  );
 
   // Toggle button
   const buttonCodeToggle = `import { Button } from "@/components/ui/button";
@@ -194,35 +265,88 @@ export default function ButtonDemo() {
   );
 
   // Split button
-  const buttonCodeSplit = `import { Button } from "@/components/ui/button";
+  const buttonCodeSplit = `import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 
 export default function ButtonDemo() {
+  const [selectedOption, setSelectedOption] = useState<string>("Action");
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+
+  const options = ["Active", "Inactive", "Pending"];
+
   return (
-    <div className="inline-flex">
-      <Button className="bg-[${bgColor}] text-[${textColor}]">
-        Action
-      </Button>
+    <div className="relative inline-flex items-center">
+      {/* Main button displaying the selected option */}
+      <Button className="bg-black text-white">{selectedOption}</Button>
+
+      {/* Chevron button to toggle the dropdown */}
       <Button
         size="icon"
-        className="bg-[${bgColor}] text-[${textColor}]"
+        className="bg-black text-white"
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         <ChevronDown size={16} />
       </Button>
+
+      {/* Dropdown menu */}
+      {isDropdownOpen && (
+        <div className="absolute top-full mt-2 w-full bg-white shadow-md border rounded-md z-10">
+          {options.map((option) => (
+            <div
+              key={option}
+              className="px-4 py-2 text-black cursor-pointer hover:bg-gray-200"
+              onClick={() => {
+                setSelectedOption(option);
+                setIsDropdownOpen(false);
+              }}
+            >
+              {option}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
-}`;
+}
+`;
   const codeSplit = (
-    <div className="inline-flex">
+    <div className="relative inline-flex items-center">
+      {/* Main button displaying the selected option */}
       <Button style={{ backgroundColor: bgColor, color: textColor }}>
-        Action
+        {selectedOption}
       </Button>
+
+      {/* Chevron button to toggle the dropdown */}
       <Button
         size="icon"
         style={{ backgroundColor: bgColor, color: textColor }}
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         <ChevronDown size={16} />
       </Button>
+
+      {/* Dropdown menu */}
+      {isDropdownOpen && (
+        <div
+          className="absolute top-full mt-2 w-full bg-[${bgcolor}] shadow-md border rounded-md z-10"
+          style={{ backgroundColor: bgColor, color: textColor }}
+        >
+          {options.map((option) => (
+            <div
+              key={option}
+              className="px-4 py-2 text-black cursor-pointer hover:bg-gray-200"
+              style={{ backgroundColor: bgColor, color: textColor }}
+              onClick={() => {
+                setSelectedOption(option);
+                setIsDropdownOpen(false);
+              }}
+            >
+              {option}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 
@@ -485,8 +609,194 @@ export default function ButtonDemo() {
     </Button>
   );
 
+  const buttonuploadimage = `// Dependencies: pnpm install lucide-react
+
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { useImageUpload } from "@/hooks/use-image-upload";
+import { CircleUserRound, X } from "lucide-react";
+import Image from "next/image";
+
+export default function ButtonDemo() {
+  const {
+    previewUrl,
+    fileInputRef,
+    handleThumbnailClick,
+    handleFileChange,
+    handleRemove,
+    fileName,
+  } = useImageUpload();
+
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center gap-4 px-4 sm:px-8 ">
+    <div>
+      <div className="relative inline-flex">
+        <Button
+          variant="outline"
+          className="relative size-16 overflow-hidden"
+          onClick={handleThumbnailClick}
+          aria-label={previewUrl ? "Change image" : "Upload image"}
+        >
+          {previewUrl ? (
+            <Image
+              className="h-full w-full object-cover"
+              src={previewUrl}
+              alt="Preview of uploaded image"
+              width={40}
+              height={40}
+              style={{ objectFit: "cover" }}
+            />
+          ) : (
+            <div aria-hidden="true">
+              <CircleUserRound className="opacity-60" size={16} strokeWidth={2} />
+            </div>
+          )}
+        </Button>
+        {previewUrl && (
+          <Button
+            onClick={handleRemove}
+            size="icon"
+            variant="destructive"
+            className="absolute -right-2 -top-2 size-6 rounded-full border-2 border-background"
+            aria-label="Remove image"
+          >
+            <X size={16} />
+          </Button>
+        )}
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleFileChange}
+          className="hidden"
+          accept="image/*"
+          aria-label="Upload image file"
+        />
+      </div>
+      {fileName && <p className="mt-2 text-xs text-muted-foreground">{fileName}</p>}
+      <div className="sr-only" aria-live="polite" role="status">
+        {previewUrl ? "Image uploaded and preview available" : "No image uploaded"}
+      </div>
+    </div>
+  );
+}
+`;
+  const codeuploadimage = (
+    <div>
+      <div className="relative inline-flex">
+        <Button
+          variant="outline"
+          className="relative size-16 overflow-hidden"
+          onClick={handleThumbnailClick}
+          aria-label={previewUrl ? "Change image" : "Upload image"}
+        >
+          {previewUrl ? (
+            <img
+              className="h-full w-full object-cover"
+              src={previewUrl}
+              alt="Preview of uploaded image"
+              width={40}
+              height={40}
+              style={{ objectFit: "cover" }}
+            />
+          ) : (
+            <div aria-hidden="true">
+              <CircleUserRound
+                className="opacity-60"
+                size={16}
+                strokeWidth={2}
+              />
+            </div>
+          )}
+        </Button>
+        {previewUrl && (
+          <Button
+            onClick={handleRemove}
+            size="icon"
+            variant="destructive"
+            className="absolute -right-2 -top-2 size-6 rounded-full border-2 border-background"
+            aria-label="Remove image"
+          >
+            <X size={16} />
+          </Button>
+        )}
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleFileChange}
+          className="hidden"
+          accept="image/*"
+          aria-label="Upload image file"
+        />
+      </div>
+      {fileName && (
+        <p className="mt-2 text-xs text-muted-foreground">{fileName}</p>
+      )}
+      <div className="sr-only" aria-live="polite" role="status">
+        {previewUrl
+          ? "Image uploaded and preview available"
+          : "No image uploaded"}
+      </div>
+    </div>
+  );
+
+  const buttonemail = `// Dependencies: pnpm install lucide-react
+
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Mail } from "lucide-react";
+
+export default function ButtonDemo() {
+  return (
+    <Button className="group" variant="secondary bg-[${bgColor}] text-[${textColor}]">
+      <Mail className="-ms-1 me-2 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
+      Email
+      <ArrowRight
+        className="-me-1 ms-2 opacity-60 transition-transform group-hover:translate-x-0.5"
+        size={16}
+        strokeWidth={2}
+        aria-hidden="true"
+      />
+    </Button>
+  );
+}
+`;
+  const codeemail = (
+    <Button className="group" variant="secondary" 
+    style={{ backgroundColor: bgColor, color: textColor }}>
+      <Mail className="-ms-1 me-2 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
+      Email
+      <ArrowRight
+        className="-me-1 ms-2 opacity-60 transition-transform group-hover:translate-x-0.5"
+        size={16}
+        strokeWidth={2}
+        aria-hidden="true"
+      />
+    </Button>
+  )
+
+  const buttongoback = `// Dependencies: pnpm install lucide-react
+
+import { Button } from "@/components/ui/button";
+import { ChevronLeft } from "lucide-react";
+
+export default function ButtonDemo() {
+  return (
+    <Button variant="link" bg-[${bgColor}] text-[${textColor}]>
+      <ChevronLeft className="me-1 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
+      Go back
+    </Button>
+  );
+}
+`;
+  const codegoback = (
+    <Button variant="link" 
+    style={{ backgroundColor: bgColor, color: textColor }}>
+      <ChevronLeft className="me-1 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
+      Go back
+    </Button>
+  )
+
+  return (
+    <div className="min-h-screen w-full flex flex-col items-center justify-center gap-4 px-4 sm:px-8 mb-12">
       {/* Header Section */}
       <div className="flex flex-col items-center gap-2 text-center mt-[8rem] sm:mt-0 md:mt-40">
         <h1 className="text-3xl sm:text-4xl font-bold">Button</h1>
@@ -551,6 +861,11 @@ export default function ButtonDemo() {
         <ButtonWithCopy code={buttonCodeGradient} coding={codeGradient} />
         <ButtonWithCopy code={buttonCodeSplit} coding={codeSplit} />
         <ButtonWithCopy code={buttonCode7} coding={code7} />
+        <ButtonWithCopy code={buttonsaveandcancel} coding={codesaveandcancel} />
+        <ButtonWithCopy code={buttonloading} coding={codeloading} />
+        <ButtonWithCopy code={buttonuploadimage} coding={codeuploadimage} />
+        <ButtonWithCopy code={buttonemail} coding={codeemail} />
+        <ButtonWithCopy code={buttongoback} coding={codegoback} />
       </div>
     </div>
   );
