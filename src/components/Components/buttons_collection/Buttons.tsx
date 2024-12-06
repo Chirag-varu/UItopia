@@ -3,6 +3,7 @@ import { useState, ReactNode } from "react";
 import { X, ArrowLeft, ArrowRight, QrCode } from "lucide-react";
 import { MdCheck, MdContentCopy, MdInfo } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import ColorPicker from "../ColorPicker.tsx"
 
 // Component for rendering button code with copy and detail options
 const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
@@ -199,28 +200,16 @@ export default function Buttons() {
       {/* Color Picker for customizing button colors */}
       <div className="flex flex-row items-center justify-center gap-4">
         <div className="flex items-center justify-center gap-1">
-          <label htmlFor="bgColor" className="font-medium text-sm">
-            Background Color:
-          </label>
-          <input
-            id="bgColor"
-            type="color"
-            className="h-8 w-8 border-none outline-none cursor-pointer appearance-none"
-            onChange={(e) => setBgColor(e.target.value)}
-            value={bgColor}
-          />
-        </div>
-        <div className="flex items-center justify-center gap-1">
-          <label htmlFor="textColor" className="font-medium text-sm">
-            Text Color:
-          </label>
-          <input
-            id="textColor"
-            type="color"
-            className="h-8 w-8 border-none outline-none cursor-pointer appearance-none"
-            onChange={(e) => setTextColor(e.target.value)}
-            value={textColor}
-          />
+        <ColorPicker
+          label="Background Color"
+          value={bgColor}
+          onChange={(e:any) => setBgColor(e.target.value)}
+        />
+        <ColorPicker
+          label="Text Color"
+          value={textColor}
+          onChange={(e:any) => setTextColor(e.target.value)}
+        />
         </div>
       </div>
 
