@@ -5,7 +5,6 @@ import Discord from "@/components/documentation/Discord";
 import GitHub from "@/components/documentation/GitHub";
 import Installation from "@/components/documentation/Installation";
 import Introduction from "@/components/documentation/Introduction";
-import Twitter from "@/components/documentation/Twitter";
 import { Separator } from "@/components/ui/Separator";
 import {
   SidebarInset,
@@ -44,7 +43,6 @@ export default function Docs() {
               <Route path="/contribution" element={<Contribution />} />
               <Route path="/discord" element={<Discord />} />
               <Route path="/github" element={<GitHub />} />
-              <Route path="/twitter" element={<Twitter />} />
             </Routes>
           </div>
         </SidebarInset>
