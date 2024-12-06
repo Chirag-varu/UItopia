@@ -1,5 +1,4 @@
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+"use client";
 import { Button } from "@/components/ui/button";
 import { useState, ReactNode } from "react";
 import { X } from "lucide-react";
@@ -24,12 +23,24 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useEffect, useRef } from "react";
 
 const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
   code,
   coding,
 }) => {
   const [copied, setCopied] = useState(false);
+  const [checked, _] = useState<boolean | "indeterminate">(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (checked === true && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [checked]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(code).then(() => {
@@ -43,7 +54,6 @@ const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
   return (
     <div className="group flex flex-col items-center justify-center p-4 relative w-full h-32 text-center shadow-md hover:shadow-lg transition-shadow duration-300">
       <div>{coding}</div>
-
       <Dialog>
         <TooltipProvider delayDuration={0}>
           <Tooltip>
@@ -137,17 +147,115 @@ const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
   );
 };
 
-export default function Inputs() {
-  const buttonCode1 = `<div className="space-y-2">
-      <Label htmlFor="input-01">Simple input</Label>
-      <Input id="input-01" placeholder="Email" type="email" />
-    </div>`;
-  const code1 = (
-    <div className="space-y-2">
-      <Label htmlFor="input-01">Simple input</Label>
-      <Input id="input-01" placeholder="Email" type="email" />
+export default function ChecksRadiosSwitches() {
+  const [checked, setChecked] = useState<boolean | "indeterminate">(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (checked === true && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [checked]);
+
+  const buttonCode1 = `"use client";
+
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useEffect, useRef, useState } from "react";
+
+export default function CheckboxDemo() {
+  const [checked, setChecked] = useState<boolean | "indeterminate">(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (checked === true && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [checked]);
+
+  return (
+    <div>
+      <div className="flex items-start gap-2">
+        <Checkbox
+          id="checkbox-11"
+          checked={checked}
+          onCheckedChange={setChecked}
+          aria-controls="checkbox-input-11"
+        />
+        <div className="grow">
+          <div className="grid gap-2">
+            <Label htmlFor="checkbox-11">Checkbox with expansion</Label>
+            <p id="checkbox-11-description" className="text-xs text-muted-foreground">
+              You can use this checkbox with a label and a description.
+            </p>
+          </div>
+          {/* Expandable field */}
+          <div
+            role="region"
+            id="checkbox-input-11"
+            aria-labelledby="checkbox-11"
+            className="grid transition-all ease-in-out data-[state=collapsed]:grid-rows-[0fr] data-[state=expanded]:grid-rows-[1fr] data-[state=collapsed]:opacity-0 data-[state=expanded]:opacity-100"
+            data-state={checked ? "expanded" : "collapsed"}
+          >
+            <div className="pointer-events-none -m-2 overflow-hidden p-2">
+              <div className="pointer-events-auto mt-3">
+                <Input
+                  ref={inputRef}
+                  type="text"
+                  id="checkbox-11-additional-info"
+                  placeholder="Enter details"
+                  aria-label="Additional Information"
+                  disabled={!checked}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
+}
+`;
+  const code1 = <div>
+  <div className="flex items-start gap-2">
+    <Checkbox
+      id="checkbox-11"
+      checked={checked}
+      onCheckedChange={setChecked}
+      aria-controls="checkbox-input-11"
+    />
+    <div className="grow">
+      <div className="grid gap-2">
+        <Label htmlFor="checkbox-11">Checkbox with expansion</Label>
+        <p id="checkbox-11-description" className="text-xs text-muted-foreground">
+          You can use this checkbox with a label and a description.
+        </p>
+      </div>
+      {/* Expandable field */}
+      <div
+        role="region"
+        id="checkbox-input-11"
+        aria-labelledby="checkbox-11"
+        className="grid transition-all ease-in-out data-[state=collapsed]:grid-rows-[0fr] data-[state=expanded]:grid-rows-[1fr] data-[state=collapsed]:opacity-0 data-[state=expanded]:opacity-100"
+        data-state={checked ? "expanded" : "collapsed"}
+      >
+        <div className="pointer-events-none -m-2 overflow-hidden p-2">
+          <div className="pointer-events-auto mt-3">
+            <Input
+              ref={inputRef}
+              type="text"
+              id="checkbox-11-additional-info"
+              placeholder="Enter details"
+              aria-label="Additional Information"
+              disabled={!checked}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>;
 
   const buttonCode2 = `import { Button } from "@/components/ui/button";
 
@@ -287,10 +395,10 @@ export default function ButtonDemo() {
     <div className="min-h-screen w-full flex flex-col items-center justify-center gap-8 px-4 sm:px-8">
       {/* Header Section */}
       <div className="flex flex-col items-center gap-2 text-center mt-[8rem] sm:mt-0">
-        <div className="text-3xl sm:text-4xl font-bold">Input and Textarea</div>
+        <div className="text-3xl sm:text-4xl font-bold">Checkbox, Radio, and Switch</div>
         <p className="text-[hsl(var(--muted-foreground))] font-semibold whitespace-normal break-words max-w-md sm:max-w-lg">
-          A growing collection of input and textarea components built with React
-          TS and TailwindCSS.
+          A growing collection of checkbox, radio and switch components built with React TS and
+          TailwindCSS.
         </p>
       </div>
 

@@ -11,7 +11,7 @@ export default function Components() {
       transition={{ duration: 0.6 }}
     >
       <div className="flex flex-col items-center justify-center">
-        <div className="mt-40">
+        <div className="md:mt-40 mt-24 mb-20">
           <h1 className="text-3xl mb-4 text-[hsl(var(--muted-foreground))]">
             Components
           </h1>
@@ -31,6 +31,8 @@ export default function Components() {
                 name: "Alert, Notification, and Banner",
               },
               { path: "/dialogs", name: "Dialog" },
+              { path: "/Accordion", name: "Accordion" },
+              { path: "/Tooltip", name: "Tooltip" },
             ].map((link) => (
               <NavLink key={link.path} to={`/components${link.path}`}>
                 <Button

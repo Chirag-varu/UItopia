@@ -1,4 +1,4 @@
-import profile2 from "../assets/profile2.jpg";
+import profile2 from "../assets/Profile2.jpg";
 import profile3 from "../assets/profile3.jpg";
 import profile1 from "../assets/profile1.jpeg";
 import codeImage from "../assets/code-image.jpeg"; // Replace with the actual path to your code image
@@ -17,7 +17,7 @@ export default function About() {
       >
         <div className="flex flex-col">
           {/* Header */}
-          <h1 className="text-center text-xl font-bold mb-4 mt-40 cursor-default">
+          <h1 className="text-center text-xl font-bold mb-4 md:mt-40 mt-28 cursor-default">
             Meet The Creators Of UI-Topia
           </h1>
 
