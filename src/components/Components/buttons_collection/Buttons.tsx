@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useState, ReactNode } from "react";
-import { X } from "lucide-react";
+import { SquareArrowOutUpRight, ThumbsDownIcon, ThumbsUp, ThumbsUpIcon, X } from "lucide-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { QrCode } from "lucide-react";
 import { MdInfo } from "react-icons/md";
@@ -106,7 +106,7 @@ const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
             <Button
               variant="outline"
               size="icon"
-              className="disabled:opacity-100 absolute top-0 right-0 md:opacity-0 opacity-100 group-hover:opacity-100 py-2 px-4 z-50 mr-2 rounded-md text-sm transition-opacity duration-300 "
+              className="disabled:opacity-100 absolute top-0 right-0 md:opacity-0 opacity-100 group-hover:opacity-100 px-4 z-50 mr-2 rounded-md text-sm transition-opacity duration-300 "
               onClick={handleCopy}
               aria-label={copied ? "Copied" : "Copy to clipboard"}
               disabled={copied}
@@ -146,19 +146,30 @@ const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
 export default function Buttons() {
   const [bgColor, setBgColor] = useState("#d4d4d4");
   const [textColor, setTextColor] = useState("#000000");
+  const [selectedLibrary, setSelectedLibrary] = useState("React.ts");
+  const [copied, setCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [isExpanded7, setIsExpanded7] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<string>("Action");
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const options = ["Active", "Inactive", "Pending"];
 
   const toggleExpand = () => {
     setIsExpanded7((prevState) => !prevState);
   };
-
+  const handleCopy = async () => {
+    try {
+      // await navigator.clipboard.writeText("string to copy");
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch (err) {
+      console.error("Failed to copy text: ", err);
+    }
+  };
   const {
     previewUrl,
     fileInputRef,
@@ -167,7 +178,6 @@ export default function Buttons() {
     handleRemove,
     fileName,
   } = useImageUpload();
-  
 
   const buttonloading = `// Dependencies: pnpm install lucide-react
 
@@ -760,9 +770,17 @@ export default function ButtonDemo() {
 }
 `;
   const codeemail = (
-    <Button className="group" variant="secondary" 
-    style={{ backgroundColor: bgColor, color: textColor }}>
-      <Mail className="-ms-1 me-2 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
+    <Button
+      className="group"
+      variant="secondary"
+      style={{ backgroundColor: bgColor, color: textColor }}
+    >
+      <Mail
+        className="-ms-1 me-2 opacity-60"
+        size={16}
+        strokeWidth={2}
+        aria-hidden="true"
+      />
       Email
       <ArrowRight
         className="-me-1 ms-2 opacity-60 transition-transform group-hover:translate-x-0.5"
@@ -771,7 +789,7 @@ export default function ButtonDemo() {
         aria-hidden="true"
       />
     </Button>
-  )
+  );
 
   const buttongoback = `// Dependencies: pnpm install lucide-react
 
@@ -788,12 +806,300 @@ export default function ButtonDemo() {
 }
 `;
   const codegoback = (
-    <Button variant="link" 
-    style={{ backgroundColor: bgColor, color: textColor }}>
-      <ChevronLeft className="me-1 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
+    <Button
+      variant="link"
+      style={{ backgroundColor: bgColor, color: textColor }}
+    >
+      <ChevronLeft
+        className="me-1 opacity-60"
+        size={16}
+        strokeWidth={2}
+        aria-hidden="true"
+      />
       Go back
     </Button>
-  )
+  );
+
+  const buttonhamburger = `"use client";
+
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+
+export default function ButtonDemo() {
+  const [open, setOpen] = useState<boolean>(false);
+
+  return (
+    <Button
+      className="group bg-[${bgColor}] text-[${textColor}]"
+      variant="outline"
+      size="icon"
+      onClick={() => setOpen((prevState) => !prevState)}
+      aria-expanded={open}
+      aria-label={open ? "Close menu" : "Open menu"}
+    >
+      <svg
+        className="pointer-events-none"
+        width={16}
+        height={16}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4 12L20 12"
+          className="origin-center -translate-y-[7px] transition-all duration-300 [transition-timing-function:cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-x-0 group-aria-expanded:translate-y-0 group-aria-expanded:rotate-[315deg]"
+        />
+        <path
+          d="M4 12H20"
+          className="origin-center transition-all duration-300 [transition-timing-function:cubic-bezier(.5,.85,.25,1.8)] group-aria-expanded:rotate-45"
+        />
+        <path
+          d="M4 12H20"
+          className="origin-center translate-y-[7px] transition-all duration-300 [transition-timing-function:cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-y-0 group-aria-expanded:rotate-[135deg]"
+        />
+      </svg>
+    </Button>
+  );
+}
+`;
+
+  const codehamburger = (
+    <Button
+    style={{ backgroundColor: bgColor, color: textColor }}
+      className="group"
+      variant="outline"
+      size="icon"
+      onClick={() => setOpen((prevState) => !prevState)}
+      aria-expanded={open}
+      aria-label={open ? "Close menu" : "Open menu"}
+    >
+      <svg
+        className="pointer-events-none"
+        width={16}
+        height={16}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4 12L20 12"
+          className="origin-center -translate-y-[7px] transition-all duration-300 [transition-timing-function:cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-x-0 group-aria-expanded:translate-y-0 group-aria-expanded:rotate-[315deg]"
+        />
+        <path
+          d="M4 12H20"
+          className="origin-center transition-all duration-300 [transition-timing-function:cubic-bezier(.5,.85,.25,1.8)] group-aria-expanded:rotate-45"
+        />
+        <path
+          d="M4 12H20"
+          className="origin-center translate-y-[7px] transition-all duration-300 [transition-timing-function:cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-y-0 group-aria-expanded:rotate-[135deg]"
+        />
+      </svg>
+    </Button>
+  );
+  const buttonpreview = `// Dependencies: pnpm install lucide-react
+
+import { Button } from "@/components/ui/button";
+import { SquareArrowOutUpRight } from "lucide-react";
+
+export default function ButtonDemo() {
+  return (
+    <div className="inline-flex -space-x-px rounded-lg shadow-sm shadow-black/5 rtl:space-x-reverse">
+      <Button
+      
+        className="rounded-none shadow-none first:rounded-s-lg last:rounded-e-lg focus-visible:z-10 bg-[${bgColor}] text-[${textColor}]"
+        variant="outline"
+      >
+        Preview
+      </Button>
+      <Button
+        className="rounded-none shadow-none first:rounded-s-lg last:rounded-e-lg focus-visible:z-10 bg-[${bgColor}] text-[${textColor}]"
+        variant="outline"
+        size="icon"
+        aria-label="Open link"
+      >
+        <SquareArrowOutUpRight size={16} strokeWidth={2} aria-hidden="true" />
+      </Button>
+    </div>
+  );
+}
+`;
+
+  const codepreview = (
+    <div className="inline-flex -space-x-px rounded-lg shadow-sm shadow-black/5 rtl:space-x-reverse">
+      <Button
+      style={{ backgroundColor: bgColor, color: textColor }}
+        className={`rounded-none shadow-none first:rounded-s-lg last:rounded-e-lg focus-visible:z-10`}
+        variant="outline"
+      >
+        Preview
+      </Button>
+      <Button
+      style={{ backgroundColor: bgColor, color: textColor }}
+        className="rounded-none shadow-none first:rounded-s-lg last:rounded-e-lg focus-visible:z-10"
+        variant="outline"
+        size="icon"
+        aria-label="Open link"
+      >
+        <SquareArrowOutUpRight size={16} strokeWidth={2} aria-hidden="true" />
+      </Button>
+    </div>
+  );
+
+  const buttoncopy = `// Dependencies: pnpm install @radix-ui/react-tooltip
+
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { Check, Copy } from "lucide-react";
+import { useState } from "react";
+
+export default function ButtonDemo() {
+  const [copied, setCopied] = useState<boolean>(false);
+
+  const handleCopy = async () => {
+    try {
+      // await navigator.clipboard.writeText("string to copy");
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch (err) {
+      console.error("Failed to copy text: ", err);
+    }
+  };
+
+  return (
+    <TooltipProvider delayDuration={0}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            variant="outline"
+            size="icon"
+            className="disabled:opacity-100 bg-[${bgColor}] text-[${textColor}]"
+            onClick={handleCopy}
+            aria-label={copied ? "Copied" : "Copy to clipboard"}
+            disabled={copied}
+          >
+            <div
+              className={cn(
+                "transition-all",
+                copied ? "scale-100 opacity-100" : "scale-0 opacity-0",
+              )}
+            >
+              <Check className="stroke-emerald-500" size={16} strokeWidth={2} aria-hidden="true" />
+            </div>
+            <div
+              className={cn(
+                "absolute transition-all",
+                copied ? "scale-0 opacity-0" : "scale-100 opacity-100",
+              )}
+            >
+              <Copy size={16} strokeWidth={2} aria-hidden="true" />
+            </div>
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent className="px-2 py-1 text-xs">Click to copy</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+}
+`;
+
+  const codecopy = (
+    <TooltipProvider delayDuration={0}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            variant="outline"
+            size="icon"
+            className="disabled:opacity-100"
+            onClick={handleCopy}
+            aria-label={copied ? "Copied" : "Copy to clipboard"}
+            disabled={copied}
+            style={{ backgroundColor: bgColor, color: textColor }}
+          >
+            <div
+              className={cn(
+                "transition-all",
+                copied ? "scale-100 opacity-100" : "scale-0 opacity-0"
+              )}
+            >
+              <Check
+                className="stroke-emerald-500"
+                size={16}
+                strokeWidth={2}
+                aria-hidden="true"
+              />
+            </div>
+            <div
+              className={cn(
+                "absolute transition-all",
+                copied ? "scale-0 opacity-0" : "scale-100 opacity-100"
+              )}
+            >
+              <Copy size={16} strokeWidth={2} aria-hidden="true" />
+            </div>
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent className="px-2 py-1 text-xs">
+          Click to copy
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+
+  const buttonlike = `// Dependencies: pnpm install lucide-react
+
+import { Button } from "@/components/ui/button";
+import { ThumbsUp } from "lucide-react";
+import { ThumbsDown } from "lucide-react";
+
+export default function ButtonDemo() {
+  return (
+  <div className="flex flex-row gap-4">
+    <Button className="py-0 pe-0" variant="outline" style={{ backgroundColor: ${bgColor}, color: ${textColor} }}>
+      <ThumbsUp className="opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
+      Like
+      <span className="relative ms-3 inline-flex h-full items-center justify-center rounded-full px-3 text-xs font-medium text-muted-foreground before:absolute before:inset-0 before:left-0 before:w-px before:bg-input style={{ backgroundColor: ${bgColor}, color: ${textColor} }}">
+        86
+      </span>
+    </Button>
+        <Button className="py-0 pe-0" variant="outline" style={{ backgroundColor: ${bgColor}, color: ${textColor} }}>
+      <ThumbsDownIcon className="opacity-60" size={16} strokeWidth={2} aria-hidden="true" style={{ backgroundColor: ${bgColor}, color: ${textColor} }} />
+      Dislike
+      <span className="relative ms-3 inline-flex h-full items-center justify-center rounded-full px-3 text-xs font-medium text-muted-foreground before:absolute before:inset-0 before:left-0 before:w-px before:bg-input" >
+        27
+      </span>
+    </Button>
+    </div>
+  );
+}
+`
+
+const codelike = (
+  <div className="flex flex-row gap-4" >
+    <Button className="py-0 pe-0" variant="outline" style={{ backgroundColor: bgColor, color: textColor }}>
+      <ThumbsUpIcon className="opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
+      <span className="relative ms-3 inline-flex h-full items-center justify-center rounded-full px-3 text-xs font-medium text-muted-foreground before:absolute before:inset-0 before:left-0 before:w-px before:bg-input"  style={{ backgroundColor: bgColor, color: textColor }}>
+        72
+      </span>
+    </Button>
+    <Button className="py-0 pe-0" variant="outline" style={{ backgroundColor: bgColor, color: textColor }}>
+      <ThumbsDownIcon className="opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
+      <span className="relative ms-3 inline-flex h-full items-center justify-center rounded-full px-3 text-xs font-medium text-muted-foreground before:absolute before:inset-0 before:left-0 before:w-px before:bg-input" style={{ backgroundColor: bgColor, color: textColor }}>
+        27
+      </span>
+    </Button>
+  </div>
+)
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center gap-4 px-4 sm:px-8 mb-12">
@@ -806,40 +1112,70 @@ export default function ButtonDemo() {
         </p>
       </div>
 
-      {/* Color Picker for customizing button colors */}
-      <div className="flex flex-row items-center justify-center gap-6 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-        {/* Background Color Picker */}
-        <div className="flex items-center gap-2">
+      {/* Customization Menu and Color Picker */}
+      <div className="w-[75%] flex flex-col justify-center md:flex-row items-center md:justify-between gap-6 p-6  border-y border-gray-300/80 dark:border-gray-700/50">
+        <div className="flex items-center gap-2 w-full justify-center md:justify-start">
           <label
-            htmlFor="bgColor"
-            className="font-semibold text-sm text-gray-800 dark:text-gray-200"
+            htmlFor="librarySelect"
+            className="font-semibold text-gray-800 dark:text-gray-200"
           >
-            Background Color
+            Select Library:
           </label>
-          <input
-            id="bgColor"
-            type="color"
-            className="h-8 w-8 rounded-lg border-none outline-none cursor-pointer transition-transform transform hover:scale-110"
-            onChange={(e) => setBgColor(e.target.value)}
-            value={bgColor}
-          />
+          <select
+            id="librarySelect"
+            className="h-10 px-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900/70 text-gray-700 dark:text-gray-200 outline-none cursor-pointer transition focus:ring-2 focus:ring-blue-500 object-"
+            onChange={(e) => setSelectedLibrary(e.target.value)}
+            value={selectedLibrary}
+          >
+            <option value="React.js" className="dark:bg-gray-900">
+              React.js
+            </option>
+            <option value="React.ts" className="dark:bg-gray-900">
+              React.ts
+            </option>
+            <option value="Next.js" className="dark:bg-gray-900">
+              Next.js
+            </option>
+            <option value="Next.ts" className="dark:bg-gray-900">
+              Next.ts
+            </option>
+          </select>
         </div>
 
-        {/* Text Color Picker */}
-        <div className="flex items-center gap-2">
-          <label
-            htmlFor="textColor"
-            className="font-semibold text-sm text-gray-800 dark:text-gray-200"
-          >
-            Text Color
-          </label>
-          <input
-            id="textColor"
-            type="color"
-            className="h-8 w-8 rounded-lg border-none outline-none cursor-pointer transition-transform transform hover:scale-110"
-            onChange={(e) => setTextColor(e.target.value)}
-            value={textColor}
-          />
+        {/* Background Color Picker */}
+        <div className="flex flex-row w-full gap-5 justify-end">
+          <div className="flex items-center gap-2">
+            <label
+              htmlFor="bgColor"
+              className="font-semibold text-sm text-gray-800 dark:text-gray-200"
+            >
+              Background Color:
+            </label>
+            <input
+              id="bgColor"
+              type="color"
+              className="h-8 w-8 rounded-lg border-none outline-none cursor-pointer transition-transform transform hover:scale-110"
+              onChange={(e) => setBgColor(e.target.value)}
+              value={bgColor}
+            />
+          </div>
+
+          {/* Text Color Picker */}
+          <div className="flex items-center gap-2">
+            <label
+              htmlFor="textColor"
+              className="font-semibold text-sm text-gray-800 dark:text-gray-200"
+            >
+              Text Color:
+            </label>
+            <input
+              id="textColor"
+              type="color"
+              className="h-8 w-8 rounded-lg border-none outline-none cursor-pointer transition-transform transform hover:scale-110"
+              onChange={(e) => setTextColor(e.target.value)}
+              value={textColor}
+            />
+          </div>
         </div>
       </div>
 
@@ -866,6 +1202,10 @@ export default function ButtonDemo() {
         <ButtonWithCopy code={buttonuploadimage} coding={codeuploadimage} />
         <ButtonWithCopy code={buttonemail} coding={codeemail} />
         <ButtonWithCopy code={buttongoback} coding={codegoback} />
+        <ButtonWithCopy code={buttonhamburger} coding={codehamburger} />
+        <ButtonWithCopy code={buttoncopy} coding={codecopy} />
+        <ButtonWithCopy code={buttonpreview} coding={codepreview} />
+        <ButtonWithCopy code={buttonlike} coding={codelike} />
       </div>
     </div>
   );
