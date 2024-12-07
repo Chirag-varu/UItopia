@@ -5,7 +5,7 @@ import { Highlight } from "../components/ui/hero-highlight";
 import { Subscribe } from "../components/Subscribe";
 import { AnimatedTooltip } from "../components/ui/AnimatedTooltip";
 import person1 from "../assets/profile3.jpg";
-import person2 from "../assets/profile2.jpg";
+import person2 from "../assets/Profile2.jpg";
 import person3 from "../assets/profile1.jpeg";
 
 const people = [
