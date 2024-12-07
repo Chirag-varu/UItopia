@@ -21,14 +21,10 @@ import { Check, Copy } from "lucide-react";
 import { Search } from "lucide-react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { LoaderCircle } from "lucide-react";
-import { useImageUpload } from "@/hooks/use-image-upload";
-import { CircleUserRound } from "lucide-react";
 import { Mail } from "lucide-react";
-import { ButtonWithCopy } from "./ButtonWithCopy";
 
-const [bgColor, setBgColor] = useState("#d4d4d4");
-const [textColor, setTextColor] = useState("#000000");
-const [selectedLibrary, setSelectedLibrary] = useState("React.ts");
+const [bgColor, _setBgColor] = useState("#d4d4d4");
+const [textColor, _setTextColor] = useState("#000000");
 const [copied, setCopied] = useState(false);
 const [isExpanded, setIsExpanded] = useState(false);
 const [searchQuery, setSearchQuery] = useState("");
