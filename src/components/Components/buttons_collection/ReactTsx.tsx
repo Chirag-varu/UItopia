@@ -14,7 +14,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/components/ui/Tooltip";
 import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import { Check, Copy } from "lucide-react";
