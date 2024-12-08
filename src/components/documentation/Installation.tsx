@@ -177,18 +177,45 @@ const Installation = () => {
         <h2 className="text-3xl font-bold mb-3">Example: Adding a Button</h2>
         <div className="flex flex-col md:flex-row w-full">
           <div className="w-full overflow-x-auto bg-gray-100  dark:bg-gray-800/50 dark:text-white p-4 rounded-t-lg border md:rounded-r-none md:rounded-l-lg border-gray-300">
-            <pre className="text-lg whitespace-pre-wrap break-words">
-              <code className="block w-full">
-                {`// Example of using a Button component
-import { Button } from "@/components/ui/button";
-
-export default function App() { 
-  return ( 
-    <div className="p-6">
-      <Button className="rounded-full text-lg">Click Me</Button>
-    </div>
-  ); 
-}`}
+            <pre>
+              <code>
+                <span className="text-gray-600">
+                  // Example of using a Button component
+                </span>
+                {"\n"}
+                <span className="text-blue-600">import</span> {"{"}{" "}
+                <span className="text-cyan-600">Button</span> {"}"}{" "}
+                <span className="text-blue-600">from</span>{" "}
+                <span className="text-yellow-600">
+                  "@/components/ui/button"
+                </span>
+                ;{"\n\n"}
+                <span className="text-blue-600">export default</span>{" "}
+                <span className="text-cyan-600">function</span>{" "}
+                <span className="text-cyan-600">App</span>() {"{"}
+                {"\n"}
+                {"  "}
+                <span className="text-blue-600">return</span> ({"\n"}
+                {"    "}
+                <span className="text-purple-600">&lt;div</span>{" "}
+                <span className="text-yellow-600">className</span>=
+                <span className="text-yellow-600">"p-6"</span>
+                <span className="text-purple-600">&gt;</span>
+                {"\n"}
+                {"      "}
+                <span className="text-purple-600">&lt;Button</span>{" "}
+                <span className="text-yellow-600">className</span>=
+                <span className="text-yellow-600">"rounded-full text-lg"</span>
+                <span className="text-purple-600">&gt;</span>
+                Click Me
+                <span className="text-purple-600">&lt;/Button&gt;</span>
+                {"\n"}
+                {"    "}
+                <span className="text-purple-600">&lt;/div&gt;</span>
+                {"\n"}
+                {"  "});
+                {"\n"}
+                {"}"}
               </code>
             </pre>
           </div>

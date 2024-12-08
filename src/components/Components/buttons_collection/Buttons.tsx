@@ -17,20 +17,10 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/components/ui/Tooltip";
 import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
 import { Check, Copy } from "lucide-react";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Search } from "lucide-react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { LoaderCircle } from "lucide-react";
@@ -149,6 +139,7 @@ const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
     </div>
   );
 };
+import { ButtonWithCopy } from "./ButtonWithCopy";
 
 export default function Buttons() {
   const [bgColor, setBgColor] = useState("#9e83c5");
@@ -1140,7 +1131,7 @@ export default function ButtonDemo() {
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center gap-4 px-4 sm:px-8 mb-12">
       {/* Header Section */}
-      <div className="flex flex-col items-center gap-2 text-center mt-[8rem] sm:mt-0 md:mt-40">
+      <div className="flex flex-col items-center gap-2 text-center mt-[8rem] sm:mt-0 md:mt-28">
         <h1 className="text-3xl sm:text-4xl font-bold">Button</h1>
         <p className="text-[hsl(var(--muted-foreground))] font-semibold max-w-md sm:max-w-lg">
           A growing collection of button components built with ReactTS and
@@ -1155,7 +1146,7 @@ export default function ButtonDemo() {
             htmlFor="librarySelect"
             className="font-semibold text-gray-800 dark:text-gray-200"
           >
-            Select Library:
+            Select Framework:
           </label>
           <select
             id="librarySelect"

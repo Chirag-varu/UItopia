@@ -11,12 +11,12 @@ export default function Components() {
       transition={{ duration: 0.6 }}
     >
       <div className="flex flex-col items-center justify-center">
-        <div className="md:mt-40 mt-24 mb-20">
-          <h1 className="text-3xl mb-4 text-[hsl(var(--muted-foreground))]">
+        <div className="mt-32 mb-24">
+          <h1 className="text-5xl mb-6 text-[hsl(var(--muted-foreground))]">
             Components
           </h1>
 
-          <div className="flex flex-col gap-4 w-full max-w-xl">
+          <div className="flex flex-1 flex-col gap-6 w-full max-w-3xl">
             {[
               { path: "/button", name: "Button" },
               { path: "/inputs", name: "Input and Textarea" },
@@ -37,13 +37,13 @@ export default function Components() {
               <NavLink key={link.path} to={`/components${link.path}`}>
                 <Button
                   variant="outline"
-                  className="flex justify-between text-md w-full sm:w-[25rem] h-12 p-4"
+                  className="flex justify-between text-lg w-full sm:w-[30rem] h-14 p-5"
                 >
                   {link.name}
-                  <span className="-me-1 ms-3 inline-flex h-5 max-h-full items-center rounded border border-border px-1 font-[inherit] text-[0.625rem] font-medium text-muted-foreground">
+                  <span className="-me-1 ms-3 inline-flex h-6 max-h-full items-center rounded border border-border px-2 font-[inherit] text-[0.75rem] font-medium text-muted-foreground">
                     <ChevronRight
                       className="opacity-60 transition-transform group-hover:translate-x-0.5"
-                      size={16}
+                      size={18}
                       strokeWidth={2}
                       aria-hidden="true"
                     />
