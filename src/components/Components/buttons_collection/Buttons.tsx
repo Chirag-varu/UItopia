@@ -1,10 +1,17 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useState, ReactNode } from "react";
-import { SquareArrowOutUpRight, ThumbsDownIcon, ThumbsUp, ThumbsUpIcon, X } from "lucide-react";
+import { useState, ReactNode, useRef } from "react";
+import {
+  SquareArrowOutUpRight,
+  ThumbsDownIcon,
+  ThumbsUp,
+  ThumbsUpIcon,
+  X,
+} from "lucide-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { QrCode } from "lucide-react";
 import { MdInfo } from "react-icons/md";
+import { HexColorPicker } from "react-colorful";
 import {
   Tooltip,
   TooltipContent,
@@ -30,7 +37,7 @@ import { LoaderCircle } from "lucide-react";
 import { useImageUpload } from "@/hooks/use-image-upload";
 import { CircleUserRound } from "lucide-react";
 import { Mail } from "lucide-react";
-
+import useOnClickOutside from "use-onclickoutside";
 // Component for rendering button code with copy and detail options
 const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
   code,
@@ -144,8 +151,10 @@ const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
 };
 
 export default function Buttons() {
-  const [bgColor, setBgColor] = useState("#d4d4d4");
+  const [bgColor, setBgColor] = useState("#9e83c5");
   const [textColor, setTextColor] = useState("#000000");
+  const [isBgPickerOpen, setBgPickerOpen] = useState(false);
+  const [isTextPickerOpen, setTextPickerOpen] = useState(false);
   const [selectedLibrary, setSelectedLibrary] = useState("React.ts");
   const [copied, setCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -157,7 +166,10 @@ export default function Buttons() {
   const [open, setOpen] = useState<boolean>(false);
 
   const options = ["Active", "Inactive", "Pending"];
-
+  const bgPickerRef = useRef(null);
+  useOnClickOutside(bgPickerRef, () => setBgPickerOpen(false));
+  const textPickerRef = useRef(null);
+  useOnClickOutside(textPickerRef, () => setTextPickerOpen(false));
   const toggleExpand = () => {
     setIsExpanded7((prevState) => !prevState);
   };
@@ -869,7 +881,7 @@ export default function ButtonDemo() {
 
   const codehamburger = (
     <Button
-    style={{ backgroundColor: bgColor, color: textColor }}
+      style={{ backgroundColor: bgColor, color: textColor }}
       className="group"
       variant="outline"
       size="icon"
@@ -935,14 +947,14 @@ export default function ButtonDemo() {
   const codepreview = (
     <div className="inline-flex -space-x-px rounded-lg shadow-sm shadow-black/5 rtl:space-x-reverse">
       <Button
-      style={{ backgroundColor: bgColor, color: textColor }}
+        style={{ backgroundColor: bgColor, color: textColor }}
         className={`rounded-none shadow-none first:rounded-s-lg last:rounded-e-lg focus-visible:z-10`}
         variant="outline"
       >
         Preview
       </Button>
       <Button
-      style={{ backgroundColor: bgColor, color: textColor }}
+        style={{ backgroundColor: bgColor, color: textColor }}
         className="rounded-none shadow-none first:rounded-s-lg last:rounded-e-lg focus-visible:z-10"
         variant="outline"
         size="icon"
@@ -1082,24 +1094,48 @@ export default function ButtonDemo() {
     </div>
   );
 }
-`
+`;
 
-const codelike = (
-  <div className="flex flex-row gap-4" >
-    <Button className="py-0 pe-0" variant="outline" style={{ backgroundColor: bgColor, color: textColor }}>
-      <ThumbsUpIcon className="opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
-      <span className="relative ms-3 inline-flex h-full items-center justify-center rounded-full px-3 text-xs font-medium text-muted-foreground before:absolute before:inset-0 before:left-0 before:w-px before:bg-input"  style={{ backgroundColor: bgColor, color: textColor }}>
-        72
-      </span>
-    </Button>
-    <Button className="py-0 pe-0" variant="outline" style={{ backgroundColor: bgColor, color: textColor }}>
-      <ThumbsDownIcon className="opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
-      <span className="relative ms-3 inline-flex h-full items-center justify-center rounded-full px-3 text-xs font-medium text-muted-foreground before:absolute before:inset-0 before:left-0 before:w-px before:bg-input" style={{ backgroundColor: bgColor, color: textColor }}>
-        27
-      </span>
-    </Button>
-  </div>
-)
+  const codelike = (
+    <div className="flex flex-row gap-4">
+      <Button
+        className="py-0 pe-0"
+        variant="outline"
+        style={{ backgroundColor: bgColor, color: textColor }}
+      >
+        <ThumbsUpIcon
+          className="opacity-60"
+          size={16}
+          strokeWidth={2}
+          aria-hidden="true"
+        />
+        <span
+          className="relative ms-3 inline-flex h-full items-center justify-center rounded-full px-3 text-xs font-medium text-muted-foreground before:absolute before:inset-0 before:left-0 before:w-px before:bg-input"
+          style={{ backgroundColor: bgColor, color: textColor }}
+        >
+          72
+        </span>
+      </Button>
+      <Button
+        className="py-0 pe-0"
+        variant="outline"
+        style={{ backgroundColor: bgColor, color: textColor }}
+      >
+        <ThumbsDownIcon
+          className="opacity-60"
+          size={16}
+          strokeWidth={2}
+          aria-hidden="true"
+        />
+        <span
+          className="relative ms-3 inline-flex h-full items-center justify-center rounded-full px-3 text-xs font-medium text-muted-foreground before:absolute before:inset-0 before:left-0 before:w-px before:bg-input"
+          style={{ backgroundColor: bgColor, color: textColor }}
+        >
+          27
+        </span>
+      </Button>
+    </div>
+  );
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center gap-4 px-4 sm:px-8 mb-12">
@@ -1141,40 +1177,51 @@ const codelike = (
             </option>
           </select>
         </div>
+<div className="flex items-center justify-center gap-5">  
+        <div className="flex items-center gap-3">
+          {/* Label for Background Color */}
+          <label className="font-semibold text-sm">Background Color:</label>
 
-        {/* Background Color Picker */}
-        <div className="flex flex-row w-full gap-5 justify-end">
-          <div className="flex items-center gap-2">
-            <label
-              htmlFor="bgColor"
-              className="font-semibold text-sm text-gray-800 dark:text-gray-200"
-            >
-              Background Color:
-            </label>
-            <input
-              id="bgColor"
-              type="color"
-              className="h-8 w-8 rounded-lg border-none outline-none cursor-pointer transition-transform transform hover:scale-110"
-              onChange={(e) => setBgColor(e.target.value)}
-              value={bgColor}
-            />
-          </div>
+          {/* Background Color preview button */}
+          <div
+            className="w-12 h-10 rounded cursor-pointer border border-black dark:border-gray-300"
+            style={{ backgroundColor: bgColor }}
+            onClick={() => setBgPickerOpen(!isBgPickerOpen)}
+            ></div>
 
-          {/* Text Color Picker */}
-          <div className="flex items-center gap-2">
-            <label
-              htmlFor="textColor"
-              className="font-semibold text-sm text-gray-800 dark:text-gray-200"
+          {/* Popover for the Background Color Picker */}
+          {isBgPickerOpen && (
+            <div
+            ref={bgPickerRef}
+            className="absolute mt-2 z-10 bg-white p-2 shadow-lg rounded"
             >
-              Text Color:
-            </label>
-            <input
-              id="textColor"
-              type="color"
-              className="h-8 w-8 rounded-lg border-none outline-none cursor-pointer transition-transform transform hover:scale-110"
-              onChange={(e) => setTextColor(e.target.value)}
-              value={textColor}
-            />
+              <HexColorPicker color={bgColor} onChange={setBgColor} />
+              <p className="mt-1 text-center text-xs">{bgColor}</p>
+            </div>
+          )}
+        </div>
+
+        <div className="flex items-center gap-3">
+          {/* Label for Text Color */}
+          <label className="font-semibold text-sm">Text Color:</label>
+
+          {/* Text Color preview button */}
+          <div
+            className="w-12 h-10 rounded cursor-pointer border border-black dark:border-gray-300"
+            style={{ backgroundColor: textColor }}
+            onClick={() => setTextPickerOpen(!isTextPickerOpen)}
+            ></div>
+
+          {/* Popover for the Text Color Picker */}
+          {isTextPickerOpen && (
+            <div
+            ref={textPickerRef}
+            className="absolute mt-2 z-10 bg-white p-2 shadow-lg rounded"
+            >
+              <HexColorPicker color={textColor} onChange={setTextColor} />
+              <p className="mt-1 text-center text-xs">{textColor}</p>
+            </div>
+          )}
           </div>
         </div>
       </div>
