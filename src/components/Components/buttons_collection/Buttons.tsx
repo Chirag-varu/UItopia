@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   SquareArrowOutUpRight,
   ThumbsDownIcon,
@@ -25,7 +25,8 @@ import { useImageUpload } from "@/hooks/use-image-upload";
 import { CircleUserRound } from "lucide-react";
 import { Mail } from "lucide-react";
 import { ButtonWithCopy } from "./ButtonWithCopy";
-
+import { HexColorPicker } from "react-colorful";
+import useOnClickOutside from "use-onclickoutside";
 export default function Buttons() {
   const [bgColor, setBgColor] = useState("#d4d4d4");
   const [textColor, setTextColor] = useState("#000000");
@@ -53,6 +54,14 @@ export default function Buttons() {
       console.error("Failed to copy text: ", err);
     }
   };
+  const [isBgPickerOpen, setBgPickerOpen] = useState(false);
+  const bgPickerRef = useRef(null);
+  useOnClickOutside(bgPickerRef, () => setBgPickerOpen(false));
+
+  const [isTextPickerOpen, setTextPickerOpen] = useState(false);
+  const textPickerRef = useRef(null);
+  useOnClickOutside(textPickerRef, () => setTextPickerOpen(false));
+
   const {
     previewUrl,
     fileInputRef,
@@ -1020,7 +1029,10 @@ export default function ButtonDemo() {
       </div>
 
       {/* Customization Menu and Color Picker */}
-      <div className="w-[75%] flex flex-col justify-center md:flex-row items-center md:justify-between gap-6 p-6  border-y border-gray-300/80 dark:border-gray-700/50">
+      <div className="w-[75%] flex-col justify-center md:flex-row items-center md:justify-between gap-6 p-6  border-y border-gray-300/80 dark:border-gray-700/50">
+        <div className="flex flex-col w-full justify-center items-center md:flex-row gap-4">
+          
+
         <div className="flex items-center gap-2 w-full justify-center md:justify-start">
           <label
             htmlFor="librarySelect"
@@ -1048,40 +1060,50 @@ export default function ButtonDemo() {
             </option>
           </select>
         </div>
+        <div className="flex items-center justify-center gap-5">  
+        <div className="flex items-center gap-3">
+          {/* Label for Background Color */}
+          <label className="font-semibold text-sm">Background Color:</label>
 
-        {/* Background Color Picker */}
-        <div className="flex flex-row w-full gap-5 justify-end">
-          <div className="flex items-center gap-2">
-            <label
-              htmlFor="bgColor"
-              className="font-semibold text-sm text-gray-800 dark:text-gray-200"
-            >
-              Background Color:
-            </label>
-            <input
-              id="bgColor"
-              type="color"
-              className="h-8 w-8 rounded-lg border-none outline-none cursor-pointer transition-transform transform hover:scale-110"
-              onChange={(e) => setBgColor(e.target.value)}
-              value={bgColor}
-            />
-          </div>
+          {/* Background Color preview button */}
+          <div
+            className="w-14 h-10 rounded cursor-pointer border border-black dark:border-gray-300"
+            style={{ backgroundColor: bgColor }}
+            onClick={() => setBgPickerOpen(!isBgPickerOpen)}
+            ></div>
 
-          {/* Text Color Picker */}
-          <div className="flex items-center gap-2">
-            <label
-              htmlFor="textColor"
-              className="font-semibold text-sm text-gray-800 dark:text-gray-200"
+          {/* Popover for the Background Color Picker */}
+          {isBgPickerOpen && (
+            <div
+            ref={bgPickerRef}
+            className="absolute mt-2 z-10 bg-white p-2 shadow-lg rounded"
             >
-              Text Color:
-            </label>
-            <input
-              id="textColor"
-              type="color"
-              className="h-8 w-8 rounded-lg border-none outline-none cursor-pointer transition-transform transform hover:scale-110"
-              onChange={(e) => setTextColor(e.target.value)}
-              value={textColor}
-            />
+              <HexColorPicker color={bgColor} onChange={setBgColor} />
+              <p className="mt-1 text-center text-xs">{bgColor}</p>
+            </div>
+          )}
+        </div>
+        <div className="flex items-center gap-3">
+          {/* Label for Text Color */}
+          <label className="font-semibold text-sm">Text Color:</label>
+
+          {/* Text Color preview button */}
+          <div
+            className="w-14 h-10 rounded cursor-pointer border border-black dark:border-gray-300"
+            style={{ backgroundColor: textColor }}
+            onClick={() => setTextPickerOpen(!isTextPickerOpen)}
+            ></div>
+
+          {/* Popover for the Text Color Picker */}
+          {isTextPickerOpen && (
+            <div
+            ref={textPickerRef}
+            className="absolute mt-2 z-10 bg-white p-2 shadow-lg rounded"
+            >
+              <HexColorPicker color={textColor} onChange={setTextColor} />
+              <p className="mt-1 text-center text-xs">{textColor}</p>
+            </div>
+          )}
           </div>
         </div>
       </div>
@@ -1114,6 +1136,38 @@ export default function ButtonDemo() {
         <ButtonWithCopy code={buttoncopy} coding={codecopy} />
         <ButtonWithCopy code={buttonpreview} coding={codepreview} />
         <ButtonWithCopy code={buttonlike} coding={codelike} />
+        </div>
+        {/* Grid for displaying button examples */}
+        <div className="grid max-w-6xl grid-cols-1 overflow-hidden sm:grid-cols-2 lg:grid-cols-3 [&>*]:relative [&>*]:px-1 [&>*]:py-12 [&>*]:before:absolute [&>*]:before:bg-border/70 [&>*]:before:[block-size:100vh] [&>*]:before:[inline-size:1px] [&>*]:before:[inset-block-start:0] [&>*]:before:[inset-inline-start:-1px] [&>*]:after:absolute [&>*]:after:bg-border/70 [&>*]:after:[block-size:1px] [&>*]:after:[inline-size:100vw] [&>*]:after:[inset-block-start:-1px] [&>*]:after:[inset-inline-start:0] sm:[&>*]:px-8 xl:[&>*]:px-12 w-full">
+          {" "}
+          <ButtonWithCopy code={buttonCode1} coding={code1} />
+          <ButtonWithCopy code={buttonCode2} coding={code2} />
+          <ButtonWithCopy code={buttonCode3} coding={code3} />
+          <ButtonWithCopy code={buttonCode4} coding={code4} />
+          <ButtonWithCopy code={buttonCode5} coding={code5} />
+          <ButtonWithCopy code={buttonCode6} coding={code6} />
+          <ButtonWithCopy code={buttonCodeOutline} coding={codeOutline} />
+          <ButtonWithCopy
+            code={ExpandableSearchBar}
+            coding={codeExpandableSearchBar}
+          />
+          <ButtonWithCopy code={buttonCodeToggle} coding={codeToggle} />
+          <ButtonWithCopy code={buttonCodeGradient} coding={codeGradient} />
+          <ButtonWithCopy code={buttonCodeSplit} coding={codeSplit} />
+          <ButtonWithCopy code={buttonCode7} coding={code7} />
+          <ButtonWithCopy
+            code={buttonsaveandcancel}
+            coding={codesaveandcancel}
+          />
+          <ButtonWithCopy code={buttonloading} coding={codeloading} />
+          <ButtonWithCopy code={buttonuploadimage} coding={codeuploadimage} />
+          <ButtonWithCopy code={buttonemail} coding={codeemail} />
+          <ButtonWithCopy code={buttongoback} coding={codegoback} />
+          <ButtonWithCopy code={buttonhamburger} coding={codehamburger} />
+          <ButtonWithCopy code={buttoncopy} coding={codecopy} />
+          <ButtonWithCopy code={buttonpreview} coding={codepreview} />
+          <ButtonWithCopy code={buttonlike} coding={codelike} />
+        </div>
       </div>
     </div>
   );
