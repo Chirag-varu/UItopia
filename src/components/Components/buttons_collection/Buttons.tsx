@@ -71,100 +71,367 @@ export default function Buttons() {
     fileName,
   } = useImageUpload();
 
-  const buttonloading = `// Dependencies: pnpm install lucide-react
-
-import { Button } from "@/components/ui/button";
-import { LoaderCircle } from "lucide-react";
-
-export default function ButtonDemo() {
-  return (
-    <Button disabled>
-      <LoaderCircle
-        className="-ms-1 me-2 animate-spin"
-        size={16}
-        strokeWidth={2}
-        aria-hidden="true"
-      />
-      Button
-    </Button>
-  );
-}
-`;
-  const codeloading = (
-    <Button disabled>
-      <LoaderCircle
-        className="-ms-1 me-2 animate-spin"
-        size={16}
-        strokeWidth={2}
-        aria-hidden="true"
-      />
-      Button
-    </Button>
-  );
-
-  // save and cancel
-  const buttonsaveandcancel = `import { Button } from "@/components/ui/button";
-
-export default function ButtonDemo() {
-  return (
-    <div className="inline-flex items-center gap-2">
-      <Button variant="ghost">Cancel</Button>
-      <Button>Save</Button>
-    </div>
-  );
-}
-`;
-  const codesaveandcancel = (
-    <div className="inline-flex items-center gap-2">
-      <Button variant="ghost">Cancel</Button>
-      <Button style={{ backgroundColor: bgColor, color: textColor }}>
-        Save
+  const buttonComponents = [
+    {
+      name: "Basic Button",
+      component: (
+        <Button style={{ backgroundColor: bgColor, color: textColor }}>
+          Button
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+      
+  export default function ButtonDemo() {
+    return <Button style={{ backgroundColor: bgColor, color: textColor }}>Button</Button>;
+  }`,
+    },
+    {
+      name: "Rounded Button",
+      component: (
+        <Button
+          className="rounded-full"
+          style={{ backgroundColor: bgColor, color: textColor }}
+        >
+          Button
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+      
+  export default function ButtonDemo() {
+    return <Button className="rounded-full" style={{ backgroundColor: bgColor, color: textColor }}>Button</Button>;
+  }`,
+    },
+    {
+      name: "Button with Icon",
+      component: (
+        <Button variant="secondary">
+          <X
+            className="-ms-1 me-2 opacity-60"
+            size={16}
+            strokeWidth={2}
+            aria-hidden="true"
+          />
+          Button
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+  import { X } from "lucide-react";
+      
+  export default function ButtonDemo() {
+    return (
+      <Button variant="secondary">
+        <X className="-ms-1 me-2 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
+        Button
       </Button>
-    </div>
-  );
+    );
+  }`,
+    },
+    {
+      name: "Ghost Button with Hover",
+      component: (
+        <Button className="group" variant="ghost">
+          <ArrowLeft
+            className="-ms-1 me-2 opacity-60 transition-transform group-hover:-translate-x-0.5"
+            size={16}
+            strokeWidth={2}
+            aria-hidden="true"
+          />
+          Button
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+  import { ArrowLeft } from "lucide-react";
+      
+  export default function ButtonDemo() {
+    return (
+      <Button className="group" variant="ghost">
+        <ArrowLeft className="-ms-1 me-2 opacity-60 transition-transform group-hover:-translate-x-0.5" />
+        Button
+      </Button>
+    );
+  }`,
+    },
+    {
+      name: "Expandable Search Bar",
+      component: (
+        <div className="flex items-center space-x-2">
+          <Button
+            size="icon"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="bg-gray-200 text-gray-800 hover:bg-gray-300 transition-all"
+          >
+            {isExpanded ? (
+              <X size={20} strokeWidth={2} />
+            ) : (
+              <Search size={20} strokeWidth={2} />
+            )}
+          </Button>
+          {isExpanded && (
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search..."
+              className="px-4 py-2 bg-gray-100 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 transition-all"
+            />
+          )}
+        </div>
+      ),
+      code: `import { useState } from "react";
+    import { Button } from "@/components/ui/button";
+    import { Search, X } from "lucide-react";
+    
+    export default function ExpandableSearchBar() {
+      const [isExpanded, setIsExpanded] = useState(false);
+      const [searchQuery, setSearchQuery] = useState("");
+    
+      return (
+        <div className="flex items-center space-x-2">
+          <Button
+            size="icon"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="bg-gray-200 text-gray-800 hover:bg-gray-300 transition-all"
+          >
+            {isExpanded ? <X size={20} strokeWidth={2} /> : <Search size={20} strokeWidth={2} />}
+          </Button>
+          {isExpanded && (
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search..."
+              className="px-4 py-2 bg-gray-100 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 transition-all"
+            />
+          )}
+        </div>
+      );
+    }`,
+    },
+    {
+      name: "Outline Button",
+      component: (
+        <Button
+          className={`border border-[${bgColor}] bg-transparent text-[${bgColor}] hover:bg-[${bgColor}] transition-all`}
+        >
+          Button
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+    
+    export default function ButtonDemo() {
+      return <Button className="border border-[${bgColor}] text-[${textColor}] hover:bg-[${bgColor}] hover:text-white transition-all">Button</Button>;
+    }`,
+    },
+    {
+      name: "Copy Button",
+      component: (
+        <TooltipProvider delayDuration={0}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                className="disabled:opacity-100 bg-[${bgColor}] text-[${textColor}]"
+                onClick={handleCopy}
+                aria-label={copied ? "Copied" : "Copy to clipboard"}
+                disabled={copied}
+              >
+                <div
+                  className={cn(
+                    "transition-all",
+                    copied ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                  )}
+                >
+                  <Check
+                    className="stroke-emerald-500"
+                    size={16}
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  />
+                </div>
+                <div
+                  className={cn(
+                    "absolute transition-all",
+                    copied ? "scale-0 opacity-0" : "scale-100 opacity-100"
+                  )}
+                >
+                  <Copy size={16} strokeWidth={2} aria-hidden="true" />
+                </div>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent className="px-2 py-1 text-xs">
+              Click to copy
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      ),
+      code: `import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+    import { Button } from "@/components/ui/button";
+    import { Check, Copy } from "lucide-react";
+    import { cn } from "@/lib/utils";
+    import { useState } from "react";
+    
+    export default function ButtonDemo() {
+      const [copied, setCopied] = useState(false);
+    
+      const handleCopy = async () => {
+        try {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1500);
+        } catch (err) {
+          console.error("Failed to copy text: ", err);
+        }
+      };
+    
+      return (
+        <TooltipProvider delayDuration={0}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                className="disabled:opacity-100 bg-[${bgColor}] text-[${textColor}]"
+                onClick={handleCopy}
+                aria-label={copied ? "Copied" : "Copy to clipboard"}
+                disabled={copied}
+              >
+                <div
+                  className={cn(
+                    "transition-all",
+                    copied ? "scale-100 opacity-100" : "scale-0 opacity-0",
+                  )}
+                >
+                  <Check className="stroke-emerald-500" size={16} strokeWidth={2} aria-hidden="true" />
+                </div>
+                <div
+                  className={cn(
+                    "absolute transition-all",
+                    copied ? "scale-0 opacity-0" : "scale-100 opacity-100",
+                  )}
+                >
+                  <Copy size={16} strokeWidth={2} aria-hidden="true" />
+                </div>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent className="px-2 py-1 text-xs">Click to copy</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      );
+    }`,
+    },
 
-  // Toggle button
-  const buttonCodeToggle = `import { Button } from "@/components/ui/button";
-
-export default function ButtonDemo() {
-  return (
-    <Button
-      onClick={() => setIsActive(!isActive)}
-      className={isActive ? "bg-[${bgColor}] text-[${textColor}]" : "bg-gray-300 text-gray-700"}
-    >
-      {isActive ? "Active" : "Inactive"}
-    </Button>
-  );
-}`;
-  const codeToggle = (
-    <Button
-      onClick={() => setIsActive(!isActive)}
-      style={{
-        backgroundColor: isActive ? bgColor : "gray",
-        color: isActive ? textColor : "#000000",
-      }}
-    >
-      {isActive ? "Active" : "Inactive"}
-    </Button>
-  );
-
-  // Gradient button
-  const buttonCodeGradient = `import { Button } from "@/components/ui/button";
-
-export default function ButtonDemo() {
-  return <Button className="bg-gradient-to-r from-[${bgColor}] to-[#FFD700] text-[${textColor}] shadow-lg hover:shadow-xl transition-shadow">Button</Button>;
-}`;
-  const codeGradient = (
-    <Button
-      className="shadow-lg hover:shadow-xl"
-      style={{
-        background: `linear-gradient(to right, ${bgColor}, #FFD700)`,
-        color: textColor,
-      }}
-    >
-      Button
-    </Button>
-  );
+    {
+      name: "Save and Cancel Buttons",
+      component: (
+        <div className="inline-flex items-center gap-2">
+          <Button variant="ghost">Cancel</Button>
+          <Button style={{ backgroundColor: bgColor, color: textColor }}>
+            Save
+          </Button>
+        </div>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+      
+  export default function ButtonDemo() {
+    return (
+      <div className="inline-flex items-center gap-2">
+        <Button variant="ghost">Cancel</Button>
+        <Button>Save</Button>
+      </div>
+    );
+  }`,
+    },
+    {
+      name: "Toggle Button",
+      component: (
+        <Button
+          onClick={() => setIsActive(!isActive)}
+          style={{
+            backgroundColor: isActive ? bgColor : "gray",
+            color: isActive ? textColor : "#000000",
+          }}
+        >
+          {isActive ? "Active" : "Inactive"}
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+      
+  export default function ButtonDemo() {
+    const [isActive, setIsActive] = useState(false);
+    
+    return (
+      <Button
+        onClick={() => setIsActive(!isActive)}
+        style={{
+          backgroundColor: isActive ? bgColor : "gray",
+          color: isActive ? textColor : "#000000",
+        }}
+      >
+        {isActive ? "Active" : "Inactive"}
+      </Button>
+    );
+  }`,
+    },
+    {
+      name: "Gradient Button",
+      component: (
+        <Button
+          className="shadow-lg hover:shadow-xl"
+          style={{
+            background: `linear-gradient(to right, ${bgColor}, #FFD700)`,
+            color: textColor,
+          }}
+        >
+          Button
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+      
+  export default function ButtonDemo() {
+    return (
+      <Button
+        style={{
+          background: "linear-gradient(to right, ${bgColor}, #FFD700)",
+          color: textColor,
+        }}
+        className="shadow-lg hover:shadow-xl"
+      >
+        Button
+      </Button>
+    );
+  }`,
+    },
+    {
+      name: "Loading Button",
+      component: (
+        <Button disabled>
+          <LoaderCircle
+            className="-ms-1 me-2 animate-spin"
+            size={16}
+            strokeWidth={2}
+            aria-hidden="true"
+          />
+          Button
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+  import { LoaderCircle } from "lucide-react";
+      
+  export default function ButtonDemo() {
+    return (
+      <Button disabled>
+        <LoaderCircle
+          className="-ms-1 me-2 animate-spin"
+          size={16}
+          strokeWidth={2}
+          aria-hidden="true"
+        />
+        Button
+      </Button>
+    );
+  }`,
+    },
+  ];
 
   // Split button
   const buttonCodeSplit = `import React, { useState } from "react";
@@ -250,151 +517,6 @@ export default function ButtonDemo() {
         </div>
       )}
     </div>
-  );
-
-  // ExpandableSearchBar
-  const ExpandableSearchBar = `import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Search, X } from "lucide-react";
-
-export default function ExpandableSearchBar() {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-
-  return (
-    <div className="flex items-center space-x-2">
-      <Button
-        size="icon"
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="bg-gray-200 text-gray-800 hover:bg-gray-300 transition-all"
-      >
-        {isExpanded ? <X size={20} strokeWidth={2} /> : <Search size={20} strokeWidth={2} />}
-      </Button>
-      {isExpanded && (
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search..."
-          className="px-4 py-2 bg-gray-100 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 transition-all"
-        />
-      )}
-    </div>
-  );
-}
-`;
-  const codeExpandableSearchBar = (
-    <div className="flex items-center space-x-2">
-      <Button
-        size="icon"
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="bg-gray-200 text-gray-800 hover:bg-gray-300 transition-all"
-      >
-        {isExpanded ? (
-          <X size={20} strokeWidth={2} />
-        ) : (
-          <Search size={20} strokeWidth={2} />
-        )}
-      </Button>
-      {isExpanded && (
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search..."
-          className="px-4 py-2 bg-gray-100 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 transition-all"
-        />
-      )}
-    </div>
-  );
-
-  // Outline Button
-  const buttonCodeOutline = `import { Button } from "@/components/ui/button";
-
-export default function ButtonDemo() {
-  return <Button className="border border-[${bgColor}] text-[${textColor}] hover:bg-[${bgColor}] hover:text-white transition-all">Button</Button>;
-}`;
-  const codeOutline = (
-    <Button
-      className={`border border-[${bgColor}] bg-transparent text-[${bgColor}] hover:bg-[${bgColor}] transition-all`}
-    >
-      Button
-    </Button>
-  );
-
-  // Button code and its rendered JSX for the first button
-  const buttonCode1 = `import { Button } from "@/components/ui/button";
-
-  export default function ButtonDemo() {
-    return <Button className="bg-[${bgColor}] text-[${textColor}]">Button</Button>;
-  }`;
-  const code1 = (
-    <Button style={{ backgroundColor: bgColor, color: textColor }}>
-      Button
-    </Button>
-  );
-
-  // Button code and its rendered JSX for the second button
-  const buttonCode2 = `import { Button } from "@/components/ui/button";
-
-  export default function ButtonDemo() {
-    return <Button className="bg-[${bgColor}] text-[${textColor}] rounded-full">Button</Button>;
-  }`;
-  const code2 = (
-    <Button
-      className="rounded-full"
-      style={{ backgroundColor: bgColor, color: textColor }}
-    >
-      Button
-    </Button>
-  );
-
-  // Button code and its rendered JSX for the third button
-  const buttonCode3 = `import { Button } from "@/components/ui/button";
-  import { X } from "lucide-react";
-
-  export default function ButtonDemo() {
-    return (
-      <Button variant="secondary">
-        <X className="-ms-1 me-2 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
-        Button
-      </Button>
-    );
-  }`;
-  const code3 = (
-    <Button variant="secondary">
-      <X
-        className="-ms-1 me-2 opacity-60"
-        size={16}
-        strokeWidth={2}
-        aria-hidden="true"
-      />
-      Button
-    </Button>
-  );
-
-  // Button code and its rendered JSX for the fourth button
-  const buttonCode4 = `import { Button } from "@/components/ui/button";
-  import { ArrowLeft } from "lucide-react";
-
-  export default function ButtonDemo() {
-    return (
-      <Button className="group" variant="ghost">
-        <ArrowLeft className="-ms-1 me-2 opacity-60 transition-transform group-hover:-translate-x-0.5" />
-        Button
-      </Button>
-    );
-  }`;
-  const code4 = (
-    <Button className="group" variant="ghost">
-      <ArrowLeft
-        className="-ms-1 me-2 opacity-60 transition-transform group-hover:-translate-x-0.5"
-        size={16}
-        strokeWidth={2}
-        aria-hidden="true"
-      />
-      Button
-    </Button>
   );
 
   // Button code and its rendered JSX for the fifth button
@@ -1031,135 +1153,91 @@ export default function ButtonDemo() {
       {/* Customization Menu and Color Picker */}
       <div className="w-[75%] flex-col justify-center md:flex-row items-center md:justify-between gap-6 p-6  border-y border-gray-300/80 dark:border-gray-700/50">
         <div className="flex flex-col w-full justify-center items-center md:flex-row gap-4">
-          
-
-        <div className="flex items-center gap-2 w-full justify-center md:justify-start">
-          <label
-            htmlFor="librarySelect"
-            className="font-semibold text-gray-800 dark:text-gray-200"
-          >
-            Select Framework:
-          </label>
-          <select
-            id="librarySelect"
-            className="h-10 px-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900/70 text-gray-700 dark:text-gray-200 outline-none cursor-pointer transition focus:ring-2 focus:ring-blue-500 object-"
-            onChange={(e) => setSelectedLibrary(e.target.value)}
-            value={selectedLibrary}
-          >
-            <option value="React.js" className="dark:bg-gray-900">
-              React.js
-            </option>
-            <option value="React.ts" className="dark:bg-gray-900">
-              React.ts
-            </option>
-            <option value="Next.js" className="dark:bg-gray-900">
-              Next.js
-            </option>
-            <option value="Next.ts" className="dark:bg-gray-900">
-              Next.ts
-            </option>
-          </select>
-        </div>
-        <div className="flex items-center justify-center gap-5">  
-        <div className="flex items-center gap-3">
-          {/* Label for Background Color */}
-          <label className="font-semibold text-sm">Background Color:</label>
-
-          {/* Background Color preview button */}
-          <div
-            className="w-14 h-10 rounded cursor-pointer border border-black dark:border-gray-300"
-            style={{ backgroundColor: bgColor }}
-            onClick={() => setBgPickerOpen(!isBgPickerOpen)}
-            ></div>
-
-          {/* Popover for the Background Color Picker */}
-          {isBgPickerOpen && (
-            <div
-            ref={bgPickerRef}
-            className="absolute mt-2 z-10 bg-white p-2 shadow-lg rounded"
+          <div className="flex items-center gap-2 w-full justify-center md:justify-start">
+            <label
+              htmlFor="librarySelect"
+              className="font-semibold text-gray-800 dark:text-gray-200"
             >
-              <HexColorPicker color={bgColor} onChange={setBgColor} />
-              <p className="mt-1 text-center text-xs">{bgColor}</p>
-            </div>
-          )}
-        </div>
-        <div className="flex items-center gap-3">
-          {/* Label for Text Color */}
-          <label className="font-semibold text-sm">Text Color:</label>
-
-          {/* Text Color preview button */}
-          <div
-            className="w-14 h-10 rounded cursor-pointer border border-black dark:border-gray-300"
-            style={{ backgroundColor: textColor }}
-            onClick={() => setTextPickerOpen(!isTextPickerOpen)}
-            ></div>
-
-          {/* Popover for the Text Color Picker */}
-          {isTextPickerOpen && (
-            <div
-            ref={textPickerRef}
-            className="absolute mt-2 z-10 bg-white p-2 shadow-lg rounded"
+              Select Framework:
+            </label>
+            <select
+              id="librarySelect"
+              className="h-10 px-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900/70 text-gray-700 dark:text-gray-200 outline-none cursor-pointer transition focus:ring-2 focus:ring-blue-500 object-"
+              onChange={(e) => setSelectedLibrary(e.target.value)}
+              value={selectedLibrary}
             >
-              <HexColorPicker color={textColor} onChange={setTextColor} />
-              <p className="mt-1 text-center text-xs">{textColor}</p>
+              <option value="React.js" className="dark:bg-gray-900">
+                React.js
+              </option>
+              <option value="React.ts" className="dark:bg-gray-900">
+                React.ts
+              </option>
+              <option value="Next.js" className="dark:bg-gray-900">
+                Next.js
+              </option>
+              <option value="Next.ts" className="dark:bg-gray-900">
+                Next.ts
+              </option>
+            </select>
+          </div>
+          <div className="flex items-center justify-center gap-5">
+            <div className="flex items-center gap-3">
+              {/* Label for Background Color */}
+              <label className="font-semibold text-sm">Background Color:</label>
+
+              {/* Background Color preview button */}
+              <div
+                className="w-14 h-10 rounded cursor-pointer border border-black dark:border-gray-300"
+                style={{ backgroundColor: bgColor }}
+                onClick={() => setBgPickerOpen(!isBgPickerOpen)}
+              ></div>
+
+              {/* Popover for the Background Color Picker */}
+              {isBgPickerOpen && (
+                <div
+                  ref={bgPickerRef}
+                  className="absolute mt-2 z-10 bg-white p-2 shadow-lg rounded"
+                >
+                  <HexColorPicker color={bgColor} onChange={setBgColor} />
+                  <p className="mt-1 text-center text-xs">{bgColor}</p>
+                </div>
+              )}
             </div>
-          )}
+            <div className="flex items-center gap-3">
+              {/* Label for Text Color */}
+              <label className="font-semibold text-sm">Text Color:</label>
+
+              {/* Text Color preview button */}
+              <div
+                className="w-14 h-10 rounded cursor-pointer border border-black dark:border-gray-300"
+                style={{ backgroundColor: textColor }}
+                onClick={() => setTextPickerOpen(!isTextPickerOpen)}
+              ></div>
+
+              {/* Popover for the Text Color Picker */}
+              {isTextPickerOpen && (
+                <div
+                  ref={textPickerRef}
+                  className="absolute mt-2 z-10 bg-white p-2 shadow-lg rounded"
+                >
+                  <HexColorPicker color={textColor} onChange={setTextColor} />
+                  <p className="mt-1 text-center text-xs">{textColor}</p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Grid for displaying button examples */}
-      <div className="grid max-w-6xl grid-cols-1 overflow-hidden sm:grid-cols-2 lg:grid-cols-3 [&>*]:relative [&>*]:px-1 [&>*]:py-12 [&>*]:before:absolute [&>*]:before:bg-border/70 [&>*]:before:[block-size:100vh] [&>*]:before:[inline-size:1px] [&>*]:before:[inset-block-start:0] [&>*]:before:[inset-inline-start:-1px] [&>*]:after:absolute [&>*]:after:bg-border/70 [&>*]:after:[block-size:1px] [&>*]:after:[inline-size:100vw] [&>*]:after:[inset-block-start:-1px] [&>*]:after:[inset-inline-start:0] sm:[&>*]:px-8 xl:[&>*]:px-12 w-full">
-        {" "}
-        <ButtonWithCopy code={buttonCode1} coding={code1} />
-        <ButtonWithCopy code={buttonCode2} coding={code2} />
-        <ButtonWithCopy code={buttonCode3} coding={code3} />
-        <ButtonWithCopy code={buttonCode4} coding={code4} />
-        <ButtonWithCopy code={buttonCode5} coding={code5} />
-        <ButtonWithCopy code={buttonCode6} coding={code6} />
-        <ButtonWithCopy code={buttonCodeOutline} coding={codeOutline} />
-        <ButtonWithCopy
-          code={ExpandableSearchBar}
-          coding={codeExpandableSearchBar}
-        />
-        
-        <ButtonWithCopy code={buttonCodeToggle} coding={codeToggle} />
-        <ButtonWithCopy code={buttonCodeGradient} coding={codeGradient} />
-        <ButtonWithCopy code={buttonCodeSplit} coding={codeSplit} />
-        <ButtonWithCopy code={buttonCode7} coding={code7} />
-        <ButtonWithCopy code={buttonsaveandcancel} coding={codesaveandcancel} />
-        <ButtonWithCopy code={buttonloading} coding={codeloading} />
-        <ButtonWithCopy code={buttonuploadimage} coding={codeuploadimage} />
-        <ButtonWithCopy code={buttonemail} coding={codeemail} />
-        <ButtonWithCopy code={buttongoback} coding={codegoback} />
-        <ButtonWithCopy code={buttonhamburger} coding={codehamburger} />
-        <ButtonWithCopy code={buttoncopy} coding={codecopy} />
-        <ButtonWithCopy code={buttonpreview} coding={codepreview} />
-        <ButtonWithCopy code={buttonlike} coding={codelike} />
-        </div>
         {/* Grid for displaying button examples */}
         <div className="grid max-w-6xl grid-cols-1 overflow-hidden sm:grid-cols-2 lg:grid-cols-3 [&>*]:relative [&>*]:px-1 [&>*]:py-12 [&>*]:before:absolute [&>*]:before:bg-border/70 [&>*]:before:[block-size:100vh] [&>*]:before:[inline-size:1px] [&>*]:before:[inset-block-start:0] [&>*]:before:[inset-inline-start:-1px] [&>*]:after:absolute [&>*]:after:bg-border/70 [&>*]:after:[block-size:1px] [&>*]:after:[inline-size:100vw] [&>*]:after:[inset-block-start:-1px] [&>*]:after:[inset-inline-start:0] sm:[&>*]:px-8 xl:[&>*]:px-12 w-full">
           {" "}
-          <ButtonWithCopy code={buttonCode1} coding={code1} />
-          <ButtonWithCopy code={buttonCode2} coding={code2} />
-          <ButtonWithCopy code={buttonCode3} coding={code3} />
-          <ButtonWithCopy code={buttonCode4} coding={code4} />
+          {buttonComponents.map((button, _index) => (
+            <ButtonWithCopy code={button.code} coding={button.component} />
+          ))}
           <ButtonWithCopy code={buttonCode5} coding={code5} />
           <ButtonWithCopy code={buttonCode6} coding={code6} />
-          <ButtonWithCopy code={buttonCodeOutline} coding={codeOutline} />
-          <ButtonWithCopy
-            code={ExpandableSearchBar}
-            coding={codeExpandableSearchBar}
-          />
-          <ButtonWithCopy code={buttonCodeToggle} coding={codeToggle} />
-          <ButtonWithCopy code={buttonCodeGradient} coding={codeGradient} />
           <ButtonWithCopy code={buttonCodeSplit} coding={codeSplit} />
           <ButtonWithCopy code={buttonCode7} coding={code7} />
-          <ButtonWithCopy
-            code={buttonsaveandcancel}
-            coding={codesaveandcancel}
-          />
-          <ButtonWithCopy code={buttonloading} coding={codeloading} />
           <ButtonWithCopy code={buttonuploadimage} coding={codeuploadimage} />
           <ButtonWithCopy code={buttonemail} coding={codeemail} />
           <ButtonWithCopy code={buttongoback} coding={codegoback} />

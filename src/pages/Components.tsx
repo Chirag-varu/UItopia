@@ -33,6 +33,8 @@ export default function Components() {
               { path: "/dialogs", name: "Dialog" },
               { path: "/Accordion", name: "Accordion" },
               { path: "/Tooltip", name: "Tooltip" },
+              { path: "/Dropdown-Popover", name: "Dropdown and Popover" },
+              { path: "/Avatar-Badge-Chip", name: "Avatar, Badge, and Chip" },
             ].map((link) => (
               <NavLink key={link.path} to={`/components${link.path}`}>
                 <Button
