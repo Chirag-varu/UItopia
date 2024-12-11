@@ -1100,6 +1100,7 @@ export default function ButtonDemo() {
           code={ExpandableSearchBar}
           coding={codeExpandableSearchBar}
         />
+        
         <ButtonWithCopy code={buttonCodeToggle} coding={codeToggle} />
         <ButtonWithCopy code={buttonCodeGradient} coding={codeGradient} />
         <ButtonWithCopy code={buttonCodeSplit} coding={codeSplit} />
