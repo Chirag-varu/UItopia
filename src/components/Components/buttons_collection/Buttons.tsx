@@ -1140,18 +1140,14 @@ export default function ButtonDemo() {
   );
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center gap-4 px-4 sm:px-8 mb-12">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center gap-8 px-4 sm:px-8">
       {/* Header Section */}
-      <div className="flex flex-col items-center gap-2 text-center mt-[8rem] sm:mt-0 md:mt-28">
-        <h1 className="text-3xl sm:text-4xl font-bold">Button</h1>
-        <p className="text-[hsl(var(--muted-foreground))] font-semibold max-w-md sm:max-w-lg">
-          A growing collection of button components built with ReactTS and
-          TailwindCSS.
+      <div className="flex flex-col items-center gap-2 text-center mt-[8rem] sm:mt-32">
+        <div className="text-3xl sm:text-4xl font-bold">Buttons</div>
+        <p className="text-[hsl(var(--muted-foreground))] font-semibold whitespace-normal break-words max-w-md sm:max-w-lg">
+          A growing collection of button components built with React
+          TS and TailwindCSS.
         </p>
-      </div>
-
-      {/* Customization Menu and Color Picker */}
-      <div className="w-[75%] flex-col justify-center md:flex-row items-center md:justify-between gap-6 p-6  border-y border-gray-300/80 dark:border-gray-700/50">
         <div className="flex flex-col w-full justify-center items-center md:flex-row gap-4">
           <div className="flex items-center gap-2 w-full justify-center md:justify-start">
             <label
@@ -1227,9 +1223,10 @@ export default function ButtonDemo() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Grid for displaying button examples */}
-        <div className="grid max-w-6xl grid-cols-1 overflow-hidden sm:grid-cols-2 lg:grid-cols-3 [&>*]:relative [&>*]:px-1 [&>*]:py-12 [&>*]:before:absolute [&>*]:before:bg-border/70 [&>*]:before:[block-size:100vh] [&>*]:before:[inline-size:1px] [&>*]:before:[inset-block-start:0] [&>*]:before:[inset-inline-start:-1px] [&>*]:after:absolute [&>*]:after:bg-border/70 [&>*]:after:[block-size:1px] [&>*]:after:[inline-size:100vw] [&>*]:after:[inset-block-start:-1px] [&>*]:after:[inset-inline-start:0] sm:[&>*]:px-8 xl:[&>*]:px-12 w-full">
+      {/* Button Collection */}
+      <div className="grid max-w-6xl grid-cols-1 overflow-hidden sm:grid-cols-2 lg:grid-cols-3 [&>*]:relative [&>*]:px-1 [&>*]:py-12 [&>*]:before:absolute [&>*]:before:bg-border/70 [&>*]:before:[block-size:100vh] [&>*]:before:[inline-size:1px] [&>*]:before:[inset-block-start:0] [&>*]:before:[inset-inline-start:-1px] [&>*]:after:absolute [&>*]:after:bg-border/70 [&>*]:after:[block-size:1px] [&>*]:after:[inline-size:100vw] [&>*]:after:[inset-block-start:-1px] [&>*]:after:[inset-inline-start:0] sm:[&>*]:px-8 xl:[&>*]:px-12 w-full">
           {" "}
           {buttonComponents.map((button, _index) => (
             <ButtonWithCopy code={button.code} coding={button.component} />
@@ -1246,7 +1243,6 @@ export default function ButtonDemo() {
           <ButtonWithCopy code={buttonpreview} coding={codepreview} />
           <ButtonWithCopy code={buttonlike} coding={codelike} />
         </div>
-      </div>
     </div>
   );
 }
