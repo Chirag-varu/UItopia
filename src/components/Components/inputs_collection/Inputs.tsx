@@ -1,10 +1,12 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { useState, ReactNode } from "react";
+import { useState, ReactNode, useRef } from "react";
 import { MdInfo } from "react-icons/md";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { FaSearch, FaTimes } from "react-icons/fa";
+import useOnClickOutside from "use-onclickoutside";
+import { FaEnvelope } from "react-icons/fa";
 import {
   Tooltip,
   TooltipContent,
@@ -23,6 +25,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { HexColorPicker } from "react-colorful";
 
 const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
   code,
@@ -140,6 +143,23 @@ export default function Inputs() {
   const [value, setValue] = useState("");
   const [query, setQuery] = useState("");
   const [date, setDate] = useState("");
+  const [bgColor, setBgColor] = useState("#d4d4d4");
+  const [textColor, setTextColor] = useState("#000000");
+  const [selectedLibrary, setSelectedLibrary] = useState("React.ts");
+  const [selectedOption, setSelectedOption] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const [isBgPickerOpen, setBgPickerOpen] = useState(false);
+  const bgPickerRef = useRef(null);
+  useOnClickOutside(bgPickerRef, () => setBgPickerOpen(false));
+
+  const [isTextPickerOpen, setTextPickerOpen] = useState(false);
+  const textPickerRef = useRef(null);
+  useOnClickOutside(textPickerRef, () => setTextPickerOpen(false));
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
@@ -147,14 +167,22 @@ export default function Inputs() {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
-
+  const [password, setPassword] = useState("");
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
   const clearInput = () => {
     setQuery("");
   };
-
+  const getPasswordStrength = (password: string): string => {
+    if (password.length < 6) return "Weak";
+    if (password.length < 10) return "Medium";
+    return "Strong";
+  };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
+  const strength = getPasswordStrength(password);
   const inputcode1 = `<div className="space-y-2">
       <Label htmlFor="input-01">Simple input</Label>
       <Input id="input-01" placeholder="Email" type="email" />
@@ -408,7 +436,139 @@ export default function DatePickerInput() {
         type="date"
         value={date}
         onChange={handleDateChange}
-      />     
+      />
+    </div>
+  );
+  const inputcode7 = `import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
+export default function FileUploadInput() {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="input-22">File Upload</Label>
+      <div className="flex items-center space-x-3">
+        <Input
+          id="input-22"
+          type="file"
+          className="p-2 rounded-lg border border-input w-52"
+        />
+      </div>
+    </div>
+  );
+}
+`;
+  const input7 = (
+    <div className="space-y-2">
+      <Label htmlFor="input-22">File Upload</Label>
+      <div className="flex items-center space-x-3">
+        <Input
+          id="input-22"
+          type="file"
+          className="p-2 rounded-lg border border-input w-52"
+        />
+      </div>
+    </div>
+  );
+
+  const inputcode8 = `import { Input } from "@/components/ui/input";
+  import { Label } from "@/components/ui/label";
+  import { useState } from "react";
+  
+  const getPasswordStrength = (password: string): string => {
+    if (password.length < 6) return "Weak";
+    if (password.length < 10) return "Medium";
+    return "Strong";
+  };
+  
+  export default function PasswordWithStrength() {
+    const [password, setPassword] = useState("");
+    const strength = getPasswordStrength(password);
+  
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setPassword(e.target.value);
+    };
+  
+    return (
+      <div className="space-y-2">
+        <Label htmlFor="password-input">Password with Strength Indicator</Label>
+        <div className="flex items-center rounded-lg shadow-sm shadow-black/5">
+          <Input
+            id="password-input"
+            type="password"
+            value={password}
+            onChange={handleChange}
+            placeholder="Enter your password"
+          />
+          <span className={\`ml-2 text-sm font-bold text-muted-foreground \${strength == 'Weak' ? "text-green-400" : strength == 'Medium' ? "text-yellow-400" : "text-red-500"}\`}>{strength}</span>
+        </div>
+      </div>
+    );
+  }`;
+
+  const input8 = (
+    <div className="space-y-2">
+      <Label htmlFor="password-input">Password with Strength Indicator</Label>
+      <div className="flex items-center rounded-lg shadow-sm shadow-black/5 gap-1">
+        <Input
+          id="password-input"
+          type="password"
+          value={password}
+          onChange={handlePasswordChange}
+          placeholder="Enter your password"
+        />
+        <span
+          className={`ml-2 text-sm font-bold text-muted-foreground ${
+            strength == "Weak"
+              ? "text-green-400"
+              : strength == "Medium"
+              ? "text-yellow-400"
+              : "text-red-500"
+          }`}
+        >
+          {strength}
+        </span>
+      </div>
+    </div>
+  );
+
+  const inputcode9 = `import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
+export default function InputDemo() {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="input-21">Input with end button</Label>
+      <div className="flex rounded-lg shadow-sm shadow-black/5">
+        <Input
+          id="input-21"
+          className="-me-px flex-1 rounded-e-none shadow-none focus-visible:z-10"
+          placeholder="Email"
+          type="email"
+        />
+        <button className="inline-flex items-center rounded-e-lg border border-input bg-background px-3 text-sm font-medium text-foreground outline-offset-2 transition-colors hover:bg-accent hover:text-foreground focus:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70 disabled:cursor-not-allowed disabled:opacity-50">
+          Send
+        </button>
+      </div>
+    </div>
+  );
+}
+
+`;
+
+  const input9 = (
+    <div className="space-y-2">
+      <Label htmlFor="input-21">Input with end button</Label>
+      <div className="flex rounded-lg shadow-sm shadow-black/5">
+        <Input
+          id="input-21"
+          className="-me-px flex-1 rounded-e-none shadow-none focus-visible:z-10"
+          placeholder="Email"
+          type="email"
+        />
+        <button className="inline-flex items-center rounded-e-lg border border-input bg-background px-3 text-sm font-medium text-foreground outline-offset-2 transition-colors hover:bg-accent hover:text-foreground focus:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70 disabled:cursor-not-allowed disabled:opacity-50">
+          Send
+        </button>
+      </div>
     </div>
   );
   return (
@@ -420,6 +580,81 @@ export default function DatePickerInput() {
           A growing collection of input and textarea components built with React
           TS and TailwindCSS.
         </p>
+        <div className="flex flex-col w-full justify-center items-center md:flex-row gap-4">
+          <div className="flex items-center gap-2 w-full justify-center md:justify-start">
+            <label
+              htmlFor="librarySelect"
+              className="font-semibold text-gray-800 dark:text-gray-200"
+            >
+              Select Framework:
+            </label>
+            <select
+              id="librarySelect"
+              className="h-10 px-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900/70 text-gray-700 dark:text-gray-200 outline-none cursor-pointer transition focus:ring-2 focus:ring-blue-500 object-"
+              onChange={(e) => setSelectedLibrary(e.target.value)}
+              value={selectedLibrary}
+            >
+              <option value="React.js" className="dark:bg-gray-900">
+                React.js
+              </option>
+              <option value="React.ts" className="dark:bg-gray-900">
+                React.ts
+              </option>
+              <option value="Next.js" className="dark:bg-gray-900">
+                Next.js
+              </option>
+              <option value="Next.ts" className="dark:bg-gray-900">
+                Next.ts
+              </option>
+            </select>
+          </div>
+          <div className="flex items-center justify-center gap-5">
+            <div className="flex items-center gap-3">
+              {/* Label for Background Color */}
+              <label className="font-semibold text-sm">Background Color:</label>
+
+              {/* Background Color preview button */}
+              <div
+                className="w-14 h-10 rounded cursor-pointer border border-black dark:border-gray-300"
+                style={{ backgroundColor: bgColor }}
+                onClick={() => setBgPickerOpen(!isBgPickerOpen)}
+              ></div>
+
+              {/* Popover for the Background Color Picker */}
+              {isBgPickerOpen && (
+                <div
+                  ref={bgPickerRef}
+                  className="absolute mt-2 z-10 bg-white p-2 shadow-lg rounded"
+                >
+                  <HexColorPicker color={bgColor} onChange={setBgColor} />
+                  <p className="mt-1 text-center text-xs">{bgColor}</p>
+                </div>
+              )}
+            </div>
+            <div className="flex items-center gap-3">
+              {/* Label for Text Color */}
+              <label className="font-semibold text-sm">Text Color:</label>
+
+              {/* Text Color preview button */}
+              <div
+                className="w-14 h-10 rounded cursor-pointer border border-black dark:border-gray-300"
+                style={{ backgroundColor: textColor }}
+                onClick={() => setTextPickerOpen(!isTextPickerOpen)}
+              ></div>
+
+              {/* Popover for the Text Color Picker */}
+              {isTextPickerOpen && (
+                <div
+                  ref={textPickerRef}
+                  className="absolute mt-2 z-10 bg-white p-2 shadow-lg rounded"
+                >
+                  <HexColorPicker color={textColor} onChange={setTextColor} />
+                  <p className="mt-1 text-center text-xs">{textColor}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Button Collection */}
@@ -430,6 +665,9 @@ export default function DatePickerInput() {
         <ButtonWithCopy code={inputcode4} coding={input4} />
         <ButtonWithCopy code={inputcode5} coding={input5} />
         <ButtonWithCopy code={inputcode6} coding={input6} />
+        <ButtonWithCopy code={inputcode7} coding={input7} />
+        <ButtonWithCopy code={inputcode8} coding={input8} />
+        <ButtonWithCopy code={inputcode9} coding={input9} />
       </div>
     </div>
   );
