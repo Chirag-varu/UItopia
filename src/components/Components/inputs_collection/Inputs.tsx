@@ -6,7 +6,6 @@ import { MdInfo } from "react-icons/md";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { FaSearch, FaTimes } from "react-icons/fa";
 import useOnClickOutside from "use-onclickoutside";
-import { FaEnvelope } from "react-icons/fa";
 import {
   Tooltip,
   TooltipContent,
@@ -146,12 +145,6 @@ export default function Inputs() {
   const [bgColor, setBgColor] = useState("#d4d4d4");
   const [textColor, setTextColor] = useState("#000000");
   const [selectedLibrary, setSelectedLibrary] = useState("React.ts");
-  const [selectedOption, setSelectedOption] = useState("");
-  const [email, setEmail] = useState("");
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
 
   const [isBgPickerOpen, setBgPickerOpen] = useState(false);
   const bgPickerRef = useRef(null);
