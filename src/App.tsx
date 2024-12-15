@@ -7,6 +7,7 @@ import Docs from './pages/Docs';
 import Components from './pages/Components';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import NotFound from "./pages/NotFound";
 import Buttons from "./components/Components/buttons_collection/Buttons";
 import Inputs from "./components/Components/inputs_collection/Inputs";
 import ChecksRadiosSwitches from "./components/Components/checks-radios-switches/checks_radios_switches";
@@ -26,6 +27,7 @@ function App() {
           <Route path="/components/button" element={<Buttons />} />
           <Route path="/components/inputs" element={<Inputs />} />
           <Route path="/components/checks-radios-switches" element={<ChecksRadiosSwitches />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </ThemeProvider>
