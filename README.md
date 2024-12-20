@@ -1,9 +1,10 @@
-# UItopia 🌟  
+# UI-Topia 🌟  
 Beautiful UI components built on top of **ShadCN** with **Tailwind CSS** 🎨  
 
 **UI-Topia** is an extensive collection of copy-and-paste components for quickly building app UIs. It's free, open-source, and ready to drop into your projects. 🚀  
 
-**UItopia** is designed to provide modern, accessible, and customizable UI components that help developers build beautiful, responsive web applications with ease.
+**UI-Topia** is designed to provide modern, accessible, and customizable UI components that help developers build beautiful, responsive web applications with ease.
+
 ---
 
 ## ✨ Features  
