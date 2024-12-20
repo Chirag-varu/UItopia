@@ -3,8 +3,8 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import Link from "next/link";
+} from "@/components/ui/Tooltip";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -13,8 +13,10 @@ const Footer = () => {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Link href={"https://sahilkumardev.netlify.app"} target="_blank">
-              <h2 className="hover:no-underline hover:text-white/95 underline underline-offset-4">Sahil Kumar Dev</h2>
+            <Link to="https://sahilkumardev.netlify.app" target="_blank">
+              <h2 className="hover:no-underline hover:text-white/95 underline underline-offset-4">
+                Sahil Kumar Dev
+              </h2>
             </Link>
           </TooltipTrigger>
           <TooltipContent>

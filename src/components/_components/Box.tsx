@@ -1,7 +1,8 @@
 import React from "react";
 import { Button } from "../ui/button";
 import { GoArrowRight } from "react-icons/go";
-import Link from "next/link";
+import { Link } from "react-router-dom";
+
 
 const Box = ({
   children,
@@ -13,7 +14,7 @@ const Box = ({
   isAvailable: boolean;
 }) =>
   isAvailable ? (
-    <Link href={redirect || "/"}>
+    <Link to={redirect || "/"}>
       <Button
         variant="outline"
         className="lg:text-lg text-base dark:text-white/80 dark:hover:text-white hover:text-black/80 font-orbit-max py-6 px-4 lg:py-8 lg:px-8 justify-between w-full rounded-sm"

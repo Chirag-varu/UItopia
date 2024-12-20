@@ -4,7 +4,6 @@
 
 import { Button } from "@/components/ui/button";
 import { CircleUserRound, X } from "lucide-react";
-import Image from "next/image";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 export default function ButtonDemo() {
@@ -58,11 +57,10 @@ export default function ButtonDemo() {
           aria-label={previewUrl ? "Change image" : "Upload image"}
         >
           {previewUrl ? (
-            <Image
+            <img
               className="h-full w-full object-cover"
               src={previewUrl}
               alt="Preview of uploaded image"
-              layout="fill"
             />
           ) : (
             <div aria-hidden="true">

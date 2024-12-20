@@ -1,8 +1,10 @@
+import React, { useState, useEffect, Suspense } from "react";
 import CopyButton from "@/components/_components/CopyButton";
 import { readComponentSource } from "@/lib/readComponentSource";
 import { cn } from "@/lib/utils";
 
-const ComponentPage = async ({
+// Using React.lazy for dynamic imports
+const ComponentPage = ({
   directory,
   componentName,
   className,
@@ -11,14 +13,31 @@ const ComponentPage = async ({
   componentName: string;
   className?: string;
 }) => {
-  const Component = (await import(`@/components/${directory}/${componentName}`))
-    .default;
-  const source = await readComponentSource(directory, componentName);
+  const [source, setSource] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchSource = async () => {
+      const componentSource = await readComponentSource(directory, componentName);
+      setSource(componentSource); // Set the resolved source
+    };
+
+    fetchSource();
+  }, [directory, componentName]); // Re-run when directory or componentName changes
+
+  const LazyComponent = React.lazy(() =>
+    import(`@/components/${directory}/${componentName}`).then((module) => ({
+      default: module.default,
+    }))
+  );
 
   return (
     <div className={cn("group/item relative", className)}>
-      <Component />
-      <CopyButton componentSource={source || ""} />
+      {/* Suspense fallback for lazy-loaded components */}
+      <Suspense fallback={<div>Loading component...</div>}>
+        <LazyComponent />
+      </Suspense>
+      {/* Ensure source is available before passing it to CopyButton */}
+      {source && <CopyButton componentSource={source} />}
     </div>
   );
 };

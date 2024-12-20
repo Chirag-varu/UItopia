@@ -1,12 +1,5 @@
+import { useEffect, useState } from "react";
 import GridPageLayout from "@/components/_components/GridPageLayout";
-import ComponentPage from "@/page/ComponentPage";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Buttons | Shadw ui",
-  description:
-    "A beautiful collection of button components built with using Shadcn UI and TailwindCSS.",
-};
 
 const buttonDir = "buttons";
 const buttonFiles = [
@@ -63,9 +56,29 @@ const buttonFiles = [
   "button-51",
 ];
 
-const fileCount = [...buttonFiles].length;
+const fileCount = buttonFiles.length;
 
 export default function Page() {
+  const [ComponentPage, setComponentPage] = useState<any>(null);
+
+  useEffect(() => {
+    const loadComponent = async () => {
+      try {
+        const module = await import("@/pages/ComponentPage");
+        setComponentPage(module.default);
+        console.log(module.default); 
+      } catch (error) {
+        console.error("Error loading component:", error);
+      }
+    };
+  
+    loadComponent();
+  }, []);  
+
+  if (!ComponentPage) {
+    return <div>Loading (comming soon)...</div>;
+  }
+
   return (
     <GridPageLayout
       heading="Buttons"

@@ -4,7 +4,6 @@
 
 import { Button } from "@/components/ui/button";
 import { CircleUserRound } from "lucide-react";
-import Image from "next/image";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 export default function ButtonDemo() {
@@ -56,7 +55,7 @@ export default function ButtonDemo() {
           aria-label={previewUrl ? "Preview of uploaded image" : "Default user avatar"}
         >
           {previewUrl ? (
-            <Image
+            <img
               className="h-full w-full object-cover"
               src={previewUrl}
               alt="Preview of uploaded image"

@@ -1,5 +1,3 @@
-// Dependencies: npm install @radix-ui/react-toggle-group
-
 "use client";
 
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";

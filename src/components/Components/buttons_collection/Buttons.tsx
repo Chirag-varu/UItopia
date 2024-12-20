@@ -51,6 +51,7 @@ import {
 } from "@remixicon/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Bolt, BookOpen, Layers2, LogOut, Pin, UserPen } from "lucide-react";
+import Page from '@/app/components/buttons/page'
 
 export default function Buttons() {
   const [bgColor, setBgColor] = useState("#d4d4d4");
@@ -1694,6 +1695,7 @@ export default function ButtonDemo() {
         <ButtonWithCopy code={buttoncopy} coding={codecopy} />
         <ButtonWithCopy code={buttonpreview} coding={codepreview} />
         <ButtonWithCopy code={buttonlike} coding={codelike} />
+        <Page />
       </div>
     </div>
   );

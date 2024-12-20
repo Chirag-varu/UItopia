@@ -1,9 +1,9 @@
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "@/components/ui/Separator";
 import Guide from "@/components/_components/Guide";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { StarSvg } from "@/utils/IconSvg";
-import Link from "next/link";
+import { Link } from "react-router-dom";
+
 
 const Home = () => {
   return (
@@ -15,7 +15,6 @@ const Home = () => {
           variant={"secondary"}
           className="rounded-full gap-2 py-1 px-3 text-sm"
         >
-          <StarSvg fill="fill-yellow-400" />
           <h4>New releases every week</h4>
         </Badge>
         <div>
@@ -30,14 +29,14 @@ const Home = () => {
           </p>
         </div>
         <div className="gap-y-3 flex flex-col lg:flex-row gap-x-4">
-          <Link href={"/components"}>
+          <Link to={"/components"}>
             <Button className="text-lg font-orbit-max py-5 w-full">
               Explore Components
             </Button>
           </Link>
           <Link
             target="_blank"
-            href={"https://github.com/SahilKumarDev/shadwui"}
+            to={"https://github.com/SahilKumarDev/shadwui"}
           >
             <Button
               variant={"outline"}

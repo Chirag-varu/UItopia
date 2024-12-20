@@ -3,12 +3,11 @@
 import { Button } from "@/components/ui/button";
 import AvatarImg from "@/public/avatar.jpg";
 import { ChevronDown } from "lucide-react";
-import Image from "next/image";
 
 export default function ButtonDemo() {
   return (
     <Button variant="ghost" className="h-auto p-0 hover:bg-transparent">
-      <Image
+      <img
         className="rounded-full"
         src={AvatarImg}
         alt="Profile image"

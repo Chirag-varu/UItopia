@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { HiOutlineClipboardList, HiCheck } from "react-icons/hi";
 
 const Code = ({ children, type }: { children: string; type: string }) => {
