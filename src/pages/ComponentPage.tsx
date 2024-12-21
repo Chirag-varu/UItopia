@@ -25,10 +25,10 @@ const ComponentPage = ({
   }, [directory, componentName]); // Re-run when directory or componentName changes
 
   const LazyComponent = React.lazy(() =>
-    import(`@/components/${directory}/${componentName}`).then((module) => ({
+    import(/* @vite-ignore */ `@/components/${directory}/${componentName}`).then((module) => ({
       default: module.default,
     }))
-  );
+  );  
 
   return (
     <div className={cn("group/item relative", className)}>
