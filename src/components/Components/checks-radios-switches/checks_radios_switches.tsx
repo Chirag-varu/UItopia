@@ -27,6 +27,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useEffect, useRef } from "react";
+// import * as ButtonComponents from "@/components/buttons";
 
 const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
   code,
@@ -410,6 +411,7 @@ export default function ButtonDemo() {
         <ButtonWithCopy code={buttonCode4} coding={code4} />
         <ButtonWithCopy code={buttonCode5} coding={code5} />
         <ButtonWithCopy code={buttonCode6} coding={code6} />
+
       </div>
     </div>
   );

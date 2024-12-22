@@ -1,7 +1,7 @@
 // Dependencies: npm install lucide-react
 
 import { Button } from "@/components/ui/button";
-import AvatarImg from "@/public/avatar.jpg";
+import AvatarImg from "@/assets/favicon.png";
 import { ChevronDown } from "lucide-react";
 
 export default function ButtonDemo() {
