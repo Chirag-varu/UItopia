@@ -6,7 +6,7 @@ interface GridPageLayoutProps {
   children: React.ReactNode;
 }
 
-const GridPageLayout = ({
+export const GridPageLayout = ({
   children,
   heading,
   description,

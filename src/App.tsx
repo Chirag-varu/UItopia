@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import Buttons from "./components/Components/buttons_collection/Buttons";
 import Inputs from "./components/Components/inputs_collection/Inputs";
 import ChecksRadiosSwitches from "./components/Components/checks-radios-switches/checks_radios_switches";
+import Page from "./app/components/buttons/page";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/components/button" element={<Buttons />} />
           <Route path="/components/inputs" element={<Inputs />} />
           <Route path="/components/checks-radios-switches" element={<ChecksRadiosSwitches />} />
+          <Route path="/components/Page" element={<Page />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

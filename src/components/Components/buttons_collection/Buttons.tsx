@@ -476,7 +476,7 @@ export default function Buttons() {
         </Button>
       ),
       code: `import { Button } from "@/components/ui/button";
-import AvatarImg from "@/public/avatar.jpg";
+import AvatarImg from "@/assets/favicon.png";
 
 export default function ButtonDemo() {
   return (
@@ -1626,7 +1626,7 @@ export default function ButtonDemo() {
         <ButtonWithCopy code={buttoncopy} coding={codecopy} />
         <ButtonWithCopy code={buttonpreview} coding={codepreview} />
         <ButtonWithCopy code={buttonlike} coding={codelike} />
-        <Page />
+        {/* <Page /> */}
       </div>
     </div>
   );

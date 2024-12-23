@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import AvatarImg from "@/public/avatar.jpg";
+import AvatarImg from "@/assets/favicon.png";
 
 export default function ButtonDemo() {
   return (

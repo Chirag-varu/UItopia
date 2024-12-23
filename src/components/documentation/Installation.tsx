@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
+import Guide from "../_components/Guide";
 
 const Installation = () => {
   return (
@@ -228,6 +229,16 @@ const Installation = () => {
           properly set up to support all styles.
         </p>
       </section>
+
+      <hr className="my-6 border-gray-300 dark:border-gray-700" />
+
+      <div className="flex items-center mb-4 justify-center">
+        <p className="font-bold text-4xl underline underline-offset-8 decoration-[#000000]">
+          Guide
+        </p>
+      </div>
+
+      <Guide />
     </div>
   );
 };
