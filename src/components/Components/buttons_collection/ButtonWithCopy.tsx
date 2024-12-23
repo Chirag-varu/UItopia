@@ -16,7 +16,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/components/ui/Tooltip";
 import { cn } from "@/lib/utils";
 import { Check, Copy, X } from "lucide-react";
 import { useImageUpload } from "@/hooks/use-image-upload";

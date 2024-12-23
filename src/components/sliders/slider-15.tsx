@@ -11,7 +11,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/components/ui/Tooltip";
 import { useSliderWithInput } from "@/hooks/use-slider-with-input";
 import { RotateCcw } from "lucide-react";
 
