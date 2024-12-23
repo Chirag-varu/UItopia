@@ -11,7 +11,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/Sidebar";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import { motion } from "framer-motion";
 
 export default function Docs() {
@@ -72,7 +72,7 @@ export default function Docs() {
         {/* Mobile Sidebar */}
         {isMobileSidebarOpen && (
           <div
-            className={`fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 z-50 p-4 shadow-lg rounded-t-xl transition-transform transform ${
+            className={`fixed bottom-0 left-0 right-0 bg-[#f2f3f5] dark:bg-[#18181b] z-50 p-4 shadow-lg rounded-t-xl transition-transform transform ${
               isMobileSidebarOpen ? "translate-y-0" : "translate-y-full"
             }`}
           >
@@ -99,24 +99,24 @@ export default function Docs() {
               </button>
             </div>
             <nav className="flex flex-col gap-4">
-              <a
-                href="/docs"
+              <Link
+                to="/docs"
                 className="text-gray-700 dark:text-gray-300 hover:underline"
               >
                 Introduction
-              </a>
-              <a
-                href="/docs/installation"
+              </Link>
+              <Link
+                to="/docs/installation"
                 className="text-gray-700 dark:text-gray-300 hover:underline"
               >
                 Installation
-              </a>
-              <a
-                href="/docs/contribution"
+              </Link>
+              <Link
+                to="/docs/contribution"
                 className="text-gray-700 dark:text-gray-300 hover:underline"
               >
                 Contribution
-              </a>
+              </Link>
             </nav>
           </div>
         )}
