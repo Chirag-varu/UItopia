@@ -14,11 +14,12 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/Tooltip";
+} from "@/components/ui/tooltip";
 import { MdInfo } from "react-icons/md";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Check, Copy } from "lucide-react";
+import ReactDOMServer from "react-dom/server";
 
 const buttonFiles = [
   "button-01",
@@ -83,7 +84,7 @@ export default function Page() {
       const importedComponents = await Promise.all(
         buttonFiles.map(async (fileName) => {
           const Component = (
-            await import(`../../../components/buttons/${fileName}`)
+            await import(`../../../components/buttons/${fileName}.tsx`)
           ).default;
           return { id: fileName, Component, code: `<${fileName} />` }; // Example code string
         })
@@ -94,10 +95,11 @@ export default function Page() {
     loadComponents();
   }, []);
 
+
   // Handles copying code to clipboard
-  const handleCopy = (code: string) => {
-    navigator.clipboard.writeText(code).then(() => {
-      setCopied(code);
+  const handleCopy = (code: React.ReactNode) => {
+    navigator.clipboard.writeText(ReactDOMServer.renderToStaticMarkup(code)).then(() => {
+      setCopied(ReactDOMServer.renderToStaticMarkup(code));
       setTimeout(() => setCopied(null), 2000);
     });
   };
@@ -105,10 +107,10 @@ export default function Page() {
   return (
     <div className="w-full px-4 py-8">
       <div className="max-w-7xl mx-auto mt-28">
-        <h1 className="text-3xl font-extrabold text-center mb-8 text-gray-800">
+        <h1 className="text-3xl font-extrabold text-center mb-8 text-gray-800 dark:text-gray-100">
           Button Components
         </h1>
-        <p className="text-center text-gray-600 mb-12">
+        <p className="text-center text-gray-600 dark:text-gray-400 mb-12">
           Explore a collection of beautifully designed buttons. Click to copy
           their code and use them in your projects!
         </p>
@@ -116,7 +118,7 @@ export default function Page() {
           {components.map(({ id, Component, code }) => (
             <div
               key={id}
-              className="p-6 bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-200"
+              className="p-6 bg-white dark:bg-gray-800 shadow-md rounded-lg hover:shadow-lg transition-shadow duration-200"
             >
               <div className="group flex flex-col items-center justify-center p-4 relative w-full text-center shadow-md hover:shadow-lg transition-shadow duration-300">
               <div className="flex items-center justify-center h-20 mb-4">
@@ -177,7 +179,7 @@ export default function Page() {
                         variant="outline"
                         size="icon"
                         className="disabled:opacity-100 absolute top-0 right-0 md:opacity-0 opacity-100 group-hover:opacity-100 px-4 z-40 mr-2 rounded-md text-sm transition-opacity duration-300 "
-                        onClick={() => handleCopy(code)}
+                        onClick={() => handleCopy(<Component />)}
                         aria-label={
                           copied === code ? "Copied" : "Copy to clipboard"
                         }

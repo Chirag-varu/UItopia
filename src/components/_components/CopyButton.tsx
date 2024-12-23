@@ -6,7 +6,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/Tooltip";
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
@@ -90,3 +90,4 @@ const CopyButton = ({ componentSource }: { componentSource: string }) => {
 };
 
 export default CopyButton;
+

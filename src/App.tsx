@@ -12,6 +12,8 @@ import Buttons from "./components/Components/buttons_collection/Buttons";
 import Inputs from "./components/Components/inputs_collection/Inputs";
 import ChecksRadiosSwitches from "./components/Components/checks-radios-switches/checks_radios_switches";
 import Page from "./app/components/buttons/page";
+import Checkbox from "./app/components/Checkboxes/checkboxes";
+import Sliders from "./app/components/Sliders/Sliders";
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path="/components/inputs" element={<Inputs />} />
           <Route path="/components/checks-radios-switches" element={<ChecksRadiosSwitches />} />
           <Route path="/components/Page" element={<Page />} />
+          <Route path="/components/checkbox" element={<Checkbox />} />
+          <Route path="/components/Sliders" element={<Sliders />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
