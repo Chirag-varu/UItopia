@@ -25,8 +25,6 @@ import { useImageUpload } from "@/hooks/use-image-upload";
 import { CircleUserRound } from "lucide-react";
 import { Mail } from "lucide-react";
 import { ButtonWithCopy } from "./ButtonWithCopy";
-import { HexColorPicker } from "react-colorful";
-import useOnClickOutside from "use-onclickoutside";
 import AvatarImg from "../../../assets/favicon-removebg.png";
 import { Input } from "@/components/ui/input";
 import {
@@ -52,11 +50,12 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Bolt, BookOpen, Layers2, LogOut, Pin, UserPen } from "lucide-react";
 import Page from '@/app/components/buttons/page'
+import ColorPicker from "@/components/_components/ColorPicker";
+import LibrarySelector from "@/components/_components/LibrarySelector";
 
 export default function Buttons() {
   const [bgColor, setBgColor] = useState("#d4d4d4");
   const [textColor, setTextColor] = useState("#000000");
-  const [selectedLibrary, setSelectedLibrary] = useState("React.ts");
   const [copied, setCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -90,14 +89,6 @@ export default function Buttons() {
       setTimeout(() => setCopied(false), 1500);
     }
   };
-
-  const [isBgPickerOpen, setBgPickerOpen] = useState(false);
-  const bgPickerRef = useRef(null);
-  useOnClickOutside(bgPickerRef, () => setBgPickerOpen(false));
-
-  const [isTextPickerOpen, setTextPickerOpen] = useState(false);
-  const textPickerRef = useRef(null);
-  useOnClickOutside(textPickerRef, () => setTextPickerOpen(false));
 
   const {
     previewUrl,
@@ -1595,85 +1586,25 @@ export default function ButtonDemo() {
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center gap-8 px-4 sm:px-8">
       {/* Header Section */}
-      <div className="flex flex-col items-center gap-2 text-center mt-[8rem] sm:mt-32">
+      <div className="flex flex-col items-center gap-2 text-center mt-[8rem]">
         <div className="text-3xl sm:text-4xl font-bold">Buttons</div>
         <p className="text-[hsl(var(--muted-foreground))] font-semibold whitespace-normal break-words max-w-md sm:max-w-lg">
-          A growing collection of button components built with React TS and
-          TailwindCSS.
+          A growing collection of button components built with React
+          TS and TailwindCSS.
         </p>
-        <div className="flex flex-col w-[71rem] justify-between items-center md:flex-row gap-4">
-          <div className="flex items-center gap-2 w-full justify-center md:justify-start">
-            <label
-              htmlFor="librarySelect"
-              className="font-semibold text-gray-800 dark:text-gray-200"
-            >
-              Select Framework:
-            </label>
-            <select
-              id="librarySelect"
-              className="h-10 px-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900/70 text-gray-700 dark:text-gray-200 outline-none cursor-pointer transition focus:ring-2 focus:ring-blue-500 object-"
-              onChange={(e) => setSelectedLibrary(e.target.value)}
-              value={selectedLibrary}
-            >
-              <option value="React.js" className="dark:bg-gray-900">
-                React.js
-              </option>
-              <option value="React.ts" className="dark:bg-gray-900">
-                React.ts
-              </option>
-              <option value="Next.js" className="dark:bg-gray-900">
-                Next.js
-              </option>
-              <option value="Next.ts" className="dark:bg-gray-900">
-                Next.ts
-              </option>
-            </select>
-          </div>
-          <div className="flex items-center justify-center gap-5">
-            <div className="flex items-center gap-3">
-              {/* Label for Background Color */}
-              <label className="font-semibold text-sm">Background Color:</label>
-
-              {/* Background Color preview button */}
-              <div
-                className="w-14 h-10 rounded cursor-pointer border border-black dark:border-gray-300"
-                style={{ backgroundColor: bgColor }}
-                onClick={() => setBgPickerOpen(!isBgPickerOpen)}
-              ></div>
-
-              {/* Popover for the Background Color Picker */}
-              {isBgPickerOpen && (
-                <div
-                  ref={bgPickerRef}
-                  className="absolute mt-2 z-10 bg-white p-2 shadow-lg rounded"
-                >
-                  <HexColorPicker color={bgColor} onChange={setBgColor} />
-                  <p className="mt-1 text-center text-xs">{bgColor}</p>
-                </div>
-              )}
-            </div>
-            <div className="flex items-center gap-3">
-              {/* Label for Text Color */}
-              <label className="font-semibold text-sm">Text Color:</label>
-
-              {/* Text Color preview button */}
-              <div
-                className="w-14 h-10 rounded cursor-pointer border border-black dark:border-gray-300"
-                style={{ backgroundColor: textColor }}
-                onClick={() => setTextPickerOpen(!isTextPickerOpen)}
-              ></div>
-
-              {/* Popover for the Text Color Picker */}
-              {isTextPickerOpen && (
-                <div
-                  ref={textPickerRef}
-                  className="absolute mt-2 z-10 bg-white p-2 shadow-lg rounded"
-                >
-                  <HexColorPicker color={textColor} onChange={setTextColor} />
-                  <p className="mt-1 text-center text-xs">{textColor}</p>
-                </div>
-              )}
-            </div>
+        <div className="flex flex-col w-full justify-center items-center md:flex-row gap-4">
+          <LibrarySelector />
+          <div className="flex items-center justify-center gap-3">
+          <ColorPicker
+        label="Background Color"
+        color={bgColor}
+        onChange={setBgColor}
+      />
+      <ColorPicker
+        label="Text Color"
+        color={textColor}
+        onChange={setTextColor}
+      />
           </div>
         </div>
       </div>

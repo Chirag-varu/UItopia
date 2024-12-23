@@ -11,7 +11,7 @@ const Contribution = () => {
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-10 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen">
+    <div className="p-4 sm:p-6 lg:p-10 bg-gray-50 dark:bg-black text-gray-800 dark:text-gray-100 min-h-screen">
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-center">
         Contribution Guide
       </h1>
@@ -28,11 +28,11 @@ const Contribution = () => {
           </span>
           , follow these steps:
         </p>
-        <ol className="list-decimal list-inside space-y-2 bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg">
+        <ol className="list-decimal list-inside space-y-2 bg-white dark:bg-[#18181b] p-3 sm:p-4 rounded-lg shadow-lg">
           <li>
             Clone the repository to your local machine:
             <div className="relative group">
-              <pre className="bg-gray-200 dark:bg-gray-700 p-2 rounded-lg mt-2 text-xs sm:text-sm">
+              <pre className="bg-gray-200  dark:bg-[#000000] p-2 rounded-lg mt-2 text-xs sm:text-sm">
                 git clone https://github.com/Chirag-varu/UITopia.git
               </pre>
               <button

@@ -17,18 +17,21 @@ export default function About() {
       >
         <div className="flex flex-col">
           {/* Header */}
-          <h1 className="text-center text-xl font-bold mb-4 md:mt-40 mt-28 cursor-default">
-            Meet The Creators Of UI-Topia
+          <h1 className="text-center text-5xl font-bold mb-4 md:mt-40 mt-28 cursor-default">
+            Meet The Creators Of{" "}
+            <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+              UI-Topia
+            </span>
           </h1>
 
           {/* Creators Section */}
           <section className="flex flex-wrap justify-center gap-6 px-4 py-8">
             {/* Creator Card 1 */}
-            <div className="bg-white dark:bg-gray-800/50 border rounded-lg shadow-md w-64 text-center p-4">
+            <div className="bg-zinc-100 dark:bg-[#111113] border rounded-lg shadow-md w-64 text-center p-4 border-gray-500/50">
               <img
                 src={profile2} // Adjust this path if needed
                 alt="Creator 1"
-                className="rounded-lg w-full h-auto object-contain shadow-xl transform transition-transform duration-300 hover:scale-105"
+                className="rounded-lg w-full h-auto object-contain shadow-xl transform transition-transform duration-300 hover:scale-105 border border-gray-500"
               />
               <div className="flex justify-center gap-4">
                 <a
@@ -59,11 +62,11 @@ export default function About() {
             </div>
 
             {/* Creator Card 2 */}
-            <div className="bg-white dark:bg-gray-800/50 border rounded-lg shadow-md w-64 text-center p-4">
+            <div className="bg-zinc-100 dark:bg-[#111113] border rounded-lg shadow-md w-64 text-center p-4 border-gray-500/50">
               <img
                 src={profile3}
                 alt="Creator 2"
-                className="rounded-lg w-full h-auto object-contain shadow-xl transform transition-transform duration-300 hover:scale-105"
+                className="rounded-lg w-full h-auto object-contain shadow-xl transform transition-transform duration-300 hover:scale-105 border-gray-500"
               />
               <div className="flex justify-center gap-4">
                 <a
@@ -94,11 +97,11 @@ export default function About() {
             </div>
 
             {/* Creator Card 3 */}
-            <div className="bg-white dark:bg-gray-800/50 border rounded-lg shadow-md w-64 text-center p-4">
+            <div className="bg-zinc-100 dark:bg-[#111113] border rounded-lg shadow-md w-64 text-center p-4 border-gray-500/50">
               <img
                 src={profile1}
                 alt="Creator 3"
-                className="rounded-lg w-full h-72 object-cover shadow-xl transform transition-transform duration-300 hover:scale-105"
+                className="rounded-lg w-full h-72 object-cover shadow-xl transform transition-transform duration-300 hover:scale-105 border-gray-500"
               />
               <div className="flex justify-center gap-4">
                 <a
@@ -130,7 +133,7 @@ export default function About() {
           </section>
 
           {/* Vision Section */}
-          <section className="max-w-6xl shadow-md mx-auto px-4 py-16 flex md:flex-row flex-col flex-wrap gap-8 items-center">
+          <section className="max-w-6xl mx-auto px-4 py-16 flex md:flex-row flex-col flex-wrap gap-8 items-center">
             <div className="flex-1">
               <img
                 src={codeImage}
@@ -139,11 +142,13 @@ export default function About() {
               />
             </div>
             <div className="flex-1">
-              <h2 className="text-xl font-bold mb-4">
-                Our Vision: Empowering Developers to Build Exceptional
-                Interfaces Effortlessly
+              <h2 className="text-5xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                  Our Vision
+                </span>
+                <br />
               </h2>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 dark:text-gray-300 text-lg">
                 Success for us means empowering your success by providing tools
                 that make UI development intuitive, efficient, and a joy to work
                 with, enabling you to craft user experiences that truly stand
@@ -153,12 +158,18 @@ export default function About() {
           </section>
 
           {/* Story Section */}
-          <section className="max-w-6xl shadow-md mx-auto px-4 py-16 flex md:flex-row flex-col flex-wrap gap-8 items-center">
+          <section className="max-w-6xl  mx-auto px-4 py-2 mb-10 flex md:flex-row flex-col flex-wrap gap-8 items-center">
             <div className="flex-1">
-              <h2 className="text-xl font-bold mb-4">Our Story</h2>
-              <p className="text-gray-600 dark:text-gray-300">
+              <h2 className="text-5xl font-bold mb-4">
+                {" "}
+                <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                  Our Story
+                </span>
+                <br />
+              </h2>
+              <p className="text-gray-600 dark:text-gray-300 text-lg md:text-justify">
                 In 2024, three friends—Monil Parikh, Aditya Pai, and Chirag
-                Varu— realized the immense potential of technology to solve
+                Varu realized the immense potential of technology to solve
                 real-life problems. As passionate B.Sc. IT students, they shared
                 a vision to simplify and enhance the way people interact with
                 technology. United by their enthusiasm for innovation, they
