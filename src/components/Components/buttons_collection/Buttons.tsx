@@ -49,7 +49,6 @@ import {
 } from "@remixicon/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Bolt, BookOpen, Layers2, LogOut, Pin, UserPen } from "lucide-react";
-import Page from '@/app/components/buttons/page'
 import ColorPicker from "@/components/_components/ColorPicker";
 import LibrarySelector from "@/components/_components/LibrarySelector";
 

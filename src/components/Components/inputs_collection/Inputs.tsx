@@ -24,7 +24,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { HexColorPicker } from "react-colorful";
 import LibrarySelector from "@/components/_components/LibrarySelector";
 import ColorPicker from "@/components/_components/ColorPicker";
 
@@ -146,13 +145,12 @@ export default function Inputs() {
   const [date, setDate] = useState("");
   const [bgColor, setBgColor] = useState("#d4d4d4");
   const [textColor, setTextColor] = useState("#000000");
-  const [selectedLibrary, setSelectedLibrary] = useState("React.ts");
 
-  const [isBgPickerOpen, setBgPickerOpen] = useState(false);
+  const [_isBgPickerOpen, setBgPickerOpen] = useState(false);
   const bgPickerRef = useRef(null);
   useOnClickOutside(bgPickerRef, () => setBgPickerOpen(false));
 
-  const [isTextPickerOpen, setTextPickerOpen] = useState(false);
+  const [_isTextPickerOpen, setTextPickerOpen] = useState(false);
   const textPickerRef = useRef(null);
   useOnClickOutside(textPickerRef, () => setTextPickerOpen(false));
 
