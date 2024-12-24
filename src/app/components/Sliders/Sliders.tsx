@@ -20,6 +20,8 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Check, Copy } from "lucide-react";
 import ReactDOMServer from "react-dom/server";
+import LibrarySelector from "@/components/_components/LibrarySelector";
+import ColorPicker from "@/components/_components/ColorPicker";
 
 const sliderFiles = [
   "slider-01",
@@ -76,17 +78,33 @@ export default function Checkbox() {
         setTimeout(() => setCopied(null), 2000);
       });
   };
-
+  const [bgColor, setBgColor] = useState("#d4d4d4");
+  const [textColor, setTextColor] = useState("#000000");
   return (
     <div className="w-full px-4 py-8">
       <div className="max-w-7xl mx-auto mt-28">
-        <h1 className="text-3xl font-extrabold text-center mb-8 text-gray-800 dark:text-gray-100">
+        <h1 className="text-3xl font-bold text-center mb-4 text-gray-800 dark:text-gray-100">
           Slider Components
         </h1>
-        <p className="text-center text-gray-600 dark:text-gray-400 mb-12">
+        <p className="text-center text-gray-600 dark:text-gray-400 mb-5">
           A beautiful collection of 23 slider components built with using Shadcn
           UI and TailwindCSS.
         </p>
+        <div className="flex flex-col w-full justify-center items-center md:flex-row gap-4 mb-7">
+          <LibrarySelector />
+          <div className="flex items-center justify-center gap-3">
+            <ColorPicker
+              label="Background Color"
+              color={bgColor}
+              onChange={setBgColor}
+            />
+            <ColorPicker
+              label="Text Color"
+              color={textColor}
+              onChange={setTextColor}
+            />
+          </div>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {components.map(({ id, Component, code }) => (
             <div
