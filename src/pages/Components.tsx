@@ -21,6 +21,8 @@ export default function Components() {
     { path: "/Layouts", name: "Layouts" },
     { path: "/Navigation-menus", name: "Navigation menus" },
     { path: "/Tables", name: "Tables" },
+    { path: "/Cards", name: "Cards" },
+    { path: "/Loaders", name: "Loader" },
   ];
 
   return (

@@ -21,42 +21,32 @@ import { Button } from "@/components/ui/button";
 import { Check, Copy } from "lucide-react";
 import ReactDOMServer from "react-dom/server";
 
-const sliderFiles = [
-  "slider-01",
-  "slider-02",
-  "slider-03",
-  "slider-04",
-  "slider-05",
-  "slider-06",
-  "slider-07",
-  "slider-08",
-  "slider-09",
-  "slider-10",
-  "slider-11",
-  "slider-12",
-  "slider-13",
-  "slider-14",
-  "slider-15",
-  "slider-16",
-  "slider-17",
-  "slider-18",
-  "slider-19",
-  "slider-20",
-  "slider-21",
-  "slider-22",
-  "slider-23",
+const selectFiles = [
+  "select-01",
+  "select-02",
+  "select-03",
+  "select-04",
+  "select-05",
+  "select-06",
+  "select-07",
+  "select-08",
+  "select-09",
+  "select-10",
+  "select-11",
+  "select-12",
+  "select-13",
 ];
 
-export default function Slider() {
+export default function Select() {
   const [copied, setCopied] = useState<string | null>(null);
   const [components, setComponents] = useState<any[]>([]);
 
   useEffect(() => {
     const loadComponents = async () => {
       const importedComponents = await Promise.all(
-        sliderFiles.map(async (fileName) => {
+        selectFiles.map(async (fileName) => {
           const Component = (
-            await import(`../../../components/sliders/${fileName}.tsx`)
+            await import(`../../../components/selects/${fileName}.tsx`)
           ).default;
           return { id: fileName, Component, code: `<${fileName} />` }; // Example code string
         })
@@ -81,10 +71,10 @@ export default function Slider() {
     <div className="w-full px-4 py-8">
       <div className="max-w-7xl mx-auto mt-28">
         <h1 className="text-3xl font-extrabold text-center mb-8 text-gray-800 dark:text-gray-100">
-          Slider Components
+          Selects Components
         </h1>
         <p className="text-center text-gray-600 dark:text-gray-400 mb-12">
-          A beautiful collection of 23 slider components built with using Shadcn
+          A beautiful collection of 13 select components built with using Shadcn
           UI and TailwindCSS.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">

@@ -5,9 +5,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Avatar01 from "@/public/avatar-40-01.jpg";
-import Avatar02 from "@/public/avatar-40-02.jpg";
-import Avatar03 from "@/public/avatar-40-03.jpg";
+import Avatar01 from "@/assets/favicon-removebg.png";
+import Avatar02 from "@/assets/favicon-removebg.png";
+import Avatar03 from "@/assets/favicon-removebg.png";
 
 export default function SelectDemo() {
   return (
