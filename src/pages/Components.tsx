@@ -33,7 +33,7 @@ export default function Components() {
     >
       <div className="flex flex-col items-center justify-center">
         <div className="mt-24 mb-24">
-          <h1 className="text-5xl mb-10 text-center underline text-[hsl(var(--muted-foreground))]">
+          <h1 className="text-5xl mb-10 text-center underline">
             Components
           </h1>
 
@@ -42,7 +42,7 @@ export default function Components() {
               <NavLink key={link.path} to={`/components${link.path}`}>
                 <Button
                   variant="outline"
-                  className="flex justify-between items-center text-lg w-full h-14 p-5"
+                  className="flex justify-between items-center text-lg w-full h-14 p-5 dark:bg-gray-800/50"
                 >
                   {link.name}
                   <span className="-me-1 ms-3 inline-flex h-6 max-h-full items-center rounded border border-border px-2 font-[inherit] text-[0.75rem] font-medium text-muted-foreground">
