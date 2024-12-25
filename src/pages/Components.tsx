@@ -33,7 +33,7 @@ export default function Components() {
     >
       <div className="flex flex-col items-center justify-center">
         <div className="mt-24 mb-24">
-          <h1 className="text-5xl mb-10 text-center underline">
+          <h1 className="text-5xl mb-10 text-center font-medium">
             Components
           </h1>
 
