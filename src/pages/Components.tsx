@@ -21,6 +21,8 @@ export default function Components() {
     { path: "/Layouts", name: "Layouts" },
     { path: "/Navigation-menus", name: "Navigation menus" },
     { path: "/Tables", name: "Tables" },
+    { path: "/Cards", name: "Cards" },
+    { path: "/Loaders", name: "Loader" },
   ];
 
   return (
@@ -40,7 +42,7 @@ export default function Components() {
               <NavLink key={link.path} to={`/components${link.path}`}>
                 <Button
                   variant="outline"
-                  className="flex justify-between items-center text-lg w-full h-14 p-5"
+                  className="flex justify-between items-center text-lg w-full h-14 p-5 dark:bg-gray-800/50"
                 >
                   {link.name}
                   <span className="-me-1 ms-3 inline-flex h-6 max-h-full items-center rounded border border-border px-2 font-[inherit] text-[0.75rem] font-medium text-muted-foreground">

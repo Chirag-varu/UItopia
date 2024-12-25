@@ -4,21 +4,21 @@ import Guide from "../_components/Guide";
 
 const Installation = () => {
   return (
-    <div className="container md:mx-auto p-4 max-w-full md:w-4/5 md:text-justify ">
-      <header className="mb-6">
+    <div className="container mx-auto px-4 py-6 max-w-screen-xl">
+      <header className="mb-8 text-center">
         <h1 className="text-4xl font-bold mb-2">Installation</h1>
       </header>
 
-      <section className="mb-6">
-        <h2 className="text-3xl font-bold mb-3">
+      <section className="mb-8">
+        <h2 className="text-3xl font-bold mb-4 text-center sm:text-left">
           Getting Started with UI-Topia
         </h2>
-        <p className="text-lg">
+        <p className="text-lg text-justify">
           Setting up UI-Topia is quick and straightforward. Our components are
           designed to integrate effortlessly into your project, whether you're
           using React, Vite, or Next.js. However, before using UI-Topia's
           components, please ensure that you follow the installation guide
-          provided by{" "}
+          provided by{' '}
           <a
             href="https://ui.shadcn.com/docs/installation"
             target="_blank"
@@ -46,7 +46,7 @@ const Installation = () => {
             </svg>
           </a>
           . Once your setup is ready, you can copy and paste UI-Topia's
-          components from our{" "}
+          components from our{' '}
           <Link
             to="/components"
             className="text-blue-500 hover:underline inline-flex items-center"
@@ -70,17 +70,17 @@ const Installation = () => {
               <path d="M15 3h6v6"></path>
               <path d="M10 14L21 3"></path>
             </svg>
-          </Link>{" "}
+          </Link>{' '}
           and customize them as needed.
         </p>
       </section>
 
-      <section className="mb-6">
-        <h2 className="text-3xl font-bold mb-3">Installation Options</h2>
-        <ul className="list-disc list-inside space-y-4 text-lg">
+      <section className="mb-8">
+        <h2 className="text-3xl font-bold mb-4 text-center sm:text-left">Installation Options</h2>
+        <ul className="list-disc list-inside space-y-6 text-lg">
           <li>
             <strong>Manual Installation (React):</strong> For custom setups, use
-            ShadCN's{" "}
+            ShadCN's{' '}
             <a
               href="https://ui.shadcn.com/docs/installation/manual"
               target="_blank"
@@ -110,7 +110,7 @@ const Installation = () => {
             . This method gives you full control over the configuration.
           </li>
           <li>
-            <strong>Vite + React:</strong> If you're using Vite, ShadCN's{" "}
+            <strong>Vite + React:</strong> If you're using Vite, ShadCN's{' '}
             <a
               href="https://ui.shadcn.com/docs/installation/vite"
               target="_blank"
@@ -136,12 +136,12 @@ const Installation = () => {
                 <path d="M15 3h6v6"></path>
                 <path d="M10 14L21 3"></path>
               </svg>
-            </a>{" "}
+            </a>{' '}
             provides optimized steps to integrate UI-Topia components
             efficiently.
           </li>
           <li>
-            <strong>Next.js:</strong> For Next.js projects, follow ShadCN's{" "}
+            <strong>Next.js:</strong> For Next.js projects, follow ShadCN's{' '}
             <a
               href="https://ui.shadcn.com/docs/installation/next"
               target="_blank"
@@ -174,66 +174,43 @@ const Installation = () => {
         </ul>
       </section>
 
-      <section className="mb-6">
-        <h2 className="text-3xl font-bold mb-3">Example: Adding a Button</h2>
+      <section className="mb-8">
+        <h2 className="text-3xl font-bold mb-4 text-center sm:text-left">Example: Adding a Button</h2>
         <div className="flex flex-col md:flex-row w-full">
-          <div className="w-full overflow-x-auto bg-gray-100  dark:bg-gray-800/50 dark:text-white p-4 rounded-t-lg border md:rounded-r-none md:rounded-l-lg border-gray-300">
+          <div className="w-full overflow-x-auto bg-gray-100 dark:bg-gray-800/50 dark:text-white p-4 rounded-t-lg md:rounded-l-lg border border-gray-300">
             <pre>
               <code>
-                <span className="text-gray-600">
-                  // Example of using a Button component
-                </span>
+                <span className="text-gray-600">// Example of using a Button component</span>
                 {"\n"}
-                <span className="text-blue-600">import</span> {"{"}{" "}
-                <span className="text-cyan-600">Button</span> {"}"}{" "}
-                <span className="text-blue-600">from</span>{" "}
-                <span className="text-yellow-600">
-                  "@/components/ui/button"
-                </span>
-                ;{"\n\n"}
-                <span className="text-blue-600">export default</span>{" "}
-                <span className="text-cyan-600">function</span>{" "}
-                <span className="text-cyan-600">App</span>() {"{"}
+                <span className="text-blue-600">import</span> {"{"} <span className="text-cyan-600">Button</span> {"}"} <span className="text-blue-600">from</span> <span className="text-yellow-600">"@/components/ui/button"</span>;
+                {"\n\n"}
+                <span className="text-blue-600">export default</span> <span className="text-cyan-600">function</span> <span className="text-cyan-600">App</span>() {"{"}
                 {"\n"}
-                {"  "}
-                <span className="text-blue-600">return</span> ({"\n"}
-                {"    "}
-                <span className="text-purple-600">&lt;div</span>{" "}
-                <span className="text-yellow-600">className</span>=
-                <span className="text-yellow-600">"p-6"</span>
+                {"  "}<span className="text-blue-600">return</span> (
+                {"\n    "}<span className="text-purple-600">&lt;div</span> <span className="text-yellow-600">className</span>=<span className="text-yellow-600">"p-6"</span>
                 <span className="text-purple-600">&gt;</span>
-                {"\n"}
-                {"      "}
-                <span className="text-purple-600">&lt;Button</span>{" "}
-                <span className="text-yellow-600">className</span>=
-                <span className="text-yellow-600">"rounded-full text-lg"</span>
-                <span className="text-purple-600">&gt;</span>
-                Click Me
-                <span className="text-purple-600">&lt;/Button&gt;</span>
-                {"\n"}
-                {"    "}
-                <span className="text-purple-600">&lt;/div&gt;</span>
-                {"\n"}
-                {"  "});
+                {"\n      "}<span className="text-purple-600">&lt;Button</span> <span className="text-yellow-600">className</span>=<span className="text-yellow-600">"rounded-full text-lg"</span>
+                <span className="text-purple-600">&gt;</span>Click Me<span className="text-purple-600">&lt;/Button&gt;</span>
+                {"\n    "}<span className="text-purple-600">&lt;/div&gt;</span>
+                {"\n  "});
                 {"\n"}
                 {"}"}
               </code>
             </pre>
           </div>
-          <div className="p-6 flex items-center justify-center bg-gray-800/50 w-full md:w-auto border border-gray-300 rounded-b-lg md:rounded-l-none md:rounded-r-lg">
+          <div className="p-6 flex items-center justify-center bg-gray-800/50 w-full md:w-auto border border-gray-300 rounded-b-lg md:rounded-r-lg">
             <Button className="text-lg">Click Me</Button>
           </div>
         </div>
-        <p className="text-lg mt-4">
-          After pasting the code, make sure your Tailwind CSS configuration is
-          properly set up to support all styles.
+        <p className="text-lg mt-4 text-center sm:text-left">
+          After pasting the code, make sure your Tailwind CSS configuration is properly set up to support all styles.
         </p>
       </section>
 
-      <hr className="my-6 border-gray-300 dark:border-gray-700" />
+      <hr className="my-8 border-gray-300 dark:border-gray-700" />
 
-      <div className="flex items-center mb-4 justify-center">
-        <p className="font-bold text-4xl underline underline-offset-8 decoration-[#000000]">
+      <div className="text-center mb-8">
+        <p className="font-bold text-4xl underline underline-offset-8 decoration-black">
           Guide
         </p>
       </div>
