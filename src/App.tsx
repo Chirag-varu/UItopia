@@ -9,7 +9,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import NotFound from "./pages/NotFound";
 import Buttons from "./components/Components/buttons_collection/Buttons";
-import Inputs from "./components/Components/inputs_collection/Inputs";
+import Inputs from "./app/components/Inputs/Inputs";
 import Page from "./app/components/buttons/page";
 import Checkbox from "./app/components/Checkboxes/checkboxes";
 import Sliders from "./app/components/Sliders/Sliders";

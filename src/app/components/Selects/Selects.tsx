@@ -20,6 +20,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Check, Copy } from "lucide-react";
 import ReactDOMServer from "react-dom/server";
+import LibrarySelector from "@/components/_components/LibrarySelector";
 
 const selectFiles = [
   "select-01",
@@ -77,6 +78,9 @@ export default function Select() {
           A beautiful collection of 13 select components built with using Shadcn
           UI and TailwindCSS.
         </p>
+        <div className="flex flex-col w-full justify-center items-center md:flex-row gap-4 mb-7">
+          <LibrarySelector />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {components.map(({ id, Component, code }) => (
             <div

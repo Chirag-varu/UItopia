@@ -22,37 +22,76 @@ import { Check, Copy } from "lucide-react";
 import ReactDOMServer from "react-dom/server";
 import LibrarySelector from "@/components/_components/LibrarySelector";
 
-const checkboxFiles = [
-  "checkbox-01",
-  "checkbox-02",
-  "checkbox-03",
-  "checkbox-04",
-  "checkbox-05",
-  "checkbox-06",
-  "checkbox-07",
-  "checkbox-08",
-  "checkbox-09",
-  "checkbox-10",
-  "checkbox-11",
-  "checkbox-12",
-  "checkbox-13",
-  "checkbox-14",
-  "checkbox-15",
-  "checkbox-16",
-  // "checkbox-17",
-  "checkbox-18",
+const inputFiles = [
+  "input-01",
+  "input-02",
+  "input-03",
+  "input-04",
+  "input-05",
+  "input-06",
+  "input-07",
+  "input-08",
+  "input-09",
+  "input-10",
+  "input-11",
+  "input-12",
+  "input-13",
+  "input-14",
+  "input-15",
+  "input-16",
+  "input-17",
+  "input-18",
+  "input-19",
+  "input-20",
+  "input-21",
+  "input-22",
+  "input-23",
+  "input-24",
+  "input-25",
+  "input-26",
+  "input-27",
+  "input-28",
+  "input-29",
+  "input-30",
+  "input-31",
+  "input-32",
+  "input-33",
+  "input-34",
+  "input-35",
+  "input-36",
+  "input-37",
+  "input-38",
+  "input-39",
+  "input-40",
+  "input-41",
+  "input-42",
+  "input-43",
+  "input-44",
+  "input-45",
+  "input-46",
+  "input-47",
+  "input-48",
+  "input-49",
+  "input-50",
+  "input-51",
+  "input-52",
+  "input-53",
+  "input-54",
+  "input-55",
+  "input-56",
+  "input-57",
 ];
 
-export default function Checkbox() {
+export default function Select() {
   const [copied, setCopied] = useState<string | null>(null);
   const [components, setComponents] = useState<any[]>([]);
 
   useEffect(() => {
     const loadComponents = async () => {
       const importedComponents = await Promise.all(
-        checkboxFiles.map(async (fileName) => {
+        inputFiles.map(async (fileName) => {
           const Component = (
-            await import(`../../../components/checkboxs/${fileName}.tsx`)
+            await import(`../../../components/inputs/${fileName}.tsx`)
           ).default;
           return { id: fileName, Component, code: `<${fileName} />` }; // Example code string
         })
@@ -72,15 +111,16 @@ export default function Checkbox() {
         setTimeout(() => setCopied(null), 2000);
       });
   };
+
   return (
     <div className="w-full px-4 py-8">
       <div className="max-w-7xl mx-auto mt-28">
-        <h1 className="text-3xl font-bold text-center mb-4 text-gray-800 dark:text-gray-100">
-          Checkbox Components
+        <h1 className="text-3xl font-extrabold text-center mb-8 text-gray-800 dark:text-gray-100">
+          Inputs Components
         </h1>
-        <p className="text-center text-gray-600 dark:text-gray-400 mb-5">
-          A beautiful collection of 23 checkbox components built with using
-          Shadcn UI and TailwindCSS.
+        <p className="text-center text-gray-600 dark:text-gray-400 mb-12">
+          A beautiful collection of 57 inputs components built with using Shadcn
+          UI and TailwindCSS.
         </p>
         <div className="flex flex-col w-full justify-center items-center md:flex-row gap-4 mb-7">
           <LibrarySelector />
