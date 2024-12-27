@@ -15,6 +15,7 @@ import Checkbox from "./app/components/Checkboxes/checkboxes";
 import Sliders from "./app/components/Sliders/Sliders";
 import Selects from "./app/components/Selects/Selects";
 import Switches from "./app/components/Switches/Switches";
+import Banners from "./app/components/Banners/Banners";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/components/button" element={<Buttons />} />
           <Route path="/components/inputs" element={<Inputs />} />
+          <Route path="/components/banners" element={<Banners />} />
           <Route path="/components/checks-radios-switches" element={<Checkbox />} />
           <Route path="/components/Page" element={<Page />} />
           <Route path="/components/checkbox" element={<Checkbox />} />
