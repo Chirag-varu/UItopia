@@ -7,7 +7,8 @@ export default function Components() {
   const links = [
     { path: "/button", name: "Button" },
     { path: "/inputs", name: "Input and Textarea" },
-    { path: "/checks-radios-switches", name: "Checkbox, Radio, and Switch" },
+    { path: "/checks-radios", name: "Checkbox and Radio" },
+    { path: "/switches", name: "Switchs" },
     { path: "/selects", name: "Select" },
     { path: "/sliders", name: "Slider" },
     { path: "/alerts-notifications-banners", name: "Alert, Notification, and Banner" },
