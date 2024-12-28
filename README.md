@@ -1,4 +1,6 @@
 # UI-Topia 🌟  
+
+UI-Topia is **open source** UI liabrary for react and next apps
 Beautiful UI components built on top of **ShadCN** with **Tailwind CSS** 🎨  
 
 **UI-Topia** is an extensive collection of copy-and-paste components for quickly building app UIs. It's free, open-source, and ready to drop into your projects. 🚀  
