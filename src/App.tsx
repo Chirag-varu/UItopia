@@ -16,6 +16,7 @@ import Sliders from "./app/components/Sliders/Sliders";
 import Selects from "./app/components/Selects/Selects";
 import Switches from "./app/components/Switches/Switches";
 import Banners from "./app/components/Banners/Banners";
+import Alert_Notification from "./app/components/Alert-Notification/Alert_Notification";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/components/Sliders" element={<Sliders />} />
           <Route path="/components/selects" element={<Selects />} />
           <Route path="/components/switches" element={<Switches />} />
+          <Route path="/components/alerts-notifications" element={<Alert_Notification />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
