@@ -48,6 +48,7 @@
     "react-router-dom": "^6.28.0",
     "react-syntax-highlighter": "^15.6.1",
     "sitemap": "^8.0.0",
+    "sonner": "^1.7.1",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "use-mask-input": "^3.4.2",
