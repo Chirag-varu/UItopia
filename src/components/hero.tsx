@@ -30,7 +30,7 @@ export function Hero() {
           10x
           <FlipWords
             words={words}
-            className="text-[#465FDC] dark:text-[#465FDC] font-medium"
+            className="text-[#465FDC] dark:text-[#465FDC]"
           />
         </p>
       </div>
@@ -39,18 +39,16 @@ export function Hero() {
       <div className="mb-4">
         <p className="text-xl">
           Copy paste the most trending components and use them in your{" "}
-          <span className="inline md:block">
-            websites without having to worry about styling and animations.
-          </span>
+        </p>
+        <p className="text-lg">
+          websites without having to worry about styling and animations.{" "}
         </p>
       </div>
 
       {/* Browse Components Button */}
       <div className="mb-4">
         <Link to="/components">
-          <Button className="px-6 py-3 rounded-full text-lg font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white hover:from-pink-500 hover:via-purple-500 hover:to-blue-500 shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out">
-            Browse Components
-          </Button>
+          <Button className="rounded-full text-lg">Browse Components</Button>
         </Link>
       </div>
 

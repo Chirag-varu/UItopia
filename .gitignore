@@ -7,18 +7,13 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Node.js modules
 node_modules
-
-# Build and distribution directories
+certs
 dist
 dist-ssr
-
-# Local environment files
 *.local
-.env
-.env.local
-.env.*
+
+
 
 # Editor directories and files
 .vscode/*
@@ -30,16 +25,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Backup files
-*.bak
-
-# Compiled TypeScript build info
-tsconfig.tsbuildinfo
-
-# Build cache or output
-.cache/
-build/
-
-# Dependency directories
-node_modules/

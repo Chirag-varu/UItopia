@@ -29,6 +29,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "node_modules/cmdk"],
-  "exclude": ["node_modules"]
+  "include": ["src"]
 }
