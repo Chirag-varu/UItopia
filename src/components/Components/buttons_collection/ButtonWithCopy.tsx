@@ -18,9 +18,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
 import { cn } from "@/lib/utils";
-import { Check, Copy, X } from "lucide-react";
-import { useImageUpload } from "@/hooks/use-image-upload";
-import { CircleUserRound } from "lucide-react";
+import { Check, Copy } from "lucide-react";
 
 // Component for rendering button code with copy and detail options
 export const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
@@ -29,14 +27,6 @@ export const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
 }) => {
   const [copied, setCopied] = useState(false);
   const [_, _setIsExpanded7] = useState<boolean>(false);
-  const {
-    previewUrl,
-    fileInputRef,
-    handleThumbnailClick,
-    handleFileChange,
-    handleRemove,
-    fileName,
-  } = useImageUpload();
 
   // Handles copying code to clipboard
   const handleCopy = () => {
@@ -45,66 +35,6 @@ export const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
       setTimeout(() => setCopied(false), 2000);
     });
   };
-
-  // @ts-ignore
-  const _codeuploadimage = (
-    <div>
-      <div className="relative inline-flex">
-        <Button
-          variant="outline"
-          className="relative size-16 overflow-hidden"
-          onClick={handleThumbnailClick}
-          aria-label={previewUrl ? "Change image" : "Upload image"}
-        >
-          {previewUrl ? (
-            <img
-              className="h-full w-full object-cover"
-              src={previewUrl}
-              alt="Preview of uploaded image"
-              width={40}
-              height={40}
-              style={{ objectFit: "cover" }}
-            />
-          ) : (
-            <div aria-hidden="true">
-              <CircleUserRound
-                className="opacity-60"
-                size={16}
-                strokeWidth={2}
-              />
-            </div>
-          )}
-        </Button>
-        {previewUrl && (
-          <Button
-            onClick={handleRemove}
-            size="icon"
-            variant="destructive"
-            className="absolute -right-2 -top-2 size-6 rounded-full border-2 border-background"
-            aria-label="Remove image"
-          >
-            <X size={16} />
-          </Button>
-        )}
-        <input
-          type="file"
-          ref={fileInputRef}
-          onChange={handleFileChange}
-          className="hidden"
-          accept="image/*"
-          aria-label="Upload image file"
-        />
-      </div>
-      {fileName && (
-        <p className="mt-2 text-xs text-muted-foreground">{fileName}</p>
-      )}
-      <div className="sr-only" aria-live="polite" role="status">
-        {previewUrl
-          ? "Image uploaded and preview available"
-          : "No image uploaded"}
-      </div>
-    </div>
-  );
 
   return (
     <div className="group flex flex-col items-center justify-center p-4 relative w-full h-32 text-center shadow-md hover:shadow-lg transition-shadow duration-300">
