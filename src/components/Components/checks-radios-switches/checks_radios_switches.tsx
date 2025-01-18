@@ -27,9 +27,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useEffect, useRef } from "react";
-import LibrarySelector from "@/components/_components/LibrarySelector";
-import ColorPicker from "@/components/_components/ColorPicker";
-// import * as ButtonComponents from "@/components/buttons";
 
 const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
   code,
@@ -53,6 +50,7 @@ const ButtonWithCopy: React.FC<{ code: string; coding: ReactNode }> = ({
       }, 2000);
     });
   };
+
   return (
     <div className="group flex flex-col items-center justify-center p-4 relative w-full h-32 text-center shadow-md hover:shadow-lg transition-shadow duration-300">
       <div>{coding}</div>
@@ -392,8 +390,7 @@ export default function ButtonDemo() {
       />
     </Button>
   );
-  const [bgColor, setBgColor] = useState("#d4d4d4");
-  const [textColor, setTextColor] = useState("#000000");
+
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center gap-8 px-4 sm:px-8">
       {/* Header Section */}
@@ -403,21 +400,6 @@ export default function ButtonDemo() {
           A growing collection of checkbox, radio and switch components built with React TS and
           TailwindCSS.
         </p>
-        <div className="flex flex-col w-full justify-center items-center md:flex-row gap-4">
-          <LibrarySelector />
-          <div className="flex items-center justify-center gap-3">
-          <ColorPicker
-        label="Background Color"
-        color={bgColor}
-        onChange={setBgColor}
-      />
-      <ColorPicker
-        label="Text Color"
-        color={textColor}
-        onChange={setTextColor}
-      />
-          </div>
-        </div>
       </div>
 
       {/* Button Collection */}
@@ -428,7 +410,6 @@ export default function ButtonDemo() {
         <ButtonWithCopy code={buttonCode4} coding={code4} />
         <ButtonWithCopy code={buttonCode5} coding={code5} />
         <ButtonWithCopy code={buttonCode6} coding={code6} />
-
       </div>
     </div>
   );

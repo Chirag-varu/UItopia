@@ -1,120 +1,111 @@
-# UI-Topia 🌟  
-Beautiful UI components built on top of **ShadCN** with **Tailwind CSS** 🎨  
+# UItopia
+Beautiful UI components built on top of **ShadCN** with **Tailwind CSS**
 
-**UI-Topia** is an extensive collection of copy-and-paste components for quickly building app UIs. It's free, open-source, and ready to drop into your projects. 🚀  
+**UI-Topia** is an extensive collection of copy-and-paste components for quickly building app UIs. It's free, open-source, and ready to drop into your projects.
 
-**UI-Topia** is designed to provide modern, accessible, and customizable UI components that help developers build beautiful, responsive web applications with ease.
+**UItopia** is designed to provide modern, accessible, and customizable UI components that help developers build beautiful, responsive web applications with ease.
 
----
+## Features
 
-## ✨ Features  
+- **Pre-built Components**: A collection of essential UI components that are easy to integrate into your projects.
+- **Customizable**: Full customization options to fit your project’s design system.
+- **Built with ShadCN**: UItopia is built on top of ShadCN, leveraging its simplicity and power.
+- **Responsive Design**: Components are designed to be fully responsive, ensuring a great experience across all devices.
+- **Accessible**: All components are designed with accessibility in mind, following best practices.
 
-- 🌟 **Pre-built Components**: A collection of essential UI components that are easy to integrate into your projects.  
-- 🛠️ **Customizable**: Full customization options to fit your project’s design system.  
-- 💡 **Built with ShadCN**: UItopia is built on top of ShadCN, leveraging its simplicity and power.  
-- 📱 **Responsive Design**: Components are designed to be fully responsive, ensuring a great experience across all devices.  
-- ♿ **Accessible**: All components are designed with accessibility in mind, following best practices.  
+## Technology's
+**React + TypeScript + Vite**
 
----
+## Installation for use or integration projects or app
 
-## 🔧 Technologies  
+To get started with **UItopia**, you can follow shad CN installation:
 
-**React + TypeScript + Vite**  
+Manual (for React) : https://ui.shadcn.com/docs/installation/manual
 
----
+Vite + React : https://ui.shadcn.com/docs/installation/vite
 
-## 🚀 Installation for Use or Integration  
+Next : https://ui.shadcn.com/docs/installation/next
 
-To get started with **UItopia**, you can follow ShadCN installation guides:  
+copy-and-paste components in your projects and app ✅
 
-- 📘 **Manual (for React)**: [Documentation](https://ui.shadcn.com/docs/installation/manual)  
-- ⚡ **Vite + React**: [Documentation](https://ui.shadcn.com/docs/installation/vite)  
-- 🌐 **Next.js**: [Documentation](https://ui.shadcn.com/docs/installation/next)  
 
-Copy-and-paste components into your projects and apps ✅  
+## Installation
 
----
+To get started with UI-Topia, follow these steps:
 
-## 🔥 Installation  
+1. **Clone the repository**:
+   First, clone the repository to your local machine:
+   ```bash
+   git clone https://github.com/Chirag-varu/UITopia.git
+   ```
 
-To get started with **UI-Topia**, follow these steps:  
+2. **Navigate to the project folder**:
+   ```bash
+   cd UITopia
+   ```
 
-1. **📂 Clone the Repository**:  
-   First, clone the repository to your local machine:  
-   ```bash  
-   git clone https://github.com/Chirag-varu/UITopia.git  
-   ```  
+3. **Install dependencies**:
+   Install all the necessary dependencies using npm or yarn:
+   ```bash
+   npm install
+   # OR
+   yarn install
+   ```
 
-2. **📁 Navigate to the Project Folder**:  
-   ```bash  
-   cd UITopia  
-   ```  
+4. **Run the project**:
+   Start the development server to view the project locally:
+   ```bash
+   npm run dev
+   # OR
+   yarn dev
+   ```
+   This will start a local server, and you can view the project at `http://localhost:5173` in your browser.
 
-3. **📦 Install Dependencies**:  
-   Install all the necessary dependencies using npm or yarn:  
-   ```bash  
-   npm install  
-   # OR  
-   yarn install  
-   ```  
 
-4. **▶️ Run the Project**:  
-   Start the development server to view the project locally:  
-   ```bash  
-   npm run dev  
-   # OR  
-   yarn dev  
-   ```  
-   This will start a local server, and you can view the project at `http://localhost:5173` in your browser. 🌐  
+## Contributing
 
----
+We welcome contributions! To contribute to the project, follow these steps:
 
-## 🤝 Contributing  
+1. **Fork the repository**:
+   - Click on the **Fork** button at the top-right of the repository page to create a copy of the repository under your GitHub account.
 
-We welcome contributions! Here's how you can contribute:  
+2. **Clone your fork**:
+   Clone your forked repository to your local machine:
+   ```bash
+   git clone https://github.com/Chirag-varu/UITopia.git
+   npm i
+   ```
 
-1. **🍴 Fork the Repository**:  
-   Click on the **Fork** button at the top-right of the repository page to create a copy of the repository under your GitHub account.  
+3. **Create a new branch**:
+   Always create a new branch to work on your changes:
+   ```bash
+   git checkout -b my-new-feature
+   ```
 
-2. **📥 Clone Your Fork**:  
-   Clone your forked repository to your local machine:  
-   ```bash  
-   git clone https://github.com/Chirag-varu/UITopia.git  
-   npm i  
-   ```  
+4. **Make your changes**:
+   Make the necessary changes or additions to the project. 
 
-3. **🌿 Create a New Branch**:  
-   Always create a new branch to work on your changes:  
-   ```bash  
-   git checkout -b my-new-feature  
-   ```  
+5. **Stage your changes**:
+   Stage your modified files:
+   ```bash
+   git add .
+   ```
 
-4. **🛠️ Make Your Changes**:  
-   Make the necessary changes or additions to the project.  
+6. **Commit your changes**:
+   Commit the changes with a descriptive message:
+   ```bash
+   git commit -m "Add new feature or fix"
+   ```
 
-5. **📌 Stage Your Changes**:  
-   Stage your modified files:  
-   ```bash  
-   git add .  
-   ```  
+7. **Push to your fork**:
+   Push your changes to your forked repository:
+   ```bash
+   git push origin my-new-feature
+   ```
 
-6. **📝 Commit Your Changes**:  
-   Commit the changes with a descriptive message:  
-   ```bash  
-   git commit -m "✨ Add new feature or fix"  
-   ```  
+8. **Create a pull request**:
+   Go to the original repository on GitHub and create a pull request from your fork.
 
-7. **🚀 Push to Your Fork**:  
-   Push your changes to your forked repository:  
-   ```bash  
-   git push origin my-new-feature  
-   ```  
+## License
 
-8. **🔗 Create a Pull Request**:  
-   Go to the original repository on GitHub and create a pull request from your fork.  
-
----
-
-## 📜 License  
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.  
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

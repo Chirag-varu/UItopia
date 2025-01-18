@@ -1,3 +1,4 @@
+import './App.css';
 import { ThemeProvider } from "@/components/theme-provider";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ScrollToTop from "./components/ScrollToTop";
@@ -7,7 +8,6 @@ import Docs from './pages/Docs';
 import Components from './pages/Components';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import NotFound from "./pages/NotFound";
 import Buttons from "./components/Components/buttons_collection/Buttons";
 import Inputs from "./components/Components/inputs_collection/Inputs";
 import Page from "./app/components/buttons/page";
@@ -15,6 +15,7 @@ import Checkbox from "./app/components/Checkboxes/checkboxes";
 import Sliders from "./app/components/Sliders/Sliders";
 import Selects from "./app/components/Selects/Selects";
 import Alerts from "./app/components/Alerts/Alerts";
+import ChecksRadiosSwitches from "./components/Components/checks-radios-switches/checks_radios_switches";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/components/selects" element={<Selects />} />
           <Route path="/components/alerts-notifications-banners" element={<Alerts />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/components/checks-radios-switches" element={<ChecksRadiosSwitches />} />
         </Routes>
       </Router>
     </ThemeProvider>
