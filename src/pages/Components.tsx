@@ -45,7 +45,7 @@ export default function Components() {
                   className="flex justify-between items-center text-lg w-full h-14 p-5 dark:bg-gray-800/50"
                 >
                   {link.name}
-                  <span className="-me-1 ms-3 inline-flex h-6 max-h-full items-center rounded border border-border px-2 font-[inherit] text-[0.75rem] font-medium text-muted-foreground">
+                  <span className="-me-1 ms-3 inline-flex h-6 max-h-full items-center rounded border border-border px-3 py-2 font-[inherit] text-[0.75rem] font-medium text-muted-foreground">
                     <ChevronRight
                       className="opacity-60 transition-transform group-hover:translate-x-0.5"
                       size={18}
