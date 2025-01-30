@@ -47,14 +47,14 @@ export default function Home() {
         </div>
 
         <div className="mt-10 md:ml-48 ml-4 mb-14 max-w-lg lg:max-w-xl mx-4 ">
-          <h1 className="font-bold md:text-2xl text-xl mb-3 ">
-            Only UI Component Library you will ever need{" "}
+          <h1 className="font-bold md:text-2xl text-xl ">
+            Only UI Component Library you will ever need...{" "}
           </h1>
-          <p className="font-semibold text-2xl mb-4">
-            As simple as copy and paste
+          <p className="font-bold text-2xl mb-4">
+            As simple as copy and paste!
           </p>
           <p className="text-lg">
-            Copy paste the code into your ui folder and use the
+            Copy paste the code into your 'ui' folder and use the
           </p>
           <p className="text-lg mb-4">
             components in your projects. It's that simple, really.

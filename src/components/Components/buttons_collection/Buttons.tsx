@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   SquareArrowOutUpRight,
   ThumbsDownIcon,
@@ -25,11 +25,36 @@ import { useImageUpload } from "@/hooks/use-image-upload";
 import { CircleUserRound } from "lucide-react";
 import { Mail } from "lucide-react";
 import { ButtonWithCopy } from "./ButtonWithCopy";
+import AvatarImg from "../../../assets/favicon-removebg.png";
+import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  RiCodeFill,
+  RiFacebookFill,
+  RiMailLine,
+  RiTwitterXFill,
+} from "@remixicon/react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Bolt, BookOpen, Layers2, LogOut, Pin, UserPen } from "lucide-react";
+import ColorPicker from "@/components/_components/ColorPicker";
+import LibrarySelector from "@/components/_components/LibrarySelector";
 
 export default function Buttons() {
   const [bgColor, setBgColor] = useState("#d4d4d4");
   const [textColor, setTextColor] = useState("#000000");
-  const [selectedLibrary, setSelectedLibrary] = useState("React.ts");
   const [copied, setCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -38,12 +63,14 @@ export default function Buttons() {
   const [selectedOption, setSelectedOption] = useState<string>("Action");
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const options = ["Active", "Inactive", "Pending"];
 
   const toggleExpand = () => {
     setIsExpanded7((prevState) => !prevState);
   };
+
   const handleCopy = async () => {
     try {
       // await navigator.clipboard.writeText("string to copy");
@@ -53,6 +80,15 @@ export default function Buttons() {
       console.error("Failed to copy text: ", err);
     }
   };
+
+  const handleCopy2 = () => {
+    if (inputRef.current) {
+      navigator.clipboard.writeText(inputRef.current.value);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    }
+  };
+
   const {
     previewUrl,
     fileInputRef,
@@ -62,100 +98,783 @@ export default function Buttons() {
     fileName,
   } = useImageUpload();
 
-  const buttonloading = `// Dependencies: pnpm install lucide-react
+  const buttonComponents = [
+    {
+      name: "Basic Button",
+      component: (
+        <Button style={{ backgroundColor: bgColor, color: textColor }}>
+          Button
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+      
+  export default function ButtonDemo() {
+    return <Button style={{ backgroundColor: bgColor, color: textColor }}>Button</Button>;
+  }`,
+    },
+    {
+      name: "Rounded Button",
+      component: (
+        <Button
+          className="rounded-full"
+          style={{ backgroundColor: bgColor, color: textColor }}
+        >
+          Button
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+      
+  export default function ButtonDemo() {
+    return <Button className="rounded-full" style={{ backgroundColor: bgColor, color: textColor }}>Button</Button>;
+  }`,
+    },
+    {
+      name: "Button with Icon",
+      component: (
+        <Button variant="secondary">
+          <X
+            className="-ms-1 me-2 opacity-60"
+            size={16}
+            strokeWidth={2}
+            aria-hidden="true"
+          />
+          Button
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+  import { X } from "lucide-react";
+      
+  export default function ButtonDemo() {
+    return (
+      <Button variant="secondary">
+        <X className="-ms-1 me-2 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
+        Button
+      </Button>
+    );
+  }`,
+    },
+    {
+      name: "Ghost Button with Hover",
+      component: (
+        <Button className="group" variant="ghost">
+          <ArrowLeft
+            className="-ms-1 me-2 opacity-60 transition-transform group-hover:-translate-x-0.5"
+            size={16}
+            strokeWidth={2}
+            aria-hidden="true"
+          />
+          Button
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+  import { ArrowLeft } from "lucide-react";
+      
+  export default function ButtonDemo() {
+    return (
+      <Button className="group" variant="ghost">
+        <ArrowLeft className="-ms-1 me-2 opacity-60 transition-transform group-hover:-translate-x-0.5" />
+        Button
+      </Button>
+    );
+  }`,
+    },
+    {
+      name: "Expandable Search Bar",
+      component: (
+        <div className="flex items-center space-x-2">
+          <Button
+            size="icon"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="bg-gray-200 text-gray-800 hover:bg-gray-300 transition-all"
+          >
+            {isExpanded ? (
+              <X size={20} strokeWidth={2} />
+            ) : (
+              <Search size={20} strokeWidth={2} />
+            )}
+          </Button>
+          {isExpanded && (
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search..."
+              className="px-4 py-2 bg-gray-100 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 transition-all"
+            />
+          )}
+        </div>
+      ),
+      code: `import { useState } from "react";
+    import { Button } from "@/components/ui/button";
+    import { Search, X } from "lucide-react";
+    
+    export default function ExpandableSearchBar() {
+      const [isExpanded, setIsExpanded] = useState(false);
+      const [searchQuery, setSearchQuery] = useState("");
+    
+      return (
+        <div className="flex items-center space-x-2">
+          <Button
+            size="icon"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="bg-gray-200 text-gray-800 hover:bg-gray-300 transition-all"
+          >
+            {isExpanded ? <X size={20} strokeWidth={2} /> : <Search size={20} strokeWidth={2} />}
+          </Button>
+          {isExpanded && (
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search..."
+              className="px-4 py-2 bg-gray-100 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 transition-all"
+            />
+          )}
+        </div>
+      );
+    }`,
+    },
+    {
+      name: "Outline Button",
+      component: (
+        <Button
+          className={`border border-[${bgColor}] bg-transparent text-[${bgColor}] hover:bg-[${bgColor}] transition-all`}
+        >
+          Button
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+    
+    export default function ButtonDemo() {
+      return <Button className="border border-[${bgColor}] text-[${textColor}] hover:bg-[${bgColor}] hover:text-white transition-all">Button</Button>;
+    }`,
+    },
+    {
+      name: "Copy Button",
+      component: (
+        <TooltipProvider delayDuration={0}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                className="disabled:opacity-100 bg-[${bgColor}] text-[${textColor}]"
+                onClick={handleCopy}
+                aria-label={copied ? "Copied" : "Copy to clipboard"}
+                disabled={copied}
+              >
+                <div
+                  className={cn(
+                    "transition-all",
+                    copied ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                  )}
+                >
+                  <Check
+                    className="stroke-emerald-500"
+                    size={16}
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  />
+                </div>
+                <div
+                  className={cn(
+                    "absolute transition-all",
+                    copied ? "scale-0 opacity-0" : "scale-100 opacity-100"
+                  )}
+                >
+                  <Copy size={16} strokeWidth={2} aria-hidden="true" />
+                </div>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent className="px-2 py-1 text-xs">
+              Click to copy
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      ),
+      code: `import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+    import { Button } from "@/components/ui/button";
+    import { Check, Copy } from "lucide-react";
+    import { cn } from "@/lib/utils";
+    import { useState } from "react";
+    
+    export default function ButtonDemo() {
+      const [copied, setCopied] = useState(false);
+    
+      const handleCopy = async () => {
+        try {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1500);
+        } catch (err) {
+          console.error("Failed to copy text: ", err);
+        }
+      };
+    
+      return (
+        <TooltipProvider delayDuration={0}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                className="disabled:opacity-100 bg-[${bgColor}] text-[${textColor}]"
+                onClick={handleCopy}
+                aria-label={copied ? "Copied" : "Copy to clipboard"}
+                disabled={copied}
+              >
+                <div
+                  className={cn(
+                    "transition-all",
+                    copied ? "scale-100 opacity-100" : "scale-0 opacity-0",
+                  )}
+                >
+                  <Check className="stroke-emerald-500" size={16} strokeWidth={2} aria-hidden="true" />
+                </div>
+                <div
+                  className={cn(
+                    "absolute transition-all",
+                    copied ? "scale-0 opacity-0" : "scale-100 opacity-100",
+                  )}
+                >
+                  <Copy size={16} strokeWidth={2} aria-hidden="true" />
+                </div>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent className="px-2 py-1 text-xs">Click to copy</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      );
+    }`,
+    },
+    {
+      name: "Save and Cancel Buttons",
+      component: (
+        <div className="inline-flex items-center gap-2">
+          <Button variant="ghost">Cancel</Button>
+          <Button style={{ backgroundColor: bgColor, color: textColor }}>
+            Save
+          </Button>
+        </div>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+      
+  export default function ButtonDemo() {
+    return (
+      <div className="inline-flex items-center gap-2">
+        <Button variant="ghost">Cancel</Button>
+        <Button>Save</Button>
+      </div>
+    );
+  }`,
+    },
+    {
+      name: "Toggle Button",
+      component: (
+        <Button
+          onClick={() => setIsActive(!isActive)}
+          style={{
+            backgroundColor: isActive ? bgColor : "gray",
+            color: isActive ? textColor : "#000000",
+          }}
+        >
+          {isActive ? "Active" : "Inactive"}
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+      
+  export default function ButtonDemo() {
+    const [isActive, setIsActive] = useState(false);
+    
+    return (
+      <Button
+        onClick={() => setIsActive(!isActive)}
+        style={{
+          backgroundColor: isActive ? bgColor : "gray",
+          color: isActive ? textColor : "#000000",
+        }}
+      >
+        {isActive ? "Active" : "Inactive"}
+      </Button>
+    );
+  }`,
+    },
+    {
+      name: "Gradient Button",
+      component: (
+        <Button
+          className="shadow-lg hover:shadow-xl"
+          style={{
+            background: `linear-gradient(to right, ${bgColor}, #FFD700)`,
+            color: textColor,
+          }}
+        >
+          Button
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+      
+  export default function ButtonDemo() {
+    return (
+      <Button
+        style={{
+          background: "linear-gradient(to right, ${bgColor}, #FFD700)",
+          color: textColor,
+        }}
+        className="shadow-lg hover:shadow-xl"
+      >
+        Button
+      </Button>
+    );
+  }`,
+    },
+    {
+      name: "Loading Button",
+      component: (
+        <Button disabled>
+          <LoaderCircle
+            className="-ms-1 me-2 animate-spin"
+            size={16}
+            strokeWidth={2}
+            aria-hidden="true"
+          />
+          Button
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+  import { LoaderCircle } from "lucide-react";
+      
+  export default function ButtonDemo() {
+    return (
+      <Button disabled>
+        <LoaderCircle
+          className="-ms-1 me-2 animate-spin"
+          size={16}
+          strokeWidth={2}
+          aria-hidden="true"
+        />
+        Button
+      </Button>
+    );
+  }`,
+    },
+    {
+      name: "profilewithtext",
+      component: (
+        <Button className="rounded-full py-0 ps-0">
+          <div className="me-0.5 flex aspect-square h-full p-1.5">
+            <img
+              className="h-auto w-full rounded-full"
+              src={AvatarImg}
+              alt="Profile image"
+              width={24}
+              height={24}
+              aria-hidden="true"
+            />
+          </div>
+          @UI-Topia
+        </Button>
+      ),
+      code: `import { Button } from "@/components/ui/button";
+import AvatarImg from "@/assets/favicon.png";
+
+export default function ButtonDemo() {
+  return (
+    <Button className="rounded-full py-0 ps-0">
+      <div className="me-0.5 flex aspect-square h-full p-1.5">
+        <img
+          className="h-auto w-full rounded-full"
+          src={AvatarImg}
+          alt="Profile image"
+          width={24}
+          height={24}
+          aria-hidden="true"
+        />
+      </div>
+      @UI-Topia
+    </Button>
+  );
+}
+`,
+    },
+    {
+      name: "image dropdown",
+      component: (
+        <div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                className="h-auto p-0 hover:bg-transparent"
+              >
+                <Avatar>
+                  <AvatarImage src="./avatar.jpg" alt="Profile image" />
+                  <AvatarFallback>UI</AvatarFallback>
+                </Avatar>
+                <ChevronDown
+                  size={16}
+                  strokeWidth={2}
+                  className="ms-2 opacity-60"
+                  aria-hidden="true"
+                />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="max-w-64">
+              <DropdownMenuLabel className="flex min-w-0 flex-col">
+                <span className="truncate text-sm font-medium text-foreground">
+                  UI-Topia
+                </span>
+                <span className="truncate text-xs font-normal text-muted-foreground">
+                  uitopia@gmail.com
+                </span>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <Bolt
+                    size={16}
+                    strokeWidth={2}
+                    className="opacity-60"
+                    aria-hidden="true"
+                  />
+                  <span>Option 1</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Layers2
+                    size={16}
+                    strokeWidth={2}
+                    className="opacity-60"
+                    aria-hidden="true"
+                  />
+                  <span>Option 2</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <BookOpen
+                    size={16}
+                    strokeWidth={2}
+                    className="opacity-60"
+                    aria-hidden="true"
+                  />
+                  <span>Option 3</span>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <Pin
+                    size={16}
+                    strokeWidth={2}
+                    className="opacity-60"
+                    aria-hidden="true"
+                  />
+                  <span>Option 4</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <UserPen
+                    size={16}
+                    strokeWidth={2}
+                    className="opacity-60"
+                    aria-hidden="true"
+                  />
+                  <span>Option 5</span>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="text-destructive focus:text-destructive">
+                <LogOut
+                  size={16}
+                  strokeWidth={2}
+                  className="opacity-60"
+                  aria-hidden="true"
+                />
+                <span>Logout</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      ),
+      code: `import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import { Bolt, BookOpen, ChevronDown, Layers2, LogOut, Pin, UserPen } from "lucide-react";
+
+export default function DropdownDemo() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="h-auto p-0 hover:bg-transparent">
+          <Avatar>
+            <AvatarImage src="./avatar.jpg" alt="Profile image" />
+            <AvatarFallback>KK</AvatarFallback>
+          </Avatar>
+          <ChevronDown size={16} strokeWidth={2} className="ms-2 opacity-60" aria-hidden="true" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="max-w-64">
+        <DropdownMenuLabel className="flex min-w-0 flex-col">
+          <span className="truncate text-sm font-medium text-foreground">Keith Kennedy</span>
+          <span className="truncate text-xs font-normal text-muted-foreground">
+            k.kennedy@originui.com
+          </span>
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+            <Bolt size={16} strokeWidth={2} className="opacity-60" aria-hidden="true" />
+            <span>Option 1</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Layers2 size={16} strokeWidth={2} className="opacity-60" aria-hidden="true" />
+            <span>Option 2</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <BookOpen size={16} strokeWidth={2} className="opacity-60" aria-hidden="true" />
+            <span>Option 3</span>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+            <Pin size={16} strokeWidth={2} className="opacity-60" aria-hidden="true" />
+            <span>Option 4</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <UserPen size={16} strokeWidth={2} className="opacity-60" aria-hidden="true" />
+            <span>Option 5</span>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <LogOut size={16} strokeWidth={2} className="opacity-60" aria-hidden="true" />
+          <span>Logout</span>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+`,
+    },
+    {
+      name: "share",
+      component: (
+        <div className="flex flex-col gap-4">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline">Share</Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-72">
+              <div className="flex flex-col gap-3 text-center">
+                <div className="text-sm font-medium">Share code</div>
+                <div className="flex flex-wrap justify-center gap-2">
+                  <Button size="icon" variant="outline" aria-label="Embed">
+                    <RiCodeFill size={16} strokeWidth={2} aria-hidden="true" />
+                  </Button>
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    aria-label="Share on Twitter"
+                  >
+                    <RiTwitterXFill
+                      size={16}
+                      strokeWidth={2}
+                      aria-hidden="true"
+                    />
+                  </Button>
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    aria-label="Share on Facebook"
+                  >
+                    <RiFacebookFill
+                      size={16}
+                      strokeWidth={2}
+                      aria-hidden="true"
+                    />
+                  </Button>
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    aria-label="Share via email"
+                  >
+                    <RiMailLine size={16} strokeWidth={2} aria-hidden="true" />
+                  </Button>
+                </div>
+                <div className="space-y-2">
+                  <div className="relative">
+                    <Input
+                      ref={inputRef}
+                      id="input-53"
+                      className="pe-9"
+                      type="text"
+                      defaultValue="https://uitopia-psi.vercel.app/"
+                      aria-label="Share link"
+                      readOnly
+                    />
+                    <TooltipProvider delayDuration={0}>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <button
+                            onClick={handleCopy2}
+                            className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-lg border border-transparent text-muted-foreground/80 outline-offset-2 transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70 disabled:pointer-events-none disabled:cursor-not-allowed"
+                            aria-label={copied ? "Copied" : "Copy to clipboard"}
+                            disabled={copied}
+                          >
+                            <div
+                              className={cn(
+                                "transition-all",
+                                copied
+                                  ? "scale-100 opacity-100"
+                                  : "scale-0 opacity-0"
+                              )}
+                            >
+                              <Check
+                                className="stroke-emerald-500"
+                                size={16}
+                                strokeWidth={2}
+                                aria-hidden="true"
+                              />
+                            </div>
+                            <div
+                              className={cn(
+                                "absolute transition-all",
+                                copied
+                                  ? "scale-0 opacity-0"
+                                  : "scale-100 opacity-100"
+                              )}
+                            >
+                              <Copy
+                                size={16}
+                                strokeWidth={2}
+                                aria-hidden="true"
+                              />
+                            </div>
+                          </button>
+                        </TooltipTrigger>
+                        <TooltipContent className="px-2 py-1 text-xs">
+                          Copy to clipboard
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
+        </div>
+      ),
+      code: `// Dependencies: pnpm install lucide-react @remixicon/react
+
+"use client";
 
 import { Button } from "@/components/ui/button";
-import { LoaderCircle } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { RiCodeFill, RiFacebookFill, RiMailLine, RiTwitterXFill } from "@remixicon/react";
+import { Check, Copy } from "lucide-react";
+import { useRef, useState } from "react";
 
-export default function ButtonDemo() {
+export default function PopoverDemo() {
+  const [copied, setCopied] = useState<boolean>(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleCopy2 = () => {
+    if (inputRef.current) {
+      navigator.clipboard.writeText(inputRef.current.value);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    }
+  };
+
   return (
-    <Button disabled>
-      <LoaderCircle
-        className="-ms-1 me-2 animate-spin"
-        size={16}
-        strokeWidth={2}
-        aria-hidden="true"
-      />
-      Button
-    </Button>
-  );
-}
-`;
-  const codeloading = (
-    <Button disabled>
-      <LoaderCircle
-        className="-ms-1 me-2 animate-spin"
-        size={16}
-        strokeWidth={2}
-        aria-hidden="true"
-      />
-      Button
-    </Button>
-  );
-
-  // save and cancel
-  const buttonsaveandcancel = `import { Button } from "@/components/ui/button";
-
-export default function ButtonDemo() {
-  return (
-    <div className="inline-flex items-center gap-2">
-      <Button variant="ghost">Cancel</Button>
-      <Button>Save</Button>
+    <div className="flex flex-col gap-4">
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="outline">Share</Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-72">
+          <div className="flex flex-col gap-3 text-center">
+            <div className="text-sm font-medium">Share code</div>
+            <div className="flex flex-wrap justify-center gap-2">
+              <Button size="icon" variant="outline" aria-label="Embed">
+                <RiCodeFill size={16} strokeWidth={2} aria-hidden="true" />
+              </Button>
+              <Button size="icon" variant="outline" aria-label="Share on Twitter">
+                <RiTwitterXFill size={16} strokeWidth={2} aria-hidden="true" />
+              </Button>
+              <Button size="icon" variant="outline" aria-label="Share on Facebook">
+                <RiFacebookFill size={16} strokeWidth={2} aria-hidden="true" />
+              </Button>
+              <Button size="icon" variant="outline" aria-label="Share via email">
+                <RiMailLine size={16} strokeWidth={2} aria-hidden="true" />
+              </Button>
+            </div>
+            <div className="space-y-2">
+              <div className="relative">
+                <Input
+                  ref={inputRef}
+                  id="input-53"
+                  className="pe-9"
+                  type="text"
+                  defaultValue="https://originui.com/Avx8HD"
+                  aria-label="Share link"
+                  readOnly
+                />
+                <TooltipProvider delayDuration={0}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        onClick={handleCopy2}
+                        className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-lg border border-transparent text-muted-foreground/80 outline-offset-2 transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70 disabled:pointer-events-none disabled:cursor-not-allowed"
+                        aria-label={copied ? "Copied" : "Copy to clipboard"}
+                        disabled={copied}
+                      >
+                        <div
+                          className={cn(
+                            "transition-all",
+                            copied ? "scale-100 opacity-100" : "scale-0 opacity-0",
+                          )}
+                        >
+                          <Check
+                            className="stroke-emerald-500"
+                            size={16}
+                            strokeWidth={2}
+                            aria-hidden="true"
+                          />
+                        </div>
+                        <div
+                          className={cn(
+                            "absolute transition-all",
+                            copied ? "scale-0 opacity-0" : "scale-100 opacity-100",
+                          )}
+                        >
+                          <Copy size={16} strokeWidth={2} aria-hidden="true" />
+                        </div>
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent className="px-2 py-1 text-xs">Copy to clipboard</TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+            </div>
+          </div>
+        </PopoverContent>
+      </Popover>
     </div>
   );
 }
-`;
-  const codesaveandcancel = (
-    <div className="inline-flex items-center gap-2">
-      <Button variant="ghost">Cancel</Button>
-      <Button style={{ backgroundColor: bgColor, color: textColor }}>
-        Save
-      </Button>
-    </div>
-  );
-
-  // Toggle button
-  const buttonCodeToggle = `import { Button } from "@/components/ui/button";
-
-export default function ButtonDemo() {
-  return (
-    <Button
-      onClick={() => setIsActive(!isActive)}
-      className={isActive ? "bg-[${bgColor}] text-[${textColor}]" : "bg-gray-300 text-gray-700"}
-    >
-      {isActive ? "Active" : "Inactive"}
-    </Button>
-  );
-}`;
-  const codeToggle = (
-    <Button
-      onClick={() => setIsActive(!isActive)}
-      style={{
-        backgroundColor: isActive ? bgColor : "gray",
-        color: isActive ? textColor : "#000000",
-      }}
-    >
-      {isActive ? "Active" : "Inactive"}
-    </Button>
-  );
-
-  // Gradient button
-  const buttonCodeGradient = `import { Button } from "@/components/ui/button";
-
-export default function ButtonDemo() {
-  return <Button className="bg-gradient-to-r from-[${bgColor}] to-[#FFD700] text-[${textColor}] shadow-lg hover:shadow-xl transition-shadow">Button</Button>;
-}`;
-  const codeGradient = (
-    <Button
-      className="shadow-lg hover:shadow-xl"
-      style={{
-        background: `linear-gradient(to right, ${bgColor}, #FFD700)`,
-        color: textColor,
-      }}
-    >
-      Button
-    </Button>
-  );
+`,
+    },
+  ];
 
   // Split button
   const buttonCodeSplit = `import React, { useState } from "react";
@@ -241,151 +960,6 @@ export default function ButtonDemo() {
         </div>
       )}
     </div>
-  );
-
-  // ExpandableSearchBar
-  const ExpandableSearchBar = `import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Search, X } from "lucide-react";
-
-export default function ExpandableSearchBar() {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-
-  return (
-    <div className="flex items-center space-x-2">
-      <Button
-        size="icon"
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="bg-gray-200 text-gray-800 hover:bg-gray-300 transition-all"
-      >
-        {isExpanded ? <X size={20} strokeWidth={2} /> : <Search size={20} strokeWidth={2} />}
-      </Button>
-      {isExpanded && (
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search..."
-          className="px-4 py-2 bg-gray-100 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 transition-all"
-        />
-      )}
-    </div>
-  );
-}
-`;
-  const codeExpandableSearchBar = (
-    <div className="flex items-center space-x-2">
-      <Button
-        size="icon"
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="bg-gray-200 text-gray-800 hover:bg-gray-300 transition-all"
-      >
-        {isExpanded ? (
-          <X size={20} strokeWidth={2} />
-        ) : (
-          <Search size={20} strokeWidth={2} />
-        )}
-      </Button>
-      {isExpanded && (
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search..."
-          className="px-4 py-2 bg-gray-100 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 transition-all"
-        />
-      )}
-    </div>
-  );
-
-  // Outline Button
-  const buttonCodeOutline = `import { Button } from "@/components/ui/button";
-
-export default function ButtonDemo() {
-  return <Button className="border border-[${bgColor}] text-[${textColor}] hover:bg-[${bgColor}] hover:text-white transition-all">Button</Button>;
-}`;
-  const codeOutline = (
-    <Button
-      className={`border border-[${bgColor}] bg-transparent text-[${bgColor}] hover:bg-[${bgColor}] transition-all`}
-    >
-      Button
-    </Button>
-  );
-
-  // Button code and its rendered JSX for the first button
-  const buttonCode1 = `import { Button } from "@/components/ui/button";
-
-  export default function ButtonDemo() {
-    return <Button className="bg-[${bgColor}] text-[${textColor}]">Button</Button>;
-  }`;
-  const code1 = (
-    <Button style={{ backgroundColor: bgColor, color: textColor }}>
-      Button
-    </Button>
-  );
-
-  // Button code and its rendered JSX for the second button
-  const buttonCode2 = `import { Button } from "@/components/ui/button";
-
-  export default function ButtonDemo() {
-    return <Button className="bg-[${bgColor}] text-[${textColor}] rounded-full">Button</Button>;
-  }`;
-  const code2 = (
-    <Button
-      className="rounded-full"
-      style={{ backgroundColor: bgColor, color: textColor }}
-    >
-      Button
-    </Button>
-  );
-
-  // Button code and its rendered JSX for the third button
-  const buttonCode3 = `import { Button } from "@/components/ui/button";
-  import { X } from "lucide-react";
-
-  export default function ButtonDemo() {
-    return (
-      <Button variant="secondary">
-        <X className="-ms-1 me-2 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
-        Button
-      </Button>
-    );
-  }`;
-  const code3 = (
-    <Button variant="secondary">
-      <X
-        className="-ms-1 me-2 opacity-60"
-        size={16}
-        strokeWidth={2}
-        aria-hidden="true"
-      />
-      Button
-    </Button>
-  );
-
-  // Button code and its rendered JSX for the fourth button
-  const buttonCode4 = `import { Button } from "@/components/ui/button";
-  import { ArrowLeft } from "lucide-react";
-
-  export default function ButtonDemo() {
-    return (
-      <Button className="group" variant="ghost">
-        <ArrowLeft className="-ms-1 me-2 opacity-60 transition-transform group-hover:-translate-x-0.5" />
-        Button
-      </Button>
-    );
-  }`;
-  const code4 = (
-    <Button className="group" variant="ghost">
-      <ArrowLeft
-        className="-ms-1 me-2 opacity-60 transition-transform group-hover:-translate-x-0.5"
-        size={16}
-        strokeWidth={2}
-        aria-hidden="true"
-      />
-      Button
-    </Button>
   );
 
   // Button code and its rendered JSX for the fifth button
@@ -1009,103 +1583,41 @@ export default function ButtonDemo() {
   );
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center gap-4 px-4 sm:px-8 mb-12">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center gap-8 px-4 sm:px-8">
       {/* Header Section */}
-      <div className="flex flex-col items-center gap-2 text-center mt-[8rem] sm:mt-0 md:mt-28">
-        <h1 className="text-3xl sm:text-4xl font-bold">Button</h1>
-        <p className="text-[hsl(var(--muted-foreground))] font-semibold max-w-md sm:max-w-lg">
-          A growing collection of button components built with ReactTS and
-          TailwindCSS.
+      <div className="flex flex-col items-center gap-2 text-center mt-[8rem]">
+        <div className="text-3xl sm:text-4xl font-bold">Buttons</div>
+        <p className="text-[hsl(var(--muted-foreground))] font-semibold whitespace-normal break-words max-w-md sm:max-w-lg">
+          A growing collection of button components built with React
+          TS and TailwindCSS.
         </p>
-      </div>
-
-      {/* Customization Menu and Color Picker */}
-      <div className="w-[75%] flex flex-col justify-center md:flex-row items-center md:justify-between gap-6 p-6  border-y border-gray-300/80 dark:border-gray-700/50">
-        <div className="flex items-center gap-2 w-full justify-center md:justify-start">
-          <label
-            htmlFor="librarySelect"
-            className="font-semibold text-gray-800 dark:text-gray-200"
-          >
-            Select Framework:
-          </label>
-          <select
-            id="librarySelect"
-            className="h-10 px-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900/70 text-gray-700 dark:text-gray-200 outline-none cursor-pointer transition focus:ring-2 focus:ring-blue-500 object-"
-            onChange={(e) => setSelectedLibrary(e.target.value)}
-            value={selectedLibrary}
-          >
-            <option value="React.js" className="dark:bg-gray-900">
-              React.js
-            </option>
-            <option value="React.ts" className="dark:bg-gray-900">
-              React.ts
-            </option>
-            <option value="Next.js" className="dark:bg-gray-900">
-              Next.js
-            </option>
-            <option value="Next.ts" className="dark:bg-gray-900">
-              Next.ts
-            </option>
-          </select>
-        </div>
-
-        {/* Background Color Picker */}
-        <div className="flex flex-row w-full gap-5 justify-end">
-          <div className="flex items-center gap-2">
-            <label
-              htmlFor="bgColor"
-              className="font-semibold text-sm text-gray-800 dark:text-gray-200"
-            >
-              Background Color:
-            </label>
-            <input
-              id="bgColor"
-              type="color"
-              className="h-8 w-8 rounded-lg border-none outline-none cursor-pointer transition-transform transform hover:scale-110"
-              onChange={(e) => setBgColor(e.target.value)}
-              value={bgColor}
-            />
-          </div>
-
-          {/* Text Color Picker */}
-          <div className="flex items-center gap-2">
-            <label
-              htmlFor="textColor"
-              className="font-semibold text-sm text-gray-800 dark:text-gray-200"
-            >
-              Text Color:
-            </label>
-            <input
-              id="textColor"
-              type="color"
-              className="h-8 w-8 rounded-lg border-none outline-none cursor-pointer transition-transform transform hover:scale-110"
-              onChange={(e) => setTextColor(e.target.value)}
-              value={textColor}
-            />
+        <div className="flex flex-col w-full justify-center items-center md:flex-row gap-4">
+          <LibrarySelector />
+          <div className="flex items-center justify-center gap-3">
+          <ColorPicker
+        label="Background Color"
+        color={bgColor}
+        onChange={setBgColor}
+      />
+      <ColorPicker
+        label="Text Color"
+        color={textColor}
+        onChange={setTextColor}
+      />
           </div>
         </div>
       </div>
 
-      {/* Grid for displaying button examples */}
+      {/* Button Collection */}
       <div className="grid max-w-6xl grid-cols-1 overflow-hidden sm:grid-cols-2 lg:grid-cols-3 [&>*]:relative [&>*]:px-1 [&>*]:py-12 [&>*]:before:absolute [&>*]:before:bg-border/70 [&>*]:before:[block-size:100vh] [&>*]:before:[inline-size:1px] [&>*]:before:[inset-block-start:0] [&>*]:before:[inset-inline-start:-1px] [&>*]:after:absolute [&>*]:after:bg-border/70 [&>*]:after:[block-size:1px] [&>*]:after:[inline-size:100vw] [&>*]:after:[inset-block-start:-1px] [&>*]:after:[inset-inline-start:0] sm:[&>*]:px-8 xl:[&>*]:px-12 w-full">
         {" "}
-        <ButtonWithCopy code={buttonCode1} coding={code1} />
-        <ButtonWithCopy code={buttonCode2} coding={code2} />
-        <ButtonWithCopy code={buttonCode3} coding={code3} />
-        <ButtonWithCopy code={buttonCode4} coding={code4} />
+        {buttonComponents.map((button, _index) => (
+          <ButtonWithCopy code={button.code} coding={button.component} />
+        ))}
         <ButtonWithCopy code={buttonCode5} coding={code5} />
         <ButtonWithCopy code={buttonCode6} coding={code6} />
-        <ButtonWithCopy code={buttonCodeOutline} coding={codeOutline} />
-        <ButtonWithCopy
-          code={ExpandableSearchBar}
-          coding={codeExpandableSearchBar}
-        />
-        <ButtonWithCopy code={buttonCodeToggle} coding={codeToggle} />
-        <ButtonWithCopy code={buttonCodeGradient} coding={codeGradient} />
         <ButtonWithCopy code={buttonCodeSplit} coding={codeSplit} />
         <ButtonWithCopy code={buttonCode7} coding={code7} />
-        <ButtonWithCopy code={buttonsaveandcancel} coding={codesaveandcancel} />
-        <ButtonWithCopy code={buttonloading} coding={codeloading} />
         <ButtonWithCopy code={buttonuploadimage} coding={codeuploadimage} />
         <ButtonWithCopy code={buttonemail} coding={codeemail} />
         <ButtonWithCopy code={buttongoback} coding={codegoback} />
@@ -1113,6 +1625,7 @@ export default function ButtonDemo() {
         <ButtonWithCopy code={buttoncopy} coding={codecopy} />
         <ButtonWithCopy code={buttonpreview} coding={codepreview} />
         <ButtonWithCopy code={buttonlike} coding={codelike} />
+        {/* <Page /> */}
       </div>
     </div>
   );
