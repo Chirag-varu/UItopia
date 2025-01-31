@@ -19,7 +19,7 @@ import { MdInfo } from "react-icons/md";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Check, Copy } from "lucide-react";
-import ReactDOMServer from "react-dom/server";
+// import ReactDOMServer from "react-dom/server";
 import LibrarySelector from "@/components/_components/LibrarySelector";
 
 const inputFiles = [
@@ -109,10 +109,12 @@ export default function Select() {
     const loadComponents = async () => {
       const importedComponents = await Promise.all(
         inputFiles.map(async (fileName) => {
-          const Component = (
-            await import(`../../../components/inputs/${fileName}.tsx`)
-          ).default;
-          return { id: fileName, Component, code: `<${fileName} />` }; // Example code string
+          const sourceCode = await import(
+            `../../../components/inputs/${fileName}.tsx?raw`
+          ).then((module) => module.default);
+
+          const Component = (await import(`../../../components/inputs/${fileName}.tsx`)).default;
+          return { id: fileName, Component, code: sourceCode };
         })
       );
       setComponents(importedComponents);
@@ -122,13 +124,13 @@ export default function Select() {
   }, []);
 
   // Handles copying code to clipboard
-  const handleCopy = (code: React.ReactNode) => {
-    navigator.clipboard
-      .writeText(ReactDOMServer.renderToStaticMarkup(code))
-      .then(() => {
-        setCopied(ReactDOMServer.renderToStaticMarkup(code));
+  const handleCopy = (code: string) => {
+    if (code) {
+      navigator.clipboard.writeText(code).then(() => {
+        setCopied(code);
         setTimeout(() => setCopied(null), 2000);
       });
+    }
   };
 
   return (
@@ -209,7 +211,7 @@ export default function Select() {
                         variant="outline"
                         size="icon"
                         className="disabled:opacity-100 absolute top-0 right-0 md:opacity-0 opacity-100 group-hover:opacity-100 px-4 z-40 mr-2 rounded-md text-sm transition-opacity duration-300 "
-                        onClick={() => handleCopy(<Component />)}
+                        onClick={() => handleCopy(code)}
                         aria-label={
                           copied === code ? "Copied" : "Copy to clipboard"
                         }
